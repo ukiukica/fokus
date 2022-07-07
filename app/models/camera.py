@@ -15,9 +15,9 @@ class Camera(db.Model):
     created_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)
 
-    user = db.relationship('User', back_populates='cameras')
+    users = db.relationship('User', back_populates='cameras')
     reviews = db.relationship("Review", back_populates="cameras")
-    category = db.relationship("Category", back_populates="cameras")
+    categories = db.relationship("Category", back_populates="cameras")
     images = db.relationship("Image", back_populates="cameras")
 
 

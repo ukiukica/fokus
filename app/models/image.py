@@ -8,7 +8,7 @@ class Image(db.Model):
     film_roll = db.Column(db.Boolean, nullable=False)
     camera_id = db.Column(db.Integer, db.ForeignKey('cameras.id'))
 
-    camera = db.relationship("Camera", back_populates="images")
+    cameras = db.relationship("Camera", back_populates="images")
 
     def to_dict(self):
         return {
