@@ -9,9 +9,7 @@ FILM_TYPES = ["35mm", "120mm", "600", "SX-70"]
 class AddCameraForm(FlaskForm):
     brand = StringField('Brand', validators=[DataRequired()])
     model = StringField('Model', validators=[DataRequired()])
-    film_type = SelectField('Film Type',
-    choices=FILM_TYPES,
-    validators=[DataRequired()])
+    film_type = StringField('Film Type', validators=[DataRequired()])
     other_specs = TextAreaField('Other Specs')
     amount = FloatField('Amount', validators=[DataRequired()])
     inventory = IntegerField('Inventory', validators=[DataRequired()])

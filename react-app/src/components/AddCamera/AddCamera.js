@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { addBill } from "../../store/bills.js";
-import { ValidationError } from "../../utils/validationError";
+import { createCamera } from "../../store/cameras";
 import "./AddCamera.css";
 
 function AddCameraForm() {
@@ -36,7 +35,8 @@ function AddCameraForm() {
     const updateInventory = (e) => setInventory(e.target.value)
     const updateCategory = (e) => setCategory(e.target.value)
 
-
+    console.log("FILM TYPE: ", filmType)
+    console.log("CATEGORY: ", category)
 
     useEffect(() => {
         const errors = [];
@@ -49,7 +49,6 @@ function AddCameraForm() {
 
         setValidationErrors(errors)
 
-        setErrors(errors);
     }, [brand, model, filmType, amount, inventory]);
 
     const onSubmit = async (e) => {
@@ -62,16 +61,16 @@ function AddCameraForm() {
             const payload = {
                 brand,
                 model,
-                filmType,
-                otherSpecs,
+                "film_type":filmType,
+                "other_specs":otherSpecs,
                 amount,
                 inventory,
-                category,
-                userId
+                "category_id":category,
+                "user_id":userId
             };
-            await dispatch(createFilmLocation(payload));
+            await dispatch(createCamera(payload));
             history.push('/cameras')
-            // closeModal()
+        //     // closeModal()
         }
     }
 
@@ -117,10 +116,11 @@ function AddCameraForm() {
                         onChange={updateFilmType}
                         value={filmType}
                     >
-                        <option>35mm</option>
-                        <option>120mm</option>
-                        <option>600</option>
-                        <option>SX-70</option>
+                        <option value=''>Choose</option>
+                        <option value='35mm'>35mm</option>
+                        <option value='120mm'>120mm</option>
+                        <option value='600'>600</option>
+                        <option value='SX-70'>SX-70</option>
                     </select>
                 </label>
 
@@ -173,6 +173,7 @@ function AddCameraForm() {
                         onChange={updateCategory}
                         value={category}
                     >
+                        <option value={null}>Choose</option>
                         {categoriesArr.map((category) => (
                             <option key={category.id} value={category.id}>
                                 {category.name}

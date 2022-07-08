@@ -19,27 +19,49 @@ const remove = (cameraId) => {
   }
 }
 
-export const getCameras = () => async (dispatch) => {
-    const response = await fetch("/api/cameras");
 
-    if (response.ok) {
-      const cameras = await response.json();
-      dispatch(view(cameras));
-    }
-  };
+export const createCamera = (payload) => async (dispatch) => {
+  console.log("INSIDE THE THUNK");
+  console.log("PAYLOAD: ", payload)
+  const response = await fetch("/api/cameras/new", {
+    method: 'POST',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  const newCamera = await response.json();
+
+  if (newCamera) {
+    dispatch(create(newCamera));
+  }
+
+  return newCamera;
+};
+
+export const getCameras = () => async (dispatch) => {
+  const response = await fetch("/api/cameras");
+
+  if (response.ok) {
+    const cameras = await response.json();
+    dispatch(view(cameras));
+  }
+};
 
 
 const camerasReducer = (state = {}, action) => {
-    switch (action.type) {
-        case VIEW_CAMERAS:
-            const normalizedCameras = {};
-            action.cameras.cameras.forEach((camera) => {
-                normalizedCameras[camera.id] = camera;
-            });
-            return { ...normalizedCameras };
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case ADD_CAMERA:
+      const addState = { ...state, [action.newCamera.id]: action.newCamera };
+      return addState;
+    case VIEW_CAMERAS:
+      const normalizedCameras = {};
+      action.cameras.cameras.forEach((camera) => {
+        normalizedCameras[camera.id] = camera;
+      });
+      return { ...normalizedCameras };
+    default:
+      return state;
+  }
 }
 
 export default camerasReducer;

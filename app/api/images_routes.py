@@ -15,6 +15,6 @@ def get_images():
             normalizedImages[image.camera_id].append(image.to_dict() | {"camera": image.cameras.to_dict()})
         else:
             normalizedImages[image.camera_id] = [image.to_dict() | {"camera": image.cameras.to_dict()}]
-    print("NORMALIZED IMAGES", normalizedImages)
+    # print("NORMALIZED IMAGES", normalizedImages)
     # return {'images': [image.to_dict() for image in images]}
     return normalizedImages
