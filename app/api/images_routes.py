@@ -1,5 +1,6 @@
 from flask import Blueprint
-from app.models import Image
+from app.models import Image, Camera
+from sqlalchemy import join
 
 images_routes = Blueprint('images', __name__)
 
@@ -11,9 +12,9 @@ def get_images():
     normalizedImages = {}
     for image in images:
         if image.camera_id in normalizedImages:
-            normalizedImages[image.camera_id].append(image.to_dict())
+            normalizedImages[image.camera_id].append(image.to_dict() | {"camera": image.cameras.to_dict()})
         else:
-            normalizedImages[image.camera_id] = [image.to_dict()]
+            normalizedImages[image.camera_id] = [image.to_dict() | {"camera": image.cameras.to_dict()}]
     print("NORMALIZED IMAGES", normalizedImages)
     # return {'images': [image.to_dict() for image in images]}
     return normalizedImages

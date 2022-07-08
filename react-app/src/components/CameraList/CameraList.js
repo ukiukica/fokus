@@ -23,6 +23,8 @@ function CameraList() {
                         {image[0].film_roll === false && (
                             <>
                                 <img className='camera-list-pic' src={image[0].image_url} />
+                                <p>{`${image[0].camera.brand} ${image[0].camera.model}`}</p>
+                                <p>{`$${image[0].camera.amount}`}</p>
                             </>
 
                         )}
