@@ -8,10 +8,23 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import SplashPage from './components/SplashPage/SplashPage';
+import { getCameras } from './store/cameras';
+import { getImages } from './store/images';
+import CameraList from './components/CameraList/CameraList';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCameras())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(getImages())
+  }, [dispatch])
+
 
   useEffect(() => {
     (async() => {
@@ -24,10 +37,18 @@ function App() {
     return null;
   }
 
+
+
   return (
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path='/' exact={true}>
+          <SplashPage />
+        </Route>
+        <Route path='/cameras' exact={true}>
+          <CameraList />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -39,9 +60,6 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
-        </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

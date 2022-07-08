@@ -1,9 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import camerasReducer from './cameras';
+import imagesReducer from './images';
 import session from './session'
 
 const rootReducer = combineReducers({
   session,
+  cameras: camerasReducer,
+  images: imagesReducer
 });
 
 
