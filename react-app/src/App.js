@@ -11,7 +11,9 @@ import { authenticate } from './store/session';
 import SplashPage from './components/SplashPage/SplashPage';
 import { getCameras } from './store/cameras';
 import { getImages } from './store/images';
+import { getCategories } from './store/categories';
 import CameraList from './components/CameraList/CameraList';
+import AddCameraForm from './components/AddCamera/AddCamera';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -23,6 +25,10 @@ function App() {
 
   useEffect(() => {
     dispatch(getImages())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(getCategories())
   }, [dispatch])
 
 
@@ -55,6 +61,9 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+        <ProtectedRoute path='/cameras/new' exact={true} >
+          <AddCameraForm />
+        </ProtectedRoute>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>

@@ -5,8 +5,8 @@ class Camera(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     brand = db.Column(db.String(50), nullable=False)
-    model = db.Column(db.String(50))
-    film_type = db.Column(db.String(50))
+    model = db.Column(db.String(50), nullable=False)
+    film_type = db.Column(db.String(50), nullable=False)
     other_specs = db.Column(db.String(500))
     amount = db.Column(db.Float, nullable=False)
     inventory = db.Column(db.Integer, nullable=False)
