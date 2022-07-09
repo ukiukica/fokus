@@ -4,9 +4,11 @@ import camerasReducer from './cameras';
 import categoriesReducer from './categories';
 import imagesReducer from './images';
 import session from './session'
+import usersReducer from './users';
 
 const rootReducer = combineReducers({
   session,
+  users: usersReducer,
   cameras: camerasReducer,
   images: imagesReducer,
   categories: categoriesReducer

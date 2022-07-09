@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import AddCameraModal from "../AddCamera/AddCameraModal";
+import CameraListItem from "../CameraListItem/CameraListItem";
 import './CameraList.css'
 
 function CameraList() {
@@ -13,7 +14,7 @@ function CameraList() {
     const camerasArr = Object.values(cameras)
     const imagesArr = Object.values(images)
 
-    console.log("THIS IS IMAGES ARRAY", imagesArr)
+    console.log("THIS IS CAMERAS ARRAY", camerasArr)
 
     return (
         <>
@@ -24,7 +25,10 @@ function CameraList() {
             }
 
             <div>
-                {imagesArr.map((image) => (
+                {camerasArr.map((camera) => (
+                    <CameraListItem key={camera.id} cameraId={camera.id} />
+                ))}
+                {/* {imagesArr.map((image) => (
                     <div key={image[0].id}>
                         {image[0].film_roll === false && (
                             <>
@@ -35,7 +39,7 @@ function CameraList() {
 
                         )}
                     </div>
-                ))}
+                ))} */}
             </div>
         </>
     )

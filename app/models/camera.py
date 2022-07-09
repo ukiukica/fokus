@@ -17,8 +17,8 @@ class Camera(db.Model):
 
     users = db.relationship('User', back_populates='cameras')
     reviews = db.relationship("Review", back_populates="cameras")
-    categories = db.relationship("Category", back_populates="cameras")
-    images = db.relationship("Image", back_populates="cameras")
+    categories = db.relationship("Category", back_populates="cameras", lazy="joined")
+    images = db.relationship("Image", back_populates="cameras", lazy="joined")
 
 
     def to_dict(self):
@@ -34,4 +34,6 @@ class Camera(db.Model):
             'user_id': self.user_id,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
+            'category': self.categories.to_dict(),
+            'images': [image.to_dict() for image in self.images]
         }

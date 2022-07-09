@@ -14,10 +14,16 @@ import { getImages } from './store/images';
 import { getCategories } from './store/categories';
 import CameraList from './components/CameraList/CameraList';
 import AddCameraForm from './components/AddCamera/AddCameraForm';
+import { getUsers } from './store/users';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    dispatch(getUsers())
+  }, [dispatch])
 
   useEffect(() => {
     dispatch(getCameras())
