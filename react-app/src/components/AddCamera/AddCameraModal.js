@@ -5,14 +5,31 @@ import UploadPicture from './UploadPicture';
 
 
 function AddCameraModal() {
-    const [showModal, setShowModal] = useState(false);
-    console.log("SHOW MODAL: ", showModal)
+    const [showCameraModal, setShowCameraModal] = useState(false);
+    const [showImageModal, setShowImageModal] = useState(false);
+
+    const switchModal = () => {
+        setShowCameraModal(false)
+        setShowImageModal(true)
+    }
+
+    const onClose = () => {
+        setShowCameraModal(false)
+        setShowImageModal(false)
+    }
+
+
     return (
         <>
-            <button onClick={() => setShowModal(true)}>Post a Camera</button>
-            {showModal && (
-                <Modal onClose={() => setShowModal(false)}>
-                    <AddCameraForm closeModal={() => setShowModal(false)} />
+            <button onClick={() => setShowCameraModal(true)}>Post a Camera</button>
+            {showCameraModal && (
+                <Modal onClose={onClose}>
+                    <AddCameraForm switchModal={switchModal} />
+                </Modal>
+            )}
+            {showImageModal && (
+                <Modal onClose={onClose}>
+                    <UploadPicture closeModal={() => setShowImageModal(false)} />
                 </Modal>
             )}
         </>

@@ -5,7 +5,7 @@ import { createCamera } from "../../store/cameras";
 import "./AddCamera.css";
 import '../../context/Modal.css'
 
-function AddCameraForm({ closeModal }) {
+function AddCameraForm({ switchModal }) {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -71,7 +71,7 @@ function AddCameraForm({ closeModal }) {
             };
             await dispatch(createCamera(payload));
             // history.push('/cameras')
-            closeModal()
+            switchModal()
         }
     }
 

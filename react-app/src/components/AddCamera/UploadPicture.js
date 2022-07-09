@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { useHistory } from "react-router-dom";
 
 
-const UploadPicture = () => {
+const UploadPicture = ({closeModal}) => {
     const history = useHistory(); // so that we can redirect after the image upload is successful
     const [image, setImage] = useState(null);
     const [imageLoading, setImageLoading] = useState(false);
@@ -24,7 +24,8 @@ const UploadPicture = () => {
         if (res.ok) {
             await res.json();
             setImageLoading(false);
-            history.push("/images");
+            // history.push("/images");
+            closeModal()
         }
         else {
             setImageLoading(false);
