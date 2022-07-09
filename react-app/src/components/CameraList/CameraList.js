@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
+import AddCameraModal from "../AddCamera/AddCameraModal";
 import './CameraList.css'
 
 function CameraList() {
@@ -17,6 +18,11 @@ function CameraList() {
     return (
         <>
             <h1>All Cameras</h1>
+
+            {sessionUser &&
+                <AddCameraModal />
+            }
+
             <div>
                 {imagesArr.map((image) => (
                     <div key={image[0].id}>

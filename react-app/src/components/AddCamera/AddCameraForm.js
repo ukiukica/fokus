@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createCamera } from "../../store/cameras";
 import "./AddCamera.css";
+import '../../context/Modal.css'
 
-function AddCameraForm() {
+function AddCameraForm({ closeModal }) {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -69,8 +70,8 @@ function AddCameraForm() {
                 "user_id":userId
             };
             await dispatch(createCamera(payload));
-            history.push('/cameras')
-        //     // closeModal()
+            // history.push('/cameras')
+            closeModal()
         }
     }
 
@@ -136,7 +137,7 @@ function AddCameraForm() {
                 </label>
 
                 <label className='form-label'>
-                    Price Amount
+                    Price Amount $
                     <input
                         className='form-input'
                         type='number'

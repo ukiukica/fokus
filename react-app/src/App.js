@@ -13,7 +13,7 @@ import { getCameras } from './store/cameras';
 import { getImages } from './store/images';
 import { getCategories } from './store/categories';
 import CameraList from './components/CameraList/CameraList';
-import AddCameraForm from './components/AddCamera/AddCamera';
+import AddCameraForm from './components/AddCamera/AddCameraForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -61,9 +61,9 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/cameras/new' exact={true} >
+        {/* <ProtectedRoute path='/cameras/new' exact={true} >
           <AddCameraForm />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
