@@ -7,10 +7,8 @@ function CameraPage() {
 
     const sessionUser = useSelector((state) => state.session?.user);
     const cameras = useSelector((state) => state.cameras)
-    const images = useSelector((state) => state.images)
 
     const camerasArr = Object.values(cameras)
-    const imagesArr = Object.values(images)
 
     return (
         <>

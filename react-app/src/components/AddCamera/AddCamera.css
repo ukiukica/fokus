@@ -7,3 +7,7 @@ input::-webkit-inner-spin-button {
 .hidden {
     display: none;
 }
+
+/* .camera-form {
+  max-height: fit-content;
+} */

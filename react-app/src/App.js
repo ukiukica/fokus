@@ -10,7 +10,6 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import SplashPage from './components/SplashPage/SplashPage';
 import { getCameras } from './store/cameras';
-import { getImages } from './store/images';
 import { getCategories } from './store/categories';
 import CameraList from './components/CameraList/CameraList';
 import AddCameraForm from './components/AddCamera/AddCameraForm';
@@ -27,10 +26,6 @@ function App() {
 
   useEffect(() => {
     dispatch(getCameras())
-  }, [dispatch])
-
-  useEffect(() => {
-    dispatch(getImages())
   }, [dispatch])
 
   useEffect(() => {

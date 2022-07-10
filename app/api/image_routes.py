@@ -1,13 +1,14 @@
 from flask import Blueprint, request
 from app.models import db, Image
 # from flask_login import current_user, login_required
+from .errors import validation_errors_to_error_messages
 from app.s3_helpers import (
     upload_file_to_s3, allowed_file, get_unique_filename)
 
 image_routes = Blueprint("images", __name__)
 
 
-@image_routes.route("", methods=["POST"])
+@image_routes.route("/new", methods=["POST"])
 # @login_required
 def upload_image():
     if "image" not in request.files:
@@ -28,9 +29,14 @@ def upload_image():
         # so we send back that error message
         return upload, 400
 
+    camera_id = request.form.get("camera_id")
+    film_roll = True if request.form.get("film_roll") == 'true' else False
     url = upload["url"]
     # flask_login allows us to get the current user from the request
-    new_image = Image(user=current_user, url=url)
+    new_image = Image(
+        image_url=url,
+        film_roll=film_roll,
+        camera_id=camera_id)
     db.session.add(new_image)
     db.session.commit()
     return {"url": url}

@@ -9,8 +9,8 @@ from .models import db, User
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.camera_routes import camera_routes
-from .api.images_routes import images_routes
 from .api.category_routes import category_routes
+from.api.image_routes import image_routes
 
 from .seeds import seed_commands
 
@@ -35,8 +35,8 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(camera_routes, url_prefix='/api/cameras')
-app.register_blueprint(images_routes, url_prefix='/api/images')
 app.register_blueprint(category_routes, url_prefix='/api/categories')
+app.register_blueprint(image_routes, url_prefix='/api/images')
 db.init_app(app)
 Migrate(app, db)
 

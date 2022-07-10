@@ -48,6 +48,28 @@ export const getCameras = () => async (dispatch) => {
 };
 
 
+//AWS
+export const uploadImages = (imageData) => async (dispatch) => {
+	const { imageUrl, filmRoll, cameraId, image } = imageData;
+
+	const formData = new FormData();
+	formData.append("image_url", imageUrl);
+	formData.append("film_roll", filmRoll);
+	formData.append("camera_id", cameraId);
+	formData.append("image", image);
+
+	const res = await fetch('/api/images/new', {
+		method: "POST",
+		body: formData,
+	});
+
+	if (res.ok) {
+		return await res.json();
+	}
+
+}
+
+
 const camerasReducer = (state = {}, action) => {
   switch (action.type) {
     case ADD_CAMERA:

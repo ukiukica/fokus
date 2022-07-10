@@ -18,7 +18,7 @@ function CameraListItem({ cameraId }) {
 
     return (
         <>
-            <img className='camera-list-pic' src={productImagesArr[2]?.image_url} />
+            <img className='camera-list-pic' src={productImagesArr[productImagesArr.length - 1]?.image_url} />
             <p>Brand: {currentCamera.brand}</p>
             <p>Model: {currentCamera.model}</p>
             <p>Film Type: {currentCamera.film_type}</p>
@@ -27,7 +27,7 @@ function CameraListItem({ cameraId }) {
             <p>Amount: {currentCamera.amount}</p>
             <p>Inventory: {currentCamera.inventory}</p>
             <p>Posted on: {currentCamera.created_at}</p>
-            <p>Sold by: {cameraUser.username}</p>
+            <p>Sold by: {cameraUser?.username}</p>
             <br/>
         </>
     )
