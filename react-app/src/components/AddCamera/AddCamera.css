@@ -8,6 +8,12 @@ input::-webkit-inner-spin-button {
     display: none;
 }
 
-/* .camera-form {
-  max-height: fit-content;
-} */
+.inputs-div {
+  display: flex;
+  flex-direction: row;
+}
+
+.image-uploader {
+  display: flex;
+  flex-direction: row;
+}

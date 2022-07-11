@@ -5,6 +5,7 @@ import { createCamera, getCameras, uploadImages } from "../../store/cameras";
 import "./AddCamera.css";
 import '../../context/Modal.css'
 import UploadImages from "./UploadImages";
+import UploadFilmRoll from "./UploadFilmRoll"
 
 function AddCameraForm({ closeModal }) {
 
@@ -26,6 +27,7 @@ function AddCameraForm({ closeModal }) {
     const [inventory, setInventory] = useState("");
     const [category, setCategory] = useState("");
     const [images, setImages] = useState([]);
+    const [filmRoll, setFilmRoll] = useState([]);
     const [imageLoading, setImageLoading] = useState(false)
     const [showErrors, setShowErrors] = useState(false)
     const [validationErrors, setValidationErrors] = useState([]);
@@ -49,6 +51,18 @@ function AddCameraForm({ closeModal }) {
                 image: image,
                 imageUrl: image.filename,
                 filmRoll: false,
+                cameraId: cameraId
+            }
+            await dispatch(uploadImages(imageData))
+        })
+    }
+
+    const addFilmRoll = (images, cameraId) => {
+        images.forEach(async (image) => {
+            const imageData = {
+                image: image,
+                imageUrl: image.filename,
+                filmRoll: true,
                 cameraId: cameraId
             }
             await dispatch(uploadImages(imageData))
@@ -92,6 +106,7 @@ function AddCameraForm({ closeModal }) {
             const newCamera = await dispatch(createCamera(payload));
             const cameraId = newCamera.id;
             await addImages(imageFiles, cameraId);
+            await addFilmRoll(imageFiles, cameraId);
             setValidationErrors([]);
             await dispatch(getCameras())
             closeModal()
@@ -100,7 +115,7 @@ function AddCameraForm({ closeModal }) {
     }
 
     return (
-        <div className='camera-form'>
+        <>
             <form
                 onSubmit={onSubmit}>
                 <h2>Post a Camera</h2>
@@ -111,102 +126,106 @@ function AddCameraForm({ closeModal }) {
                         ))}
                     </ul>
                 </div>
-                <div>
-                    <label className='form-label'>
-                        Brand
-                        <input
-                            className='form-input'
-                            type='text'
-                            name='brand'
-                            onChange={updateBrand}
-                            value={brand}
-                        />
-                    </label>
+                <div className='inputs-div'>
+                    <div>
+                        <label className='form-label'>
+                            Brand
+                            <input
+                                className='form-input'
+                                type='text'
+                                name='brand'
+                                onChange={updateBrand}
+                                value={brand}
+                            />
+                        </label>
 
-                    <label className='form-label'>
-                        Model
-                        <input
-                            className='form-input'
-                            type='text'
-                            name='model'
-                            onChange={updateModel}
-                            value={model}
-                        />
-                    </label>
+                        <label className='form-label'>
+                            Model
+                            <input
+                                className='form-input'
+                                type='text'
+                                name='model'
+                                onChange={updateModel}
+                                value={model}
+                            />
+                        </label>
 
-                    <label className='form-label'>
-                        Film Type
-                        <select
-                            className='form-select'
-                            name='filmType'
-                            onChange={updateFilmType}
-                            value={filmType}
-                        >
-                            <option value=''>Choose</option>
-                            <option value='35mm'>35mm</option>
-                            <option value='120mm'>120mm</option>
-                            <option value='600'>600</option>
-                            <option value='SX-70'>SX-70</option>
-                        </select>
-                    </label>
+                        <label className='form-label'>
+                            Other Specs
+                            <textarea
+                                className='form-input textarea'
+                                type='text'
+                                name='otherSpecs'
+                                onChange={updateOtherSpecs}
+                                value={otherSpecs}
+                            />
+                        </label>
+                    </div>
 
-                    <label className='form-label'>
-                        Other Specs
-                        <textarea
-                            className='form-input textarea'
-                            type='text'
-                            name='otherSpecs'
-                            onChange={updateOtherSpecs}
-                            value={otherSpecs}
-                        />
-                    </label>
+                    <div>
+                        <label className='form-label'>
+                            Price Amount $
+                            <input
+                                className='form-input'
+                                type='number'
+                                name='amount'
+                                placeholder="i.e. 29.99"
+                                step="0.01"
+                                min="0.01"
+                                max="1000.00"
+                                onChange={updateAmount}
+                                value={amount}
+                            />
+                        </label>
 
-                    <label className='form-label'>
-                        Price Amount $
-                        <input
-                            className='form-input'
-                            type='number'
-                            name='amount'
-                            placeholder="i.e. 29.99"
-                            step="0.01"
-                            min="0.01"
-                            max="1000.00"
-                            onChange={updateAmount}
-                            value={amount}
-                        />
-                    </label>
+                        <label className='form-label'>
+                            Inventory
+                            <input
+                                className='form-input'
+                                type='number'
+                                name='inventory'
+                                placeholder="i.e. 5"
+                                step="1"
+                                min="1"
+                                max="100"
+                                onChange={updateInventory}
+                                value={inventory}
+                            />
+                        </label>
 
-                    <label className='form-label'>
-                        Inventory
-                        <input
-                            className='form-input'
-                            type='number'
-                            name='inventory'
-                            placeholder="i.e. 5"
-                            step="1"
-                            min="1"
-                            max="100"
-                            onChange={updateInventory}
-                            value={inventory}
-                        />
-                    </label>
+                        <label className='form-label'>
+                            Film Type
+                            <select
+                                className='form-select'
+                                name='filmType'
+                                onChange={updateFilmType}
+                                value={filmType}
+                            >
+                                <option value=''>Choose</option>
+                                <option value='35mm'>35mm</option>
+                                <option value='120mm'>120mm</option>
+                                <option value='600'>600</option>
+                                <option value='SX-70'>SX-70</option>
+                            </select>
+                        </label>
 
-                    <label className='form-label'>
-                        Category
-                        <select
-                            className='form-select'
-                            name='category'
-                            onChange={updateCategory}
-                            value={category}
-                        >
-                            <option value={null}>Choose</option>
-                            {categoriesArr.map((category) => (
-                                <option key={category.id} value={category.id}>
-                                    {category.name}
-                                </option>
-                            ))}
-                        </select>
-                    </label>
+                        <label className='form-label'>
+                            Category
+                            <select
+                                className='form-select'
+                                name='category'
+                                onChange={updateCategory}
+                                value={category}
+                            >
+                                <option value={null}>Choose</option>
+                                {categoriesArr.map((category) => (
+                                    <option key={category.id} value={category.id}>
+                                        {category.name}
+                                    </option>
+                                ))}
+                            </select>
+                        </label>
+                    </div>
                 </div>
                 <button
                     // className='user-button'
@@ -214,10 +233,20 @@ function AddCameraForm({ closeModal }) {
                 >
                     Post It
                 </button>
-                {(imageLoading)&& <p>Posting...</p>}
+                {(imageLoading) && <p>Posting...</p>}
             </form>
-            <UploadImages images={images} setImages={setImages} />
-        </div>
+
+            <div className="image-uploader">
+                <div>
+                    <h2>Upload Camera Images</h2>
+                    <UploadImages images={images} setImages={setImages} />
+                </div>
+                <div>
+                    <h2>Upload Camera Film Roll</h2>
+                    <UploadFilmRoll filmRoll={filmRoll} setFilmRoll={setFilmRoll} />
+                </div>
+            </div>
+        </>
     )
 }
 
