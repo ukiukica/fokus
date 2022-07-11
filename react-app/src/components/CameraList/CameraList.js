@@ -12,7 +12,6 @@ function CameraList() {
 
     const camerasArr = Object.values(cameras)
 
-    console.log("THIS IS CAMERAS ARRAY", camerasArr)
 
     return (
         <>

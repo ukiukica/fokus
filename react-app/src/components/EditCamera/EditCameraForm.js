@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { createCamera, getCameras, editCamera, uploadImages } from "../../store/cameras";
+import { createCamera, getCameras, editCamera, removeCamera, uploadImages } from "../../store/cameras";
 import "./EditCamera.css";
 import '../../context/Modal.css'
 import UploadImages from "../UploadImages/UploadImages";
@@ -88,6 +88,14 @@ function EditCameraForm({ currentCamera, closeModal }) {
         setValidationErrors(errors)
 
     }, [brand, model, filmType, amount, inventory, images]);
+
+    const deleteCamera = async (e) => {
+        e.preventDefault();
+
+        await dispatch(removeCamera(currentCamera))
+        closeModal()
+        history.push('/cameras')
+    }
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -242,6 +250,7 @@ function EditCameraForm({ currentCamera, closeModal }) {
                 </button>
                 {(imageLoading) && <p>Submitting...</p>}
             </form>
+            <button onClick={deleteCamera}>Delete</button>
             <ExistingImages productImagesArr={productImagesArr} />
             <div id="additional-images-div">
                 <p>Upload Additional Images</p>

@@ -8,12 +8,12 @@ function CameraListItem({ cameraId }) {
     // const sessionUser = useSelector((state) => state.session?.user);
     const cameras = useSelector((state) => state.cameras)
     const users = useSelector((state) => state.users)
-    console.log("CAMERAS FROM STATE: ", cameras)
+
 
     const currentCamera = cameras[cameraId]
     const cameraUser = users[currentCamera.user_id]
     const productImagesArr = currentCamera.images.filter(image => image.film_roll === false)
-    console.log("PRODUCT IMAGES ARRAY: ", productImagesArr)
+
 
 
     return (

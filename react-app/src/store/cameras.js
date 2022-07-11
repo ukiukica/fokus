@@ -18,10 +18,10 @@ const update = (camera) => ({
   camera
 })
 
-const remove = (cameraId) => {
+const remove = (camera) => {
   return {
     type: REMOVE_CAMERA,
-    cameraId,
+    camera,
   }
 }
 
@@ -70,6 +70,16 @@ export const editCamera = (payload, id) => async (dispatch) => {
   }
 }
 
+export const removeCamera = (camera) => async (dispatch) => {
+  const response = await fetch(`/api/cameras/${camera.id}`, {
+    method: "DELETE",
+  })
+
+  if (response.ok) {
+    dispatch(remove(camera))
+  }
+  return camera;
+}
 
 //AWS
 export const uploadImages = (imageData) => async (dispatch) => {
@@ -109,6 +119,10 @@ const camerasReducer = (state = {}, action) => {
         ...state,
         [action.camera.id]: action.camera
       }
+    case REMOVE_CAMERA:
+      const newState = { ...state };
+      delete newState[action.camera.id]
+      return newState;
     default:
       return state;
   }

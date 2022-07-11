@@ -68,3 +68,10 @@ def edit_camera(id):
         db.session.commit()
         return camera.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@camera_routes.route("/<int:id>", methods=["DELETE"])
+def delete_camera(id):
+    camera = Camera.query.get(id)
+    db.session.delete(camera)
+    db.session.commit()
+    return "Camera Post deleted"

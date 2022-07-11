@@ -22,10 +22,10 @@ function ExistingImages({ productImagesArr }) {
     return (
         <>
             {productImagesArr.map((image) => (
-                <>
+                <div key={image.id}>
                     <img src={image.image_url} alt="" width="100" />
                     <button onClick={(e) => onClick(e, image.id)}>Remove</button>
-                </>
+                </div>
             ))}
         </>
     )

@@ -10,7 +10,6 @@ export const getCategories = () => async (dispatch) => {
 
     if (response.ok) {
         const categories = await response.json();
-        console.log("CATEGORIES FROM THUNK", categories)
         dispatch(view(categories));
     }
 }
