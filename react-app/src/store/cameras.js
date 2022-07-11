@@ -1,5 +1,6 @@
 const ADD_CAMERA = "cameras/ADD_CAMERA";
 const VIEW_CAMERAS = "cameras/VIEW_CAMERAS";
+const EDIT_CAMERA = "cameras/EDIT_CAMERA"
 const REMOVE_CAMERA = "cameras/REMOVE_CAMERA";
 
 const create = (newCamera) => ({
@@ -11,6 +12,11 @@ const view = (cameras) => ({
   type: VIEW_CAMERAS,
   cameras,
 });
+
+const update = (camera) => ({
+  type: EDIT_CAMERA,
+  camera
+})
 
 const remove = (cameraId) => {
   return {
@@ -47,6 +53,23 @@ export const getCameras = () => async (dispatch) => {
   }
 };
 
+export const editCamera = (payload, id) => async (dispatch) => {
+  console.log("IN THE THUNK")
+  console.log("PAYLOAD: ", payload)
+  console.log("ID: ", id)
+  const response = await fetch(`/api/cameras/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  })
+  console.log("RESPONSE: ", response)
+  if (response.ok) {
+    const editedCamera = await response.json();
+    dispatch(update(editedCamera))
+    return editedCamera;
+  }
+}
+
 
 //AWS
 export const uploadImages = (imageData) => async (dispatch) => {
@@ -81,6 +104,11 @@ const camerasReducer = (state = {}, action) => {
         normalizedCameras[camera.id] = camera;
       });
       return { ...normalizedCameras };
+    case EDIT_CAMERA:
+      return {
+        ...state,
+        [action.camera.id]: action.camera
+      }
     default:
       return state;
   }

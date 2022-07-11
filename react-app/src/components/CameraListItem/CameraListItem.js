@@ -18,7 +18,7 @@ function CameraListItem({ cameraId }) {
 
     return (
         <>
-            <img className='camera-list-pic' src={productImagesArr[productImagesArr.length - 1]?.image_url} />
+            <img className='camera-list-pic' src={productImagesArr[0]?.image_url} />
             <p>Brand: {currentCamera.brand}</p>
             <p>Model: {currentCamera.model}</p>
             <p>Film Type: {currentCamera.film_type}</p>

@@ -12,7 +12,7 @@ import SplashPage from './components/SplashPage/SplashPage';
 import { getCameras } from './store/cameras';
 import { getCategories } from './store/categories';
 import CameraList from './components/CameraList/CameraList';
-import AddCameraForm from './components/AddCamera/AddCameraForm';
+import CameraPage from './components/CameraPage/CameraPage'
 import { getUsers } from './store/users';
 
 function App() {
@@ -65,6 +65,9 @@ function App() {
         {/* <ProtectedRoute path='/cameras/new' exact={true} >
           <AddCameraForm />
         </ProtectedRoute> */}
+        <Route path='/cameras/:cameraId'>
+          <CameraPage />
+        </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>

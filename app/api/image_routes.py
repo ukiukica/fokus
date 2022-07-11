@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import db, Image
+from app.models import db, Image, image
 # from flask_login import current_user, login_required
 from .errors import validation_errors_to_error_messages
 from app.s3_helpers import (
@@ -40,3 +40,11 @@ def upload_image():
     db.session.add(new_image)
     db.session.commit()
     return {"url": url}
+
+@image_routes.route("/<int:id>", methods=["DELETE"])
+def delete_image(id):
+    image = Image.query.get(id)
+    db.session.delete(image)
+    db.session.commit()
+
+    return "Image deleted"

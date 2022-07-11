@@ -1,32 +1,43 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, useParams } from "react-router-dom";
+import EditCameraModal from "../EditCamera/EditCameraModal"
 import './CameraPage.css'
 
 function CameraPage() {
 
+    const params = useParams();
+
     const sessionUser = useSelector((state) => state.session?.user);
     const cameras = useSelector((state) => state.cameras)
 
-    const camerasArr = Object.values(cameras)
+    const { cameraId } = params;
 
+    const currentCamera = cameras[cameraId]
+    const productImagesArr = currentCamera?.images.filter(image => image.film_roll === false)
+    // console.log("PROD IMAGES ARR: ", productImagesArr)
     return (
         <>
-            <div>
-                {camerasArr.map((camera) => (
-                    <div key={camera.id}>
-                        {/* <img src={camera.image_url} /> */}
-                        <p>Brand: {camera.brand}</p>
-                        <p>Model: {camera.model}</p>
-                        <p>Film Type: {camera.film_type}</p>
-                        <p>{camera.other_specs}</p>
-                        <p>Amount: {camera.amount}</p>
-                        <p>Inventory: {camera.inventory}</p>
-                        <p>Posted on: {camera.created_at}</p>
-                        <p>Sold by: {camera.user_id}</p>
+            {productImagesArr && (
+                <div>
+                    <div key={currentCamera.id}>
+                        <img src={productImagesArr[0]?.image_url} />
+                        <p>Brand: {currentCamera.brand}</p>
+                        <p>Model: {currentCamera.model}</p>
+                        <p>Film Type: {currentCamera.film_type}</p>
+                        <p>{currentCamera.other_specs}</p>
+                        <p>Amount: {currentCamera.amount}</p>
+                        <p>Inventory: {currentCamera.inventory}</p>
+                        <p>Posted on: {currentCamera.created_at}</p>
+                        <p>Sold by: {currentCamera?.user_id}</p>
                     </div>
-                ))}
-            </div>
+                    {currentCamera.user_id === sessionUser.id && (
+                        <EditCameraModal currentCamera={currentCamera}/>
+                    )}
+                </div>
+            )}
         </>
     )
 }
+
+export default CameraPage;

@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { createCamera, getCameras, uploadImages } from "../../store/cameras";
-import "./AddCamera.css";
+import { createCamera, getCameras, editCamera, uploadImages } from "../../store/cameras";
+import "./EditCamera.css";
 import '../../context/Modal.css'
-import UploadImages from "../UploadImages/UploadImages"
+import UploadImages from "../UploadImages/UploadImages";
 import UploadFilmRoll from "../UploadImages/UploadFilmRoll"
+import ExistingImages from "./ExistingImages"
 
-function AddCameraForm({ closeModal }) {
+function EditCameraForm({ currentCamera, closeModal }) {
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -16,19 +17,22 @@ function AddCameraForm({ closeModal }) {
     const categories = useSelector((state) => state.categories)
 
     const categoriesArr = Object.values(categories)
+    const productImagesArr = currentCamera?.images.filter(image => image.film_roll === false)
+    const filmRollArr = currentCamera?.images.filter(image => image.film_roll === true)
 
 
-
-    const [brand, setBrand] = useState("");
-    const [model, setModel] = useState("");
-    const [filmType, setFilmType] = useState("");
-    const [otherSpecs, setOtherSpecs] = useState("");
-    const [amount, setAmount] = useState("");
-    const [inventory, setInventory] = useState("");
-    const [category, setCategory] = useState("");
+    const [brand, setBrand] = useState(currentCamera.brand);
+    const [model, setModel] = useState(currentCamera.model);
+    const [filmType, setFilmType] = useState(currentCamera.film_type);
+    const [otherSpecs, setOtherSpecs] = useState(currentCamera.other_specs);
+    const [amount, setAmount] = useState(currentCamera.amount);
+    const [inventory, setInventory] = useState(currentCamera.inventory);
+    const [category, setCategory] = useState(currentCamera.category);
     const [images, setImages] = useState([]);
     const [filmRoll, setFilmRoll] = useState([]);
     const [imageLoading, setImageLoading] = useState(false)
+    const [showImageUpload, setShowImageUpload] = useState(false)
+    const [reveal, setReveal] = useState("+")
     const [showErrors, setShowErrors] = useState(false)
     const [validationErrors, setValidationErrors] = useState([]);
 
@@ -41,8 +45,9 @@ function AddCameraForm({ closeModal }) {
     const updateInventory = (e) => setInventory(e.target.value)
     const updateCategory = (e) => setCategory(e.target.value)
 
-    console.log("IMAGES: ", images)
-    console.log("FILM ROLL: ", filmRoll)
+    // console.log("FILM TYPE: ", filmType)
+    // console.log("CATEGORY: ", category)
+    // console.log("IMAGES: ", images)
 
 
     const addImages = (images, cameraId) => {
@@ -78,7 +83,7 @@ function AddCameraForm({ closeModal }) {
         if (!filmType.length) errors.push("Film Type is required");
         if (amount <= 0) errors.push("Price amount is required");
         if (inventory <= 0) errors.push("Quantity of items sold is required");
-        if (images.length < 1) errors.push('Please submit at least one image')
+        // if (productImagesArr.length < 1 || images.length < 1) errors.push('Please submit at least one image')
 
         setValidationErrors(errors)
 
@@ -89,9 +94,9 @@ function AddCameraForm({ closeModal }) {
 
         if (validationErrors.length) {
             setShowErrors(true);
+            return
         }
-        else {
-            const imageFiles = images.map((image) => image.file)
+        if (!validationErrors.length) {
             const payload = {
                 brand,
                 model,
@@ -99,18 +104,20 @@ function AddCameraForm({ closeModal }) {
                 "other_specs": otherSpecs,
                 amount,
                 inventory,
-                "category_id": category,
+                "category_id": category.id,
                 "user_id": userId
             };
             setImageLoading(true)
-            const newCamera = await dispatch(createCamera(payload));
-            const cameraId = newCamera.id;
-            await addImages(imageFiles, cameraId);
-            await addFilmRoll(imageFiles, cameraId);
+            await dispatch(editCamera(payload, currentCamera.id));
+            if (images.length) {
+                const imageFiles = images.map((image) => image.file)
+                await addImages(imageFiles, currentCamera.id);
+                await addFilmRoll(imageFiles, currentCamera.id);
+            }
             setValidationErrors([]);
             await dispatch(getCameras())
             closeModal()
-            history.push('/cameras')
+            history.push(`/cameras/${currentCamera.id}`)
         }
     }
 
@@ -118,7 +125,7 @@ function AddCameraForm({ closeModal }) {
         <>
             <form
                 onSubmit={onSubmit}>
-                <h2>Post a Camera</h2>
+                <h2>Edit Camera Post</h2>
                 <div className={showErrors ? '' : 'hidden'}>
                     <ul className="errors">
                         {validationErrors.map(error => (
@@ -231,23 +238,34 @@ function AddCameraForm({ closeModal }) {
                     // className='user-button'
                     type='submit'
                 >
-                    Post It
+                    Submit
                 </button>
-                {(imageLoading) && <p>Posting...</p>}
+                {(imageLoading) && <p>Submitting...</p>}
             </form>
-
-            <div className="image-uploader">
-                <div>
-                    <h2>Upload Camera Images</h2>
-                    <UploadImages images={images} setImages={setImages} />
-                </div>
-                <div>
-                    <h2>Upload Camera Film Roll</h2>
-                    <UploadFilmRoll filmRoll={filmRoll} setFilmRoll={setFilmRoll} />
-                </div>
+            <ExistingImages productImagesArr={productImagesArr} />
+            <div id="additional-images-div">
+                <p>Upload Additional Images</p>
+                <button onClick={() => {
+                    setShowImageUpload(showImageUpload ? false : true);
+                    setReveal(reveal === "+" ? "-" : "+")
+                }}>{reveal}</button>
             </div>
+
+            {showImageUpload && (
+                <div className="image-uploader">
+                    <div>
+                        <h3>Upload Camera Images</h3>
+                        <UploadImages images={images} setImages={setImages} />
+                    </div>
+                    <div>
+                        <h3>Upload Camera Film Roll</h3>
+                        <UploadFilmRoll filmRoll={filmRoll} setFilmRoll={setFilmRoll} />
+                    </div>
+
+                </div>
+            )}
         </>
     )
 }
 
-export default AddCameraForm;
+export default EditCameraForm;
