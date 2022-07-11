@@ -41,9 +41,6 @@ function AddCameraForm({ closeModal }) {
     const updateInventory = (e) => setInventory(e.target.value)
     const updateCategory = (e) => setCategory(e.target.value)
 
-    console.log("IMAGES: ", images)
-    console.log("FILM ROLL: ", filmRoll)
-
 
     const addImages = (images, cameraId) => {
         images.forEach(async (image) => {
@@ -110,7 +107,7 @@ function AddCameraForm({ closeModal }) {
             setValidationErrors([]);
             await dispatch(getCameras())
             closeModal()
-            history.push('/cameras')
+            history.push(`/cameras/${cameraId}`)
         }
     }
 
