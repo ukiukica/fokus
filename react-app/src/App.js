@@ -8,10 +8,30 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
+import SplashPage from './components/SplashPage/SplashPage';
+import { getCameras } from './store/cameras';
+import { getCategories } from './store/categories';
+import CameraList from './components/CameraList/CameraList';
+import CameraPage from './components/CameraPage/CameraPage'
+import { getUsers } from './store/users';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    dispatch(getUsers())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(getCameras())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(getCategories())
+  }, [dispatch])
+
 
   useEffect(() => {
     (async() => {
@@ -24,24 +44,35 @@ function App() {
     return null;
   }
 
+
+
   return (
     <BrowserRouter>
       <NavBar />
       <Switch>
+        <Route path='/' exact={true}>
+          <SplashPage />
+        </Route>
+        <Route path='/cameras' exact={true}>
+          <CameraList />
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
+        {/* <ProtectedRoute path='/cameras/new' exact={true} >
+          <AddCameraForm />
+        </ProtectedRoute> */}
+        <Route path='/cameras/:cameraId'>
+          <CameraPage />
+        </Route>
         <ProtectedRoute path='/users' exact={true} >
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
-        </ProtectedRoute>
-        <ProtectedRoute path='/' exact={true} >
-          <h1>My Home Page</h1>
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>

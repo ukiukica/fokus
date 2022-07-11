@@ -1,0 +1,24 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.hidden {
+    display: none;
+}
+
+.inputs-div {
+  display: flex;
+  flex-direction: row;
+}
+
+.image-uploader {
+  display: flex;
+  flex-direction: row;
+}
+
+#additional-images-div {
+  display: flex;
+  flex-direction: row;
+}

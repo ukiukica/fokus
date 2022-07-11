@@ -1,0 +1,112 @@
+#modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  #modal-background {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  #modal-content {
+    position: absolute;
+    background-color:#fffcf6;
+    border-radius: 20px;
+    border: solid 2px #5e503f;
+    box-shadow: 3px 3px 5px rgb(0, 0, 0);
+    width: 25%;
+  }
+
+  .forms {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+  }
+
+  .user-button-modal {
+    margin: 5px;
+    padding: 5px 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bolder;
+    color:#eae0d5;
+    background-color: #5e503f;
+    font-size: 15px;
+    transition: background-color 0.1s, box-shadow 0.1s;
+    border-color: #5e503f;
+    width: 100px;
+    box-shadow: 1px 1px 2px rgb(0, 0, 0);
+  }
+  .user-button-modal:hover {
+    box-shadow: 0px 0px 0px rgb(0, 0, 0);
+    background-color: #eae0d5;
+    color: #0a0908;
+}
+
+.form-input {
+  display:flex;
+  flex-direction:column;
+  border-radius: 15px;
+  padding: 5px 10px;
+  border: solid 2px #0a0908;
+  width: 200px;
+  height: 27px;
+  transition: border 0.1s;
+}
+
+.form-input:hover {
+  border: solid 2px #a58f77;
+}
+
+.form-input:focus {
+  border: solid 2px #a58f77;
+  background-color: #eae0d5;
+}
+
+.form-label {
+  display:flex;
+  flex-direction:column;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bolder;
+  color:#0a0908;
+  font-size: 16px;
+}
+
+.form-field {
+  margin-bottom: 10%;
+}
+
+.errors {
+  color:rgb(160, 31, 31);
+  padding: 0px;
+  margin-bottom: 15%;
+}
+
+.form-title {
+  font-family: 'Courier New', Courier, monospace;
+  white-space: nowrap;
+  border-bottom: 1px solid #0a0908;
+  padding-bottom: 5px;
+  margin-bottom: 35px;
+}
+
+.solo-textarea {
+  width: 300px;
+  height: 50px;
+  margin-bottom: 3%;
+  padding: 10px;
+}
+
+.textarea {
+  height: 50px;
+}

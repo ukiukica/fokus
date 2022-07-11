@@ -1,9 +1,15 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import camerasReducer from './cameras';
+import categoriesReducer from './categories';
 import session from './session'
+import usersReducer from './users';
 
 const rootReducer = combineReducers({
   session,
+  users: usersReducer,
+  cameras: camerasReducer,
+  categories: categoriesReducer
 });
 
 

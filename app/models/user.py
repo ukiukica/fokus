@@ -3,6 +3,18 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
 
+purchase_history = db.Table(
+    'purchase_history',
+    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+    db.Column('camera_id', db.Integer, db.ForeignKey('cameras.id'), primary_key=True)
+)
+
+wishlist = db.Table(
+    'wishlist',
+    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+    db.Column('camera_id', db.Integer, db.ForeignKey('cameras.id'), primary_key=True)
+)
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -10,6 +22,9 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+
+    reviews = db.relationship("Review", back_populates="users")
+    cameras = db.relationship("Camera", back_populates="users")
 
     @property
     def password(self):
