@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import splashPic from "../../../public/SplashPage3.jpg"
+import splashPic from "./SplashPage3.jpg"
 import './SplashPage.css'
 
 function SplashPage() {

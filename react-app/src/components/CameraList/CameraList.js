@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, Redirect } from "react-router-dom";
 import AddCameraModal from "../AddCamera/AddCameraModal";
 import CameraListItem from "../CameraListItem/CameraListItem";
-import logo from "../../../public/fokus-logo.jpg"
+import logo from "./fokus-logo.jpg"
 import './CameraList.css'
 
 function CameraList() {
