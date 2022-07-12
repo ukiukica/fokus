@@ -19,6 +19,7 @@ function CameraList() {
             <div id='logo-categ-div'>
                     <img id='logo' src={logo} />
                 <div id='categ-btn-div'>
+                    <button className='categ-btn'>All</button>
                     <button className='categ-btn'>SLR</button>
                     <button className='categ-btn'>TLR</button>
                     <button className='categ-btn'>Rangefinder</button>
