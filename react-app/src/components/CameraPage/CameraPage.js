@@ -31,7 +31,7 @@ function CameraPage() {
                         <p>Posted on: {currentCamera.created_at}</p>
                         <p>Sold by: {currentCamera?.user_id}</p>
                     </div>
-                    {currentCamera.user_id === sessionUser.id && (
+                    {currentCamera?.user_id === sessionUser?.id && (
                         <EditCameraModal currentCamera={currentCamera}/>
                     )}
                 </div>
