@@ -9,3 +9,6 @@ to rebuild a database with sqlalchemy:
 
 to only drop the data from the databse:
 - run: flask undo all
+
+to seed db on heroku:
+- run: heroku run -a fokus-app flask seed all
