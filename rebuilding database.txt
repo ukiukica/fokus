@@ -12,3 +12,4 @@ to only drop the data from the databse:
 
 to seed db on heroku:
 - run: heroku run -a fokus-app flask seed all
+.
