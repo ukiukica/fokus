@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import './CameraListItem.css'
+import '../../context/Misc.css'
 
 function CameraListItem({ cameraId }) {
 
@@ -17,19 +18,15 @@ function CameraListItem({ cameraId }) {
 
 
     return (
-        <>
-            <img className='camera-list-pic' src={productImagesArr[0]?.image_url} />
-            <p>Brand: {currentCamera.brand}</p>
-            <p>Model: {currentCamera.model}</p>
-            <p>Film Type: {currentCamera.film_type}</p>
-            <p>Category: {currentCamera.category.name}</p>
-            <p>{currentCamera.other_specs}</p>
-            <p>Amount: {currentCamera.amount}</p>
-            <p>Inventory: {currentCamera.inventory}</p>
-            <p>Posted on: {currentCamera.created_at}</p>
-            <p>Sold by: {cameraUser?.username}</p>
-            <br/>
-        </>
+        <div id='cam-item'>
+            <div className='cam-item-img-div'>
+            <img className='cam-item-img' src={productImagesArr[0]?.image_url} />
+            </div>
+            <div id='cam-item-details'>
+            <p>{`${currentCamera.brand} ${currentCamera.model}`}</p>
+            <p className='cam-item-amount'>${currentCamera.amount}</p>
+            </div>
+        </div>
     )
 }
 

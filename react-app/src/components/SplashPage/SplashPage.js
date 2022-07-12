@@ -7,11 +7,14 @@ function SplashPage() {
     const sessionUser = useSelector((state) => state.session?.user);
 
     return (
-        <div>
-            <h1>Welcome to Fokus</h1>
+        <div id='splash-body'>
+            <img id='splash-image' src='/SplashPage3.jpg' />
+            <div id='shop-now-div'>
             <Link to="/cameras">
-                <button>Shop Now</button>
+                <button id='shop-now-btn'>Shop Now</button>
             </Link>
+            </div>
+
         </div>
     )
 }
