@@ -26,7 +26,7 @@
     flex-direction: column;
     align-items: center;
     background-color: #f4f1de;
-    height: 800px;
+    /* height: 800px; */
 
 }
 
@@ -102,4 +102,10 @@
 #reviews-title {
     font-size: 30px;
     font-weight: bold;
+}
+
+.review-div {
+    border: 1px solid black;
+    min-width: 400px;
+    padding: 20px;
 }
