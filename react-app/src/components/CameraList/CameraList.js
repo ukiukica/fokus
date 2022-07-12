@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Link, NavLink, Redirect } from "react-router-dom";
 import AddCameraModal from "../AddCamera/AddCameraModal";
 import CameraListItem from "../CameraListItem/CameraListItem";
 import './CameraList.css'
@@ -15,28 +15,25 @@ function CameraList() {
 
     return (
         <>
-            <h1>All Cameras</h1>
-
-            {sessionUser &&
-                <AddCameraModal />
-            }
-
-            <div>
+            <div id='logo-categ-div'>
+                    <img id='logo' src='/fokus-logo.jpg' />
+                <div id='categ-btn-div'>
+                    <button className='categ-btn'>SLR</button>
+                    <button className='categ-btn'>TLR</button>
+                    <button className='categ-btn'>Rangefinder</button>
+                    <button className='categ-btn'>Point-and-Shoot</button>
+                    <button className='categ-btn'>Instant</button>
+                    <button className='categ-btn'>Folding</button>
+                </div>
+            </div>
+            <div id="cam-items-list-body">
+            <div id='cam-items-list'>
                 {camerasArr.map((camera) => (
-                    <CameraListItem key={camera.id} cameraId={camera.id} />
+                    <NavLink to={`/cameras/${camera.id}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                        <CameraListItem key={camera.id} cameraId={camera.id} />
+                    </NavLink>
                 ))}
-                {/* {imagesArr.map((image) => (
-                    <div key={image[0].id}>
-                        {image[0].film_roll === false && (
-                            <>
-                                <img className='camera-list-pic' src={image[0].image_url} />
-                                <p>{`${image[0].camera.brand} ${image[0].camera.model}`}</p>
-                                <p>{`$${image[0].camera.amount}`}</p>
-                            </>
-
-                        )}
-                    </div>
-                ))} */}
+            </div>
             </div>
         </>
     )
