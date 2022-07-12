@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, Redirect } from "react-router-dom";
 import AddCameraModal from "../AddCamera/AddCameraModal";
 import CameraListItem from "../CameraListItem/CameraListItem";
+import logo from "../../../public/fokus-logo.jpg"
 import './CameraList.css'
 
 function CameraList() {
@@ -16,7 +17,7 @@ function CameraList() {
     return (
         <>
             <div id='logo-categ-div'>
-                    <img id='logo' src='/fokus-logo.jpg' />
+                    <img id='logo' src={logo} />
                 <div id='categ-btn-div'>
                     <button className='categ-btn'>SLR</button>
                     <button className='categ-btn'>TLR</button>

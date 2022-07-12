@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
+import splashPic from "../../../public/SplashPage3.jpg"
 import './SplashPage.css'
 
 function SplashPage() {
@@ -8,7 +9,7 @@ function SplashPage() {
 
     return (
         <div id='splash-body'>
-            <img id='splash-image' src='/SplashPage3.jpg' />
+            <img id='splash-image' src={splashPic} />
             <div id='shop-now-div'>
             <Link to="/cameras">
                 <button id='shop-now-btn'>Shop Now</button>
