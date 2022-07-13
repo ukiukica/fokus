@@ -2,19 +2,20 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { createReview, getReviews } from "../../store/reviews";
+import { createReview, getReviews, editReview } from "../../store/reviews";
 
-import "./AddReview.css"
+import "./EditReview.css"
 
-function AddReview({ cameraId, setShowAddReview }) {
+function EditReview({ reviews, cameraId, reviewId, setShowEditReview }) {
 
     const dispatch = useDispatch();
     const history = useHistory();
 
-    let userId = useSelector((state) => state.session.user.id)
+    let userId = useSelector((state) => state.session.user.id);
 
+    const currentReview = reviews[reviewId];
 
-    const [content, setContent] = useState("");
+    const [content, setContent] = useState(currentReview.content);
     const [showErrors, setShowErrors] = useState(false)
     const [validationErrors, setValidationErrors] = useState([]);
 
@@ -41,10 +42,10 @@ function AddReview({ cameraId, setShowAddReview }) {
             "camera_id": cameraId,
             "user_id": userId
         }
-        await dispatch(createReview(payload))
+        await dispatch(editReview(payload, reviewId))
         setValidationErrors([]);
         await dispatch((getReviews()))
-        setShowAddReview(false)
+        setShowEditReview(false)
     }
 
     return (
@@ -72,11 +73,11 @@ function AddReview({ cameraId, setShowAddReview }) {
                 </div>
                 <button
                     type='submit'
-                    > Post a Review
+                    > Save Changes
                     </button>
             </form>
         </>
     )
 }
 
-export default AddReview;
+export default EditReview;

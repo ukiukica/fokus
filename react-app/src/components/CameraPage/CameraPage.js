@@ -6,6 +6,7 @@ import ImageGallery from 'react-image-gallery';
 
 import EditCameraModal from "../EditCamera/EditCameraModal";
 import AddReview from "../AddReview/AddReviewForm";
+import EditReview from "../EditReview/EditReviewForm";
 
 import './CameraPage.css'
 import '../../context/Buttons.css'
@@ -38,6 +39,7 @@ function CameraPage() {
 
     const [showFilmRoll, setShowFilmRoll] = useState(false);
     const [showAddReview, setShowAddReview] = useState(false);
+    const [showEditReview, setShowEditReview] = useState(false);
 
     const options = {
         weekday: "long",
@@ -121,6 +123,20 @@ function CameraPage() {
                                 <p>{users[review.user_id]?.username}{ }</p>
                                 <p>{review.updated_at}</p>
                                 <p>{review.content}</p>
+                                <div>
+                                    {sessionUser.id === review?.user_id && (
+                                        <>
+                                            {showEditReview ?
+                                                <>
+                                                    <EditReview reviews={reviews} cameraId={cameraId} reviewId={review.id} setShowEditReview={setShowEditReview} />
+                                                    <button onClick={() => setShowEditReview(false)}>Cancel</button>
+                                                </>
+                                                :
+                                                <button onClick={() => setShowEditReview(true)}>Edit</button>
+                                            }
+                                        </>
+                                    )}
+                                </div>
                             </div>
                         ))}
                     </div>
