@@ -27,8 +27,8 @@ const remove = (camera) => {
 
 
 export const createCamera = (payload) => async (dispatch) => {
-  console.log("INSIDE THE THUNK");
-  console.log("PAYLOAD: ", payload)
+  // console.log("INSIDE THE THUNK");
+  // console.log("PAYLOAD: ", payload)
   const response = await fetch("/api/cameras/new", {
     method: 'POST',
     headers: { "Content-Type": "application/json" },

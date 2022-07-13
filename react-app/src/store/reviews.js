@@ -25,6 +25,25 @@ const remove = (review) => {
   }
 }
 
+
+export const createReview = (payload) => async (dispatch) => {
+  // console.log("INSIDE THE THUNK");
+  // console.log("PAYLOAD: ", payload)
+  const response = await fetch("/api/reviews/new", {
+    method: 'POST',
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+
+  const newReview = await response.json();
+
+  if (newReview) {
+    dispatch(create(newReview));
+  }
+
+  return newReview;
+};
+
 export const getReviews = () => async (dispatch) => {
     const response = await fetch("/api/reviews");
 
@@ -37,9 +56,9 @@ export const getReviews = () => async (dispatch) => {
 
   const reviewsReducer = (state = {}, action) => {
     switch (action.type) {
-    //   case ADD_CAMERA:
-    //     const addState = { ...state, [action.newCamera.id]: action.newCamera };
-    //     return addState;
+      case ADD_REVIEW:
+        const addState = { ...state, [action.newReview.id]: action.newReview };
+        return addState;
       case VIEW_REVIEWS:
         const normalizedReviews = {};
         action.reviews.reviews.forEach((review) => {

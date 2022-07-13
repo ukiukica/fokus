@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, Redirect, useParams } from "react-router-dom";
-import EditCameraModal from "../EditCamera/EditCameraModal";
+
 import ImageGallery from 'react-image-gallery';
+
+import EditCameraModal from "../EditCamera/EditCameraModal";
+import AddReview from "../AddReview/AddReviewForm";
+
 import './CameraPage.css'
 import '../../context/Buttons.css'
 import '../../context/Misc.css'
@@ -33,6 +37,7 @@ function CameraPage() {
     console.log("CAMERA REVIEWS: ", cameraReviews)
 
     const [showFilmRoll, setShowFilmRoll] = useState(false);
+    const [showAddReview, setShowAddReview] = useState(false);
 
     const options = {
         weekday: "long",
@@ -97,11 +102,23 @@ function CameraPage() {
                     <div id="reviews-section">
                         <p id="reviews-title">Reviews</p>
                         {sessionUser && (
-                            <button>Leave a Review</button>
+                            <>
+                                <button onClick={() => setShowAddReview(true)}
+                                >Leave a Review
+                                </button>
+                                {showAddReview && (
+                                    <>
+                                        <AddReview cameraId={cameraId} setShowAddReview={setShowAddReview} />
+                                        <button onClick={() => setShowAddReview(false)}
+                                        >Cancel
+                                        </button>
+                                    </>
+                                )}
+                            </>
                         )}
                         {cameraReviews?.map((review) => (
                             <div className="review-div" key={review.id}>
-                                <p>{users[review.user_id]?.username}{}</p>
+                                <p>{users[review.user_id]?.username}{ }</p>
                                 <p>{review.updated_at}</p>
                                 <p>{review.content}</p>
                             </div>
