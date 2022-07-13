@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
-import { createReview, getReviews, editReview } from "../../store/reviews";
+import { createReview, getReviews, editReview, removeReview } from "../../store/reviews";
 
 import "./EditReview.css"
 
@@ -29,6 +29,15 @@ function EditReview({ reviews, cameraId, reviewId, setShowEditReview }) {
         setValidationErrors(errors)
 
     }, [content]);
+
+
+    const deleteReview = async (e) => {
+        e.preventDefault();
+
+        await dispatch(removeReview(currentReview))
+        await dispatch((getReviews()))
+        setShowEditReview(false)
+    }
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -75,6 +84,7 @@ function EditReview({ reviews, cameraId, reviewId, setShowEditReview }) {
                     type='submit'
                     > Save Changes
                     </button>
+                    <button onClick={deleteReview}>Delete Review</button>
             </form>
         </>
     )

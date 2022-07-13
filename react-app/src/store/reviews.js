@@ -54,20 +54,28 @@ export const getReviews = () => async (dispatch) => {
   };
 
   export const editReview = (payload, id) => async (dispatch) => {
-    // console.log("IN THE THUNK")
-    // console.log("PAYLOAD: ", payload)
-    // console.log("ID: ", id)
     const response = await fetch(`/api/reviews/${id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     })
-    // console.log("RESPONSE: ", response)
+
     if (response.ok) {
       const editedReview = await response.json();
       dispatch(update(editedReview))
       return editedReview;
     }
+  }
+
+  export const removeReview = (review) => async (dispatch) => {
+    const response = await fetch(`/api/reviews/${review.id}`, {
+      method: "DELETE",
+    })
+
+    if (response.ok) {
+      dispatch(remove(review))
+    }
+    return review;
   }
 
 
@@ -87,10 +95,10 @@ export const getReviews = () => async (dispatch) => {
           ...state,
           [action.review.id]: action.review
         }
-    //   case REMOVE_CAMERA:
-    //     const newState = { ...state };
-    //     delete newState[action.camera.id]
-    //     return newState;
+      case REMOVE_REVIEW:
+        const newState = { ...state };
+        delete newState[action.review.id]
+        return newState;
       default:
         return state;
     }
