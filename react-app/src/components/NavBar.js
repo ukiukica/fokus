@@ -42,7 +42,9 @@ const NavBar = () => {
       )}
       {sessionUser && (
         <div id='logged-in-div'>
-          <AddCameraModal />
+          <NavLink className='nav-btn' to='/cameras/new' exact={true} activeClassName='active'>
+            Post a Camera
+            </NavLink>
           <LogoutButton />
         </div>
       )}

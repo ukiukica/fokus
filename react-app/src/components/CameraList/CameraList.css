@@ -41,4 +41,5 @@
 #cam-items-list-body {
     display: flex;
     justify-content: center;
+    background-color: #f4f1de;
 }

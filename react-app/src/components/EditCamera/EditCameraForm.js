@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { createCamera, getCameras, editCamera, removeCamera, uploadImages } from "../../store/cameras";
-import "./EditCamera.css";
+// import "./EditCamera.css";
 import '../../context/Modal.css'
 import UploadImages from "../UploadImages/UploadImages";
 import UploadFilmRoll from "../UploadImages/UploadFilmRoll"

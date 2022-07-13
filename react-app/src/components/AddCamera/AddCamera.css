@@ -5,15 +5,90 @@ input::-webkit-inner-spin-button {
 }
 
 .hidden {
-    display: none;
+  display: none;
+}
+
+#add-camera-page {
+  background-color: #f4f1de;
+  display:flex;
+  justify-content: center;
+}
+
+#form-div {
+  border: 1px solid black;
+  padding: 60px;
+  margin: 50px auto;
+}
+
+#camera-form {
+  width:fit-content;
+}
+
+#post-cam-title {
+  padding-bottom: 20px;
+  margin-top: 0;
+  border-bottom: 1px solid black;
+  text-align: center;
 }
 
 .inputs-div {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid black;
+  width: 100%;
 }
+
+#left-side-form {
+  margin-right: 3%;
+  padding-left: 40px;
+}
+
+#right-side-form {
+  margin-left: 3%;
+  padding-right: 40px;
+}
+
+#form-btns-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 
 .image-uploader {
   display: flex;
+  flex-direction: column;
+  padding-bottom: 4%;
+  border-bottom: 1px solid black;
+  margin-bottom: 50px;
+}
+
+.upload-img-title {
+  text-align: center;
+  /* margin-bottom: 10px; */
+}
+
+.film-roll-title {
+  display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  line-height: 10px;
+}
+
+
+
+
+#film-roll-p {
+  padding-top: 10px;
+  font-style: italic;
+  font-size: 15px;
+  text-align: center;
+}
+
+.film-roll-upload-div {
+  border-top: 1px solid black;
 }

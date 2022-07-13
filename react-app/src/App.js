@@ -14,6 +14,7 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
+import AddCameraForm from './components/AddCamera/AddCameraForm';
 import SplashPage from './components/SplashPage/SplashPage';
 import CameraList from './components/CameraList/CameraList';
 import CameraPage from './components/CameraPage/CameraPage'
@@ -69,9 +70,9 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        {/* <ProtectedRoute path='/cameras/new' exact={true} >
+        <ProtectedRoute path='/cameras/new' exact={true} >
           <AddCameraForm />
-        </ProtectedRoute> */}
+        </ProtectedRoute>
         <Route path='/cameras/:cameraId'>
           <CameraPage />
         </Route>

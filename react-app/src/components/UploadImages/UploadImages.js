@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import ImageUploading from "react-images-uploading";
 
 import "./UploadImages.css";
 
-function UploadImages({images, setImages}) {
+function UploadImages({ images, setImages }) {
   const maxNumber = 6;
 
   const onChange = (imageList) => {
@@ -13,7 +13,7 @@ function UploadImages({images, setImages}) {
   };
 
   return (
-    <div className="App">
+    <div>
       <ImageUploading
         multiple
         value={images}
@@ -31,24 +31,29 @@ function UploadImages({images, setImages}) {
           dragProps
         }) => (
           <div className="upload__image-wrapper">
-            <button
-              style={isDragging ? { color: "red" } : null}
-              onClick={onImageUpload}
-              {...dragProps}
-            >
-              Click or Drop here
-            </button>
-            &nbsp;
-            <button onClick={onImageRemoveAll}>Remove all images</button>
-            {imageList.map((image, index) => (
-              <div key={index} className="image-item">
-                <img src={image.data_url} alt="" width="100" />
-                <div className="image-item__btn-wrapper">
-                  <button onClick={() => onImageUpdate(index)}>Update</button>
-                  <button onClick={() => onImageRemove(index)}>Remove</button>
+            <div className="add-remove-btn-div">
+              <button
+                className="add-img-btn"
+                style={isDragging ? { color: "green" } : null}
+                onClick={onImageUpload}
+                {...dragProps}
+              >
+                Click or Drop here
+              </button>
+              &nbsp;
+              <button className="remove-all-btn" onClick={onImageRemoveAll}>Remove all images</button>
+            </div>
+            <div className="selected-img-div">
+              {imageList.map((image, index) => (
+                <div key={index} className="image-item">
+                  <img src={image.data_url} alt="" width="100" />
+                  <div className="image-item__btn-wrapper">
+                    {/* <button onClick={() => onImageUpdate(index)}>Update</button> */}
+                    <button className="remove-btn" onClick={() => onImageRemove(index)}>x</button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         )}
       </ImageUploading>
