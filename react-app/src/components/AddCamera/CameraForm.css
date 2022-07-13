@@ -8,23 +8,23 @@ input::-webkit-inner-spin-button {
   display: none;
 }
 
-#add-camera-page {
+.add-camera-page {
   background-color: #f4f1de;
   display:flex;
   justify-content: center;
 }
 
-#form-div {
+.form-div {
   border: 1px solid black;
   padding: 60px;
   margin: 50px auto;
 }
 
-#camera-form {
+.camera-form {
   width:fit-content;
 }
 
-#post-cam-title {
+.post-cam-title {
   padding-bottom: 20px;
   margin-top: 0;
   border-bottom: 1px solid black;
@@ -41,22 +41,27 @@ input::-webkit-inner-spin-button {
   width: 100%;
 }
 
-#left-side-form {
+.left-side-form {
   margin-right: 3%;
   padding-left: 40px;
 }
 
-#right-side-form {
+.right-side-form {
   margin-left: 3%;
   padding-right: 40px;
 }
 
-#form-btns-div {
+.form-btns-div {
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.submit-cancel-div {
   width: 100%;
   display: flex;
   justify-content: center;
 }
-
 
 .image-uploader {
   display: flex;
@@ -91,4 +96,21 @@ input::-webkit-inner-spin-button {
 
 .film-roll-upload-div {
   border-top: 1px solid black;
+}
+
+#additional-images-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.existing-img-div {
+  text-align: center;
+}
+
+.existing-img-item {
+  display: flex;
+  justify-content: center;
 }

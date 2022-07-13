@@ -94,7 +94,8 @@ function CameraPage() {
                         </div>
 
                         {currentCamera?.user_id === sessionUser?.id && (
-                            <EditCameraModal currentCamera={currentCamera} />
+                            <NavLink to={`/cameras/${cameraId}/edit`} exact={true}>Edit Post</NavLink>
+                            // <EditCameraModal currentCamera={currentCamera} />
                         )}
                     </div>
                     <div id="reviews-section">

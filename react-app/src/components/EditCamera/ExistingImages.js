@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect, useParams } from "react-router-dom";
-import {getCameras} from "../../store/cameras"
+import { getCameras } from "../../store/cameras"
 
 function ExistingImages({ productImagesArr }) {
 
@@ -15,16 +15,16 @@ function ExistingImages({ productImagesArr }) {
         })
 
         if (response.ok) {
-           await dispatch(getCameras())
+            await dispatch(getCameras())
         }
     }
 
     return (
         <>
-            {productImagesArr.map((image) => (
-                <div key={image.id}>
+            {productImagesArr?.map((image) => (
+                <div key={image.id} className="existing-img-item">
                     <img src={image.image_url} alt="" width="100" />
-                    <button onClick={(e) => onClick(e, image.id)}>Remove</button>
+                    <button className="remove-btn" onClick={(e) => onClick(e, image.id)}>x</button>
                 </div>
             ))}
         </>

@@ -5,7 +5,7 @@ import { createCamera, getCameras, uploadImages } from "../../store/cameras";
 import UploadImages from "../UploadImages/UploadImages"
 import UploadFilmRoll from "../UploadImages/UploadFilmRoll"
 
-import "./AddCamera.css";
+import "./CameraForm.css";
 import "../../context/Buttons.css"
 import "../../context/Misc.css"
 
@@ -116,12 +116,12 @@ function AddCameraForm() {
     }
 
     return (
-        <div id="add-camera-page">
-            <div id="form-div">
+        <div className="add-camera-page">
+            <div className="form-div">
                 <form
-                    id="camera-form"
+                    className="camera-form"
                     onSubmit={onSubmit}>
-                    <h2 id='post-cam-title'>Post a Camera</h2>
+                    <h2 className='post-cam-title'>Post a Camera</h2>
                     <div className={showErrors ? '' : 'hidden'}>
                         <div className="errors">
                             {validationErrors.map(error => (
@@ -130,7 +130,7 @@ function AddCameraForm() {
                         </div>
                     </div>
                     <div className='inputs-div'>
-                        <div id="left-side-form">
+                        <div className="left-side-form">
                             <label className='form-label'>
                                 Brand
                                 <input
@@ -165,7 +165,7 @@ function AddCameraForm() {
                             </label>
                         </div>
 
-                        <div id="right-side-form">
+                        <div className="right-side-form">
                             <label className='form-label'>
                                 Price Amount $
                                 <input
@@ -252,7 +252,7 @@ function AddCameraForm() {
                         </div>
                     </div>
 
-                    <div id="form-btns-div">
+                    <div className="form-btns-div">
                         <button
                             className='cam-form-btn post'
                             type='submit'

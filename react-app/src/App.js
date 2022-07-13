@@ -15,6 +15,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import AddCameraForm from './components/AddCamera/AddCameraForm';
+import EditCameraForm from './components/EditCamera/EditCameraForm';
 import SplashPage from './components/SplashPage/SplashPage';
 import CameraList from './components/CameraList/CameraList';
 import CameraPage from './components/CameraPage/CameraPage'
@@ -72,6 +73,9 @@ function App() {
         </Route>
         <ProtectedRoute path='/cameras/new' exact={true} >
           <AddCameraForm />
+        </ProtectedRoute>
+        <ProtectedRoute path='/cameras/:cameraId/edit' exact={true} >
+          <EditCameraForm />
         </ProtectedRoute>
         <Route path='/cameras/:cameraId'>
           <CameraPage />
