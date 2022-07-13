@@ -1,19 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+
+import { authenticate } from './store/session';
+import { getCameras } from './store/cameras';
+import { getCategories } from './store/categories';
+import { getReviews } from './store/reviews';
+import { getUsers } from './store/users';
+
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
-import { authenticate } from './store/session';
 import SplashPage from './components/SplashPage/SplashPage';
-import { getCameras } from './store/cameras';
-import { getCategories } from './store/categories';
 import CameraList from './components/CameraList/CameraList';
 import CameraPage from './components/CameraPage/CameraPage'
-import { getUsers } from './store/users';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -30,6 +33,10 @@ function App() {
 
   useEffect(() => {
     dispatch(getCategories())
+  }, [dispatch])
+
+  useEffect(() => {
+    dispatch(getReviews())
   }, [dispatch])
 
 

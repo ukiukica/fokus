@@ -27,8 +27,8 @@ const remove = (camera) => {
 
 
 export const createCamera = (payload) => async (dispatch) => {
-  console.log("INSIDE THE THUNK");
-  console.log("PAYLOAD: ", payload)
+  // console.log("INSIDE THE THUNK");
+  // console.log("PAYLOAD: ", payload)
   const response = await fetch("/api/cameras/new", {
     method: 'POST',
     headers: { "Content-Type": "application/json" },
@@ -54,15 +54,15 @@ export const getCameras = () => async (dispatch) => {
 };
 
 export const editCamera = (payload, id) => async (dispatch) => {
-  console.log("IN THE THUNK")
-  console.log("PAYLOAD: ", payload)
-  console.log("ID: ", id)
+  // console.log("IN THE THUNK")
+  // console.log("PAYLOAD: ", payload)
+  // console.log("ID: ", id)
   const response = await fetch(`/api/cameras/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)
   })
-  console.log("RESPONSE: ", response)
+  // console.log("RESPONSE: ", response)
   if (response.ok) {
     const editedCamera = await response.json();
     dispatch(update(editedCamera))

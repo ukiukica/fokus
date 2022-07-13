@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, Redirect, useParams } from "react-router-dom";
-import EditCameraModal from "../EditCamera/EditCameraModal";
+
 import ImageGallery from 'react-image-gallery';
+
+import EditCameraModal from "../EditCamera/EditCameraModal";
+import AddReview from "../AddReview/AddReviewForm";
+import EditReview from "../EditReview/EditReviewForm";
+
 import './CameraPage.css'
 import '../../context/Buttons.css'
 import '../../context/Misc.css'
@@ -15,17 +20,26 @@ function CameraPage() {
     const sessionUser = useSelector((state) => state.session?.user);
     const cameras = useSelector((state) => state.cameras)
     const users = useSelector((state) => state.users)
-    console.log("USERS: ", users)
+    const reviews = useSelector((state) => state.reviews)
 
     const { cameraId } = params;
 
     const currentCamera = cameras[cameraId]
+
     const productImagesArr = currentCamera?.images.filter(image => image.film_roll === false)
     const filmRollArr = currentCamera?.images.filter(image => image.film_roll === true)
+    const reviewsArr = Object.values(reviews)
+    // console.log("REVIEWS ARR: ", reviewsArr)
+
+
     const cameraUser = users[currentCamera?.user_id]?.username
-    // console.log("PROD IMAGES ARR: ", productImagesArr)
+    const cameraReviews = reviewsArr?.filter(review => review.camera_id === parseInt(cameraId))
+
+    console.log("CAMERA REVIEWS: ", cameraReviews)
 
     const [showFilmRoll, setShowFilmRoll] = useState(false);
+    const [showAddReview, setShowAddReview] = useState(false);
+    const [showEditReview, setShowEditReview] = useState(false);
 
     const options = {
         weekday: "long",
@@ -50,8 +64,8 @@ function CameraPage() {
             {productImagesArr && (
                 <div id="camera-page">
                     <div id="back-link-div">
-                        <i class="fa-solid fa-arrow-left"></i>
-                        <NavLink  to='/cameras' style={{ color: 'inherit', textDecoration: 'inherit' }}
+                        <i className="fa-solid fa-arrow-left"></i>
+                        <NavLink to='/cameras' style={{ color: 'inherit', textDecoration: 'inherit' }}
                         > <button id="back-link">Back to Catalogue</button>
                         </NavLink>
                     </div>
@@ -89,6 +103,42 @@ function CameraPage() {
                     </div>
                     <div id="reviews-section">
                         <p id="reviews-title">Reviews</p>
+                        {sessionUser && (
+                            <>
+                                <button onClick={() => setShowAddReview(true)}
+                                >Leave a Review
+                                </button>
+                                {showAddReview && (
+                                    <>
+                                        <AddReview cameraId={cameraId} setShowAddReview={setShowAddReview} />
+                                        <button onClick={() => setShowAddReview(false)}
+                                        >Cancel
+                                        </button>
+                                    </>
+                                )}
+                            </>
+                        )}
+                        {cameraReviews?.map((review) => (
+                            <div className="review-div" key={review.id}>
+                                <p>{users[review.user_id]?.username}{ }</p>
+                                <p>{review.updated_at}</p>
+                                <p>{review.content}</p>
+                                <div>
+                                    {sessionUser.id === review?.user_id && (
+                                        <>
+                                            {showEditReview ?
+                                                <>
+                                                    <EditReview reviews={reviews} cameraId={cameraId} reviewId={review.id} setShowEditReview={setShowEditReview} />
+                                                    <button onClick={() => setShowEditReview(false)}>Cancel</button>
+                                                </>
+                                                :
+                                                <button onClick={() => setShowEditReview(true)}>Edit</button>
+                                            }
+                                        </>
+                                    )}
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             )}

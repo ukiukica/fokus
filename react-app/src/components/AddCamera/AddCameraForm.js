@@ -54,8 +54,8 @@ function AddCameraForm({ closeModal }) {
         })
     }
 
-    const addFilmRoll = (images, cameraId) => {
-        images.forEach(async (image) => {
+    const addFilmRoll = (filmRoll, cameraId) => {
+        filmRoll.forEach(async (image) => {
             const imageData = {
                 image: image,
                 imageUrl: image.filename,
@@ -89,6 +89,7 @@ function AddCameraForm({ closeModal }) {
         }
         else {
             const imageFiles = images.map((image) => image.file)
+            const filmRollFiles = filmRoll.map((image) => image.file)
             const payload = {
                 brand,
                 model,
@@ -103,7 +104,7 @@ function AddCameraForm({ closeModal }) {
             const newCamera = await dispatch(createCamera(payload));
             const cameraId = newCamera.id;
             await addImages(imageFiles, cameraId);
-            await addFilmRoll(imageFiles, cameraId);
+            await addFilmRoll(filmRollFiles, cameraId);
             setValidationErrors([]);
             await dispatch(getCameras())
             closeModal()

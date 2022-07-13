@@ -4,12 +4,14 @@ import camerasReducer from './cameras';
 import categoriesReducer from './categories';
 import session from './session'
 import usersReducer from './users';
+import reviewsReducer from './reviews';
 
 const rootReducer = combineReducers({
   session,
   users: usersReducer,
   cameras: camerasReducer,
-  categories: categoriesReducer
+  categories: categoriesReducer,
+  reviews: reviewsReducer
 });
 
 
