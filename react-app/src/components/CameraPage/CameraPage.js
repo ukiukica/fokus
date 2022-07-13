@@ -41,12 +41,10 @@ function CameraPage() {
     const [showAddReview, setShowAddReview] = useState(false);
     const [showEditReview, setShowEditReview] = useState(false);
 
-    const options = {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric",
-    };
+    const formatDate = (dateString) => {
+        const options = { year: "numeric", month: "long", day: "numeric" }
+        return new Date(dateString).toLocaleDateString(undefined, options)
+      }
 
     let images = [];
     let filmRoll = [];
@@ -91,7 +89,7 @@ function CameraPage() {
                                     <p className="inventory">{currentCamera.inventory} left in stock</p>
                                 }
                                 <p>Sold by: {cameraUser}</p>
-                                <p>Posted on: {currentCamera.created_at}</p>
+                                <p>Posted on: {formatDate(currentCamera.created_at)}</p>
                                 {/* <p>{new Date(currentCamera?.updatedAt).toLocaleDateString(undefined, options)}</p> */}
                                 <button id="add-cart-btn">Add to Cart</button>
                             </div>
@@ -103,7 +101,7 @@ function CameraPage() {
                     </div>
                     <div id="reviews-section">
                         <p id="reviews-title">Reviews</p>
-                        {sessionUser && (
+                        {sessionUser ?
                             <>
                                 <button onClick={() => setShowAddReview(true)}
                                 >Leave a Review
@@ -117,23 +115,29 @@ function CameraPage() {
                                     </>
                                 )}
                             </>
-                        )}
+                            :
+                            <p>Log in to leave a review!</p>
+                        }
                         {cameraReviews?.map((review) => (
                             <div className="review-div" key={review.id}>
                                 <p>{users[review.user_id]?.username}{ }</p>
-                                <p>{review.updated_at}</p>
+                                <p>{formatDate(review.updated_at)}</p>
                                 <p>{review.content}</p>
                                 <div>
-                                    {sessionUser.id === review?.user_id && (
+                                    {sessionUser && (
                                         <>
-                                            {showEditReview ?
+                                            {sessionUser?.id === review?.user_id && (
                                                 <>
-                                                    <EditReview reviews={reviews} cameraId={cameraId} reviewId={review.id} setShowEditReview={setShowEditReview} />
-                                                    <button onClick={() => setShowEditReview(false)}>Cancel</button>
+                                                    {showEditReview ?
+                                                        <>
+                                                            <EditReview reviews={reviews} cameraId={cameraId} reviewId={review.id} setShowEditReview={setShowEditReview} />
+                                                            <button onClick={() => setShowEditReview(false)}>Cancel</button>
+                                                        </>
+                                                        :
+                                                        <button onClick={() => setShowEditReview(true)}>Edit</button>
+                                                    }
                                                 </>
-                                                :
-                                                <button onClick={() => setShowEditReview(true)}>Edit</button>
-                                            }
+                                            )}
                                         </>
                                     )}
                                 </div>
