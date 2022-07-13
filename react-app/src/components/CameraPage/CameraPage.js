@@ -6,11 +6,11 @@ import ImageGallery from 'react-image-gallery';
 
 import EditCameraModal from "../EditCamera/EditCameraModal";
 import AddReview from "../AddReview/AddReviewForm";
-import EditReview from "../EditReview/EditReviewForm";
 
 import './CameraPage.css'
 import '../../context/Buttons.css'
 import '../../context/Misc.css'
+import SingleReview from "../SingleReview/SingleReview";
 
 
 function CameraPage() {
@@ -29,13 +29,11 @@ function CameraPage() {
     const productImagesArr = currentCamera?.images.filter(image => image.film_roll === false)
     const filmRollArr = currentCamera?.images.filter(image => image.film_roll === true)
     const reviewsArr = Object.values(reviews)
-    // console.log("REVIEWS ARR: ", reviewsArr)
 
 
     const cameraUser = users[currentCamera?.user_id]?.username
     const cameraReviews = reviewsArr?.filter(review => review.camera_id === parseInt(cameraId))
 
-    console.log("CAMERA REVIEWS: ", cameraReviews)
 
     const [showFilmRoll, setShowFilmRoll] = useState(false);
     const [showAddReview, setShowAddReview] = useState(false);
@@ -119,29 +117,8 @@ function CameraPage() {
                             <p>Log in to leave a review!</p>
                         }
                         {cameraReviews?.map((review) => (
-                            <div className="review-div" key={review.id}>
-                                <p>{users[review.user_id]?.username}{ }</p>
-                                <p>{formatDate(review.updated_at)}</p>
-                                <p>{review.content}</p>
-                                <div>
-                                    {sessionUser && (
-                                        <>
-                                            {sessionUser?.id === review?.user_id && (
-                                                <>
-                                                    {showEditReview ?
-                                                        <>
-                                                            <EditReview reviews={reviews} cameraId={cameraId} reviewId={review.id} setShowEditReview={setShowEditReview} />
-                                                            <button onClick={() => setShowEditReview(false)}>Cancel</button>
-                                                        </>
-                                                        :
-                                                        <button onClick={() => setShowEditReview(true)}>Edit</button>
-                                                    }
-                                                </>
-                                            )}
-                                        </>
-                                    )}
-                                </div>
-                            </div>
+                            <SingleReview key={review.id}
+                                reviews={reviews} users={users} sessionUser={sessionUser} formatDate={formatDate} review={review} cameraId={cameraId}/>
                         ))}
                     </div>
                 </div>
