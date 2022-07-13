@@ -39,8 +39,8 @@ def post_camera():
            inventory=data['inventory'],
            category_id=data['category_id'],
            user_id=data['user_id'],
-           created_at =datetime.now().strftime("%d/%m/%y"),
-           updated_at =datetime.now().strftime("%d/%m/%y")
+           created_at =datetime.now(),
+           updated_at =datetime.now()
         )
         db.session.add(new_camera)
         db.session.commit()
@@ -63,7 +63,7 @@ def edit_camera(id):
         camera.inventory=data['inventory'],
         camera.category_id=data['category_id'],
         camera.user_id=data['user_id'],
-        camera.updated_at =datetime.now().strftime("%d/%m/%y")
+        camera.updated_at =datetime.now()
 
         db.session.commit()
         return camera.to_dict()
