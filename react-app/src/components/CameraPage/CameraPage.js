@@ -94,7 +94,10 @@ function CameraPage() {
                                 <button className="add-cart-edit-post-btn">Edit Post</button>
                             </NavLink>
                             :
-                            <button className="add-cart-edit-post-btn">Add to Cart</button>
+                            <button
+                            className="add-cart-edit-post-btn"
+                            
+                            >Add to Cart</button>
                         }
                             </div>
                         </div>

@@ -1,13 +1,14 @@
 .cam-item-img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
+    border-radius: 6px;
 }
 
 #cam-item-details {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 3px 10px 0 10px;
 }
 

@@ -67,7 +67,7 @@ function App() {
       <Switch>
         <Route path='/cameras' exact={true}>
           <NavBar />
-          {/* <Categories /> */}
+          <Categories />
           <CameraList />
         </Route>
         {/* <Route path='/login' exact={true}>
@@ -78,17 +78,17 @@ function App() {
         </Route> */}
         <ProtectedRoute path='/cameras/new' exact={true} >
           <NavBar />
-          {/* <Categories /> */}
+          <Categories />
           <AddCameraForm />
         </ProtectedRoute>
         <ProtectedRoute path='/cameras/:cameraId/edit' exact={true} >
           <NavBar />
-          {/* <Categories /> */}
+          <Categories />
           <EditCameraForm />
         </ProtectedRoute>
         <Route path='/cameras/:cameraId'>
           <NavBar />
-          {/* <Categories /> */}
+          <Categories />
           <CameraPage />
         </Route>
         {/* <ProtectedRoute path='/users' exact={true} >
@@ -99,7 +99,7 @@ function App() {
         </ProtectedRoute> */}
         <ProtectedRoute path='/shopping-cart' exact={true} >
           <NavBar />
-          {/* <Categories /> */}
+          <Categories />
           <ShoppingCart />
         </ProtectedRoute>
       </Switch>
