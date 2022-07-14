@@ -17,7 +17,7 @@ const NavBar = () => {
       <nav id='nav-bar'>
         <div id="search-div">
           <button className="nav-btn disabled"><i class="fa-solid fa-magnifying-glass"></i></button>
-          <input id="search-bar" type="text" placeholder="Search.."></input>
+          <input id="search-bar" type="text" placeholder="THIS FEATURE IS COMING SOON!"></input>
         </div>
 
         <div className="logo-div">

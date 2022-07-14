@@ -5,7 +5,10 @@ import { Link, NavLink, Redirect } from "react-router-dom";
 function ShoppingCart () {
 
     return (
-        <h1>Shopping Cart</h1>
+        <>
+        <h1 style={{textAlign: "center"}}>Shopping Cart</h1>
+        <p style={{textAlign: "center"}}>This feature is coming soon!</p>
+        </>
     )
 }
 
