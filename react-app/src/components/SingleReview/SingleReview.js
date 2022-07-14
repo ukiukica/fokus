@@ -15,9 +15,9 @@ function SingleReview({reviews, users, sessionUser, formatDate, review, cameraId
     return (
         <>
             <div className="review-div">
-                <p>{users[review.user_id]?.username}{ }</p>
-                <p>{formatDate(review.updated_at)}</p>
-                <p>{review.content}</p>
+                <p id="username" >{users[review.user_id]?.username}{ }</p>
+                <p id="date" >{formatDate(review.updated_at)}</p>
+                <p id="content">{review.content}</p>
 
                 <div>
                     {sessionUser && (
@@ -27,7 +27,7 @@ function SingleReview({reviews, users, sessionUser, formatDate, review, cameraId
                                     {showEditReview ?
                                         <>
                                             <EditReview reviews={reviews} cameraId={cameraId} reviewId={review.id} setShowEditReview={setShowEditReview} />
-                                            <button onClick={() => setShowEditReview(false)}>Cancel</button>
+                                            <button id="cancel-edit" onClick={() => setShowEditReview(false)}>Cancel Edit</button>
                                         </>
                                         :
                                         <button onClick={() => setShowEditReview(true)}>Edit</button>

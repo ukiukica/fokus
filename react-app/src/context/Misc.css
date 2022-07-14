@@ -71,6 +71,14 @@ h2 {
   border-bottom: 1px solid rgb(160, 31, 31);
 }
 
+.backend-errors {
+  text-align: center;
+  color:rgb(160, 31, 31);
+  padding: 0px;
+  margin-bottom: 5%;
+  padding-bottom: 15px;
+}
+
 .form-title {
   font-family: 'Courier New', Courier, monospace;
   white-space: nowrap;

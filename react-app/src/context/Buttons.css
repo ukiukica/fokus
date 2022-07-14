@@ -60,3 +60,30 @@
   .disabled:hover {
     color: #f5f5dc;
   }
+
+  #post-review-btn {
+    background-color: #011627;
+    color: #f5f5dc;
+    margin-top: 5%;
+    margin-bottom: 5%;
+
+  }
+
+  #post-review-btn:hover {
+    background-color: #f2cc8f;
+    color: #011627;
+
+
+  }
+
+  #cancel-edit {
+    margin-top: 3%;
+    background-color: #011627;
+    color: #f5f5dc;
+  }
+
+  #cancel-edit:hover {
+    margin-top: 3%;
+    background-color: #f2cc8f;
+    color: #011627;
+  }

@@ -34,14 +34,14 @@ const LoginForm = () => {
 
   return (
     <form
-    id="login-form"
-    onSubmit={onLogin}>
+      id="login-form"
+      onSubmit={onLogin}>
       <h2 id="login-title">Log In</h2>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
+        <div className="backend-errors">
+          {errors.map((error, ind) => (
+            <div key={ind}>{error.split(": This field")}</div>
+          ))}
+        </div>
       <div id="login-inputs-div">
         <label className='form-label' htmlFor='email'>Email</label>
         <input
@@ -63,9 +63,9 @@ const LoginForm = () => {
           onChange={updatePassword}
         />
       </div>
-        <div id="login-btn-div">
-          <button className='cam-form-btn post' type='submit'>Login</button>
-        </div>
+      <div id="login-btn-div">
+        <button className='cam-form-btn post' type='submit'>Login</button>
+      </div>
     </form>
   );
 };

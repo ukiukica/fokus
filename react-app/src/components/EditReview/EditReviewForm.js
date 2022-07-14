@@ -72,7 +72,7 @@ function EditReview({ reviews, cameraId, reviewId, setShowEditReview }) {
 
                 <div>
                     <input
-                        // className='form-input'
+                        className='form-input'
                         type='text'
                         name='content'
                         placeholder='Write something here...'
@@ -80,11 +80,14 @@ function EditReview({ reviews, cameraId, reviewId, setShowEditReview }) {
                         value={content}
                     />
                 </div>
-                <button
-                    type='submit'
+                <div id="edit-review-btns-div">
+                    <button
+                        class="post"
+                        type='submit'
                     > Save Changes
                     </button>
-                    <button onClick={deleteReview}>Delete Review</button>
+                    <button class="cancel" onClick={deleteReview}>Delete Review</button>
+                </div>
             </form>
         </>
     )

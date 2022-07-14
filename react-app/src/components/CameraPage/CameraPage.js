@@ -105,15 +105,15 @@ function CameraPage() {
                         <p id="reviews-title">Reviews</p>
                         {sessionUser ?
                             <>
-                                <button onClick={() => setShowAddReview(true)}
+                                <button id="post-review-btn" onClick={() => setShowAddReview(true)}
                                 >Leave a Review
                                 </button>
                                 {showAddReview && (
                                     <>
                                         <AddReview cameraId={cameraId} setShowAddReview={setShowAddReview} />
-                                        <button onClick={() => setShowAddReview(false)}
+                                        {/* <button id="cancel-edit" onClick={() => setShowAddReview(false)}
                                         >Cancel
-                                        </button>
+                                        </button> */}
                                     </>
                                 )}
                             </>
