@@ -241,7 +241,8 @@ function AddCameraForm() {
                             <p id="film-roll-p">Upload photos taken by this camera to give customers an immersive experience</p>
                             <div className="film-roll-title">
                                 <h3 className="upload-img-title">Upload Camera Film Roll</h3>
-                                <button className="reveal-btn" onClick={() => {
+                                <button className="reveal-btn" onClick={(e) => {
+                                    e.preventDefault()
                                     setShowFilmRollUpload(showFilmRollUpload ? false : true);
                                     setReveal(reveal === "+" ? "-" : "+")
                                 }}>{reveal}</button>
