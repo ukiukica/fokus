@@ -22,7 +22,7 @@ const NavBar = () => {
           <img id='logo' src={logo} />
         </div>
 
-        <div id='nav-btns-div'>
+        <div className='nav-btns-div splash-page'>
           {/* <NavLink className='nav-btn' to='/' exact={true}>
           Home
         </NavLink>
@@ -41,7 +41,7 @@ const NavBar = () => {
           )}
 
           {!sessionUser && (
-            <div id='auth-btns'>
+            <div className='auth-btns'>
               <NavLink className='nav-btn' to='/login' exact={true} activeClassName='active'>
                 Login
               </NavLink>
@@ -51,7 +51,7 @@ const NavBar = () => {
             </div>
           )}
           {sessionUser && (
-            <div id='logged-in-div'>
+            <div className='logged-in-div'>
               <NavLink className='nav-btn' to='/cameras/new' exact={true} activeClassName='active'>
                 <button className="nav-btn"><i class="fa-solid fa-camera"></i></button>
               </NavLink>
