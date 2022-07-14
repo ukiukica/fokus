@@ -6,11 +6,11 @@ import ImageGallery from 'react-image-gallery';
 
 import EditCameraModal from "../EditCamera/EditCameraModal";
 import AddReview from "../AddReview/AddReviewForm";
-import EditReview from "../EditReview/EditReviewForm";
 
 import './CameraPage.css'
 import '../../context/Buttons.css'
 import '../../context/Misc.css'
+import SingleReview from "../SingleReview/SingleReview";
 
 
 function CameraPage() {
@@ -29,13 +29,11 @@ function CameraPage() {
     const productImagesArr = currentCamera?.images.filter(image => image.film_roll === false)
     const filmRollArr = currentCamera?.images.filter(image => image.film_roll === true)
     const reviewsArr = Object.values(reviews)
-    // console.log("REVIEWS ARR: ", reviewsArr)
 
 
     const cameraUser = users[currentCamera?.user_id]?.username
     const cameraReviews = reviewsArr?.filter(review => review.camera_id === parseInt(cameraId))
 
-    console.log("CAMERA REVIEWS: ", cameraReviews)
 
     const [showFilmRoll, setShowFilmRoll] = useState(false);
     const [showAddReview, setShowAddReview] = useState(false);
@@ -44,7 +42,7 @@ function CameraPage() {
     const formatDate = (dateString) => {
         const options = { year: "numeric", month: "long", day: "numeric" }
         return new Date(dateString).toLocaleDateString(undefined, options)
-      }
+    }
 
     let images = [];
     let filmRoll = [];
@@ -91,27 +89,31 @@ function CameraPage() {
                                 <p>Sold by: {cameraUser}</p>
                                 <p>Posted on: {formatDate(currentCamera.created_at)}</p>
                                 {/* <p>{new Date(currentCamera?.updatedAt).toLocaleDateString(undefined, options)}</p> */}
-                                <button id="add-cart-btn">Add to Cart</button>
+                                {currentCamera?.user_id === sessionUser?.id ?
+                            <NavLink to={`/cameras/${cameraId}/edit`} exact={true}>
+                                <button className="add-cart-edit-post-btn">Edit Post</button>
+                            </NavLink>
+                            :
+                            <button className="add-cart-edit-post-btn">Add to Cart</button>
+                        }
                             </div>
                         </div>
 
-                        {currentCamera?.user_id === sessionUser?.id && (
-                            <EditCameraModal currentCamera={currentCamera} />
-                        )}
+
                     </div>
                     <div id="reviews-section">
                         <p id="reviews-title">Reviews</p>
                         {sessionUser ?
                             <>
-                                <button onClick={() => setShowAddReview(true)}
+                                <button id="post-review-btn" onClick={() => setShowAddReview(true)}
                                 >Leave a Review
                                 </button>
                                 {showAddReview && (
                                     <>
                                         <AddReview cameraId={cameraId} setShowAddReview={setShowAddReview} />
-                                        <button onClick={() => setShowAddReview(false)}
+                                        {/* <button id="cancel-edit" onClick={() => setShowAddReview(false)}
                                         >Cancel
-                                        </button>
+                                        </button> */}
                                     </>
                                 )}
                             </>
@@ -119,29 +121,8 @@ function CameraPage() {
                             <p>Log in to leave a review!</p>
                         }
                         {cameraReviews?.map((review) => (
-                            <div className="review-div" key={review.id}>
-                                <p>{users[review.user_id]?.username}{ }</p>
-                                <p>{formatDate(review.updated_at)}</p>
-                                <p>{review.content}</p>
-                                <div>
-                                    {sessionUser && (
-                                        <>
-                                            {sessionUser?.id === review?.user_id && (
-                                                <>
-                                                    {showEditReview ?
-                                                        <>
-                                                            <EditReview reviews={reviews} cameraId={cameraId} reviewId={review.id} setShowEditReview={setShowEditReview} />
-                                                            <button onClick={() => setShowEditReview(false)}>Cancel</button>
-                                                        </>
-                                                        :
-                                                        <button onClick={() => setShowEditReview(true)}>Edit</button>
-                                                    }
-                                                </>
-                                            )}
-                                        </>
-                                    )}
-                                </div>
-                            </div>
+                            <SingleReview key={review.id}
+                                reviews={reviews} users={users} sessionUser={sessionUser} formatDate={formatDate} review={review} cameraId={cameraId} />
                         ))}
                     </div>
                 </div>

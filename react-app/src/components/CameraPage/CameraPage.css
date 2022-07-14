@@ -83,7 +83,7 @@
     margin-bottom: 5px;
 }
 
-#add-cart-btn {
+.add-cart-edit-post-btn {
     margin-top: 20px;
     padding: 5px 20px;
     font-size: 15px;
@@ -91,21 +91,22 @@
     transition: background-color 0.2s;
 }
 
-#add-cart-btn:hover {
+.add-cart-edit-post-btn:hover {
     background-color: #f2cc8f;
 }
 
 #reviews-section {
     margin-top: 7%;
+    display: flex;
+    flex-direction: column;
+    min-width: 550px;
 }
 
 #reviews-title {
     font-size: 30px;
     font-weight: bold;
-}
+    text-align: center;
+    padding-bottom: 5%;
+    border-bottom: 1px solid black;
 
-.review-div {
-    border: 1px solid black;
-    min-width: 400px;
-    padding: 20px;
 }

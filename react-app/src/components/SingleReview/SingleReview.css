@@ -1,0 +1,20 @@
+.review-div {
+    border: 1px solid black;
+    border-radius: 3px;
+    min-width: 400px;
+    padding: 5px 20px 20px 20px;
+    margin-bottom: 5%;
+}
+
+#username {
+    font-size: 15px;
+}
+
+#date {
+    font-size: 12px;
+}
+
+#content {
+    margin-top: 4%;
+    margin-bottom: 4%;
+}

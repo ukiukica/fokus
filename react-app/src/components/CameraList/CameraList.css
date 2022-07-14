@@ -1,4 +1,4 @@
-#logo-categ-div {
+/* #logo-categ-div {
     width: 100%;
     background-color: black;
     display: flex;
@@ -6,9 +6,9 @@
     align-items: center;
     justify-content: center;
     padding: 20px 0 25px 0;
-}
+} */
 
-.categ-btn {
+/* .categ-btn {
     color: #f5f5dc;
     background-color: #f0f8ff00;
     font-size: 18px;
@@ -28,17 +28,18 @@
 #logo {
     width: 300px;
     height: auto;
-}
+} */
 
 #cam-items-list {
     max-width: 60%;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    padding: 50px 0 0 0;
+    padding: 100px 0 0 0;
 }
 
 #cam-items-list-body {
     display: flex;
     justify-content: center;
+    background-color: #f4f1de;
 }

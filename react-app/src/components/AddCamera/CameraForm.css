@@ -1,0 +1,131 @@
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.camera-form-page {
+  background-color: #f4f1de;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form-div {
+  border: 1px solid black;
+  padding: 60px;
+  margin: 50px auto;
+}
+
+.camera-form {
+  width:fit-content;
+}
+
+.post-cam-title {
+  padding-bottom: 20px;
+  margin-top: 0;
+  border-bottom: 1px solid black;
+  text-align: center;
+}
+
+.inputs-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid black;
+  width: 100%;
+}
+
+.left-side-form {
+  margin-right: 3%;
+  padding-left: 40px;
+}
+
+.right-side-form {
+  margin-left: 3%;
+  padding-right: 40px;
+}
+
+.form-btns-div {
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.submit-cancel-div {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.image-uploader {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 4%;
+  border-bottom: 1px solid black;
+  margin-bottom: 50px;
+}
+
+.upload-img-title {
+  text-align: center;
+  /* margin-bottom: 10px; */
+}
+
+.film-roll-title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  line-height: 10px;
+}
+
+
+
+
+#film-roll-p {
+  padding-top: 10px;
+  font-style: italic;
+  font-size: 15px;
+  text-align: center;
+}
+
+.film-roll-upload-div {
+  border-top: 1px solid black;
+}
+
+#additional-images-div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.current-imgs-div {
+  text-align: center;
+}
+
+.existing-img-item {
+  display: flex;
+  justify-content: center;
+}
+
+#back-camera-link-div {
+  padding-left: 10%;
+  padding-top: 2%;
+}
+
+#existing-img-div {
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid black;
+  padding-bottom: 20px;
+  margin-bottom: 10px;
+}

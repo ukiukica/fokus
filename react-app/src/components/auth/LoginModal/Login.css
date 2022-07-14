@@ -1,0 +1,21 @@
+#login-title {
+    text-align: center;
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid black;
+}
+
+#login-form {
+    padding: 15px;
+}
+
+#login-inputs-div {
+    padding-bottom: 40px;
+}
+
+#login-btn-div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-left: 4%;
+}

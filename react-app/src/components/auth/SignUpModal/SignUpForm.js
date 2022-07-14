@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { signUp } from '../../../store/session';
+
+import "./SignUp.css";
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -43,42 +45,46 @@ const SignUpForm = () => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
+    <form
+      id="sign-up-form"
+      onSubmit={onSignUp}>
+      <h2 id="sign-up-title">Sign Up</h2>
+      <div className="backend-errors">
         {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
+          <div key={ind}>{error.split(": This field")}</div>
         ))}
       </div>
-      <div>
-        <label>User Name</label>
+      <div id="sign-up-inputs-div">
+        <label className='form-label'>User Name</label>
         <input
+          className='form-input'
           type='text'
           name='username'
           onChange={updateUsername}
           value={username}
         ></input>
-      </div>
-      <div>
-        <label>Email</label>
+
+        <label className='form-label'>Email</label>
         <input
+          className='form-input'
           type='text'
           name='email'
           onChange={updateEmail}
           value={email}
         ></input>
-      </div>
-      <div>
-        <label>Password</label>
+
+        <label className='form-label'>Password</label>
         <input
+          className='form-input'
           type='password'
           name='password'
           onChange={updatePassword}
           value={password}
         ></input>
-      </div>
-      <div>
-        <label>Repeat Password</label>
+
+        <label className='form-label'>Repeat Password</label>
         <input
+          className='form-input'
           type='password'
           name='repeat_password'
           onChange={updateRepeatPassword}
@@ -86,7 +92,9 @@ const SignUpForm = () => {
           required={true}
         ></input>
       </div>
-      <button type='submit'>Sign Up</button>
+      <div id="sign-up-btn-div">
+        <button className='cam-form-btn post' type='submit'>Sign Up</button>
+      </div>
     </form>
   );
 };

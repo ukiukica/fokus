@@ -16,7 +16,7 @@ function CameraList() {
 
     return (
         <>
-            <div id='logo-categ-div'>
+            {/* <div id='logo-categ-div'>
                     <img id='logo' src={logo} />
                 <div id='categ-btn-div'>
                     <button className='categ-btn'>All</button>
@@ -27,7 +27,7 @@ function CameraList() {
                     <button className='categ-btn'>Instant</button>
                     <button className='categ-btn'>Folding</button>
                 </div>
-            </div>
+            </div> */}
             <div id="cam-items-list-body">
             <div id='cam-items-list'>
                 {camerasArr.map((camera) => (

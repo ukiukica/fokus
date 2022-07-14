@@ -1,10 +1,116 @@
-p {
-    padding: 0;
-    margin: 0;
+* {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+p {
+    padding: 0;
+    margin: 0;
+    /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+}
+
 button {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
     border: none;
+    padding: 10px;
+    border-radius: 2px;
+}
+
+h2 {
+    /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+}
+
+/* FORM STYLES */
+
+.forms {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+  }
+
+.form-input {
+  display:flex;
+  flex-direction:column;
+  border-radius: 5px;
+  padding: 5px 10px;
+  border: solid 1px #0a0908;
+  width: 200px;
+  height: 27px;
+  transition: border 0.1s;
+}
+
+.form-input:hover {
+  border: solid 1px #f2cc8f;
+}
+
+.form-input:focus {
+  background-color: #c3f2db;
+}
+
+
+.form-label {
+  display:flex;
+  flex-direction:column;
+  font-weight: bold;
+  color:#0a0908;
+  font-size: 15px;
+  margin-top: 5%;
+  margin-bottom: 3%;
+}
+
+.form-field {
+  margin-bottom: 10%;
+}
+
+.errors {
+  text-align: center;
+  color:rgb(160, 31, 31);
+  padding: 0px;
+  margin-bottom: 5%;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgb(160, 31, 31);
+}
+
+.backend-errors {
+  text-align: center;
+  color:rgb(160, 31, 31);
+  padding: 0px;
+  margin-bottom: 5%;
+  padding-bottom: 15px;
+}
+
+.form-title {
+  font-family: 'Courier New', Courier, monospace;
+  white-space: nowrap;
+  border-bottom: 1px solid #0a0908;
+  padding-bottom: 5px;
+  margin-bottom: 35px;
+}
+
+.solo-textarea {
+  width: 300px;
+  height: 50px;
+  margin-bottom: 3%;
+  padding: 10px;
+}
+
+.textarea {
+  height: 80px;
+}
+
+.form-select {
+  border-radius: 5px;
+  border: solid 1px #0a0908;
+  width: 221px;
+  height: 30px;
+}
+
+.form-select:hover {
+  outline: none;
+  border: solid 1px #f2cc8f;
+}
+
+.cam-form-btn {
+  width: 200px;
+  margin-right: 20px;
 }

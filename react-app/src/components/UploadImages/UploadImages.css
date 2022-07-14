@@ -8,11 +8,60 @@
     display: flex;
     margin: 10px 0;
   }
+
+  button {
+    height: 40px;
+  }
+
   .image-item__btn-wrapper {
     display: flex;
     flex-direction: column;
     margin-left: 10px;
   }
-  button {
-    height: 40px;
+
+  .upload__image-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+
+  .add-remove-btn-div {
+
+  }
+
+  .selected-img-div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: 420px;
+    padding-left: 6%;
+  }
+
+  .remove-btn {
+    color: rgb(223, 0, 0);
+    font-size: 12px;
+    font-weight: bolder;
+    background-color: rgba(0, 0, 0, 0);
+    cursor: pointer;
+  }
+
+  .remove-btn:hover {
+    text-decoration: underline;
+  }
+
+  .add-img-btn {
+    transition: background-color 0.2s;
+  }
+
+  .add-img-btn:hover {
+    background-color: #f2cc8f;
+  }
+
+  .remove-all-btn {
+    transition: background-color 0.2s;
+  }
+
+  .remove-all-btn:hover {
+    background-color: #e84c59;
   }

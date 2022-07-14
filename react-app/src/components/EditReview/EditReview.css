@@ -1,0 +1,7 @@
+#edit-review-btns-div {
+    margin-top: 3%;
+}
+
+#edit-review-btns-div > * {
+    margin-right: 3%;
+}
