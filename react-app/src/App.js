@@ -8,8 +8,6 @@ import { getCategories } from './store/categories';
 import { getReviews } from './store/reviews';
 import { getUsers } from './store/users';
 
-import LoginForm from './components/auth/LoginForm';
-import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
 import Categories from './components/Categories';
 import ProtectedRoute from './components/auth/ProtectedRoute';
@@ -72,12 +70,12 @@ function App() {
           <Categories />
           <CameraList />
         </Route>
-        <Route path='/login' exact={true}>
+        {/* <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
-        </Route>
+        </Route> */}
         <ProtectedRoute path='/cameras/new' exact={true} >
           <NavBar />
           <Categories />

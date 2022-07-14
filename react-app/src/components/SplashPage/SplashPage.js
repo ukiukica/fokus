@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect, NavLink } from "react-router-dom";
 
+import SignUpModal from "../auth/SignUpModal/SignUpModal";
+import LoginModal from "../auth/LoginModal/LoginModal";
 import LogoutButton from "../auth/LogoutButton";
 import splashPic from "./SplashPage3.jpg"
 
@@ -37,12 +39,8 @@ function SplashPage() {
 
           {!sessionUser && (
             <div className='auth-btns'>
-              <NavLink className='nav-btn' to='/login' exact={true} activeClassName='active'>
-                Login
-              </NavLink>
-              <NavLink className='nav-btn' to='/sign-up' exact={true} activeClassName='active'>
-                Sign Up
-              </NavLink>
+              <LoginModal />
+              <SignUpModal />
             </div>
           )}
           {sessionUser && (

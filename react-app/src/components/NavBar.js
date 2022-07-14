@@ -2,6 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 
+import LoginModal from './auth/LoginModal/LoginModal';
+import SignUpModal from './auth/SignUpModal/SignUpModal';
 import LogoutButton from './auth/LogoutButton';
 import logo from "./fokus-logo.jpg"
 
@@ -42,12 +44,11 @@ const NavBar = () => {
 
           {!sessionUser && (
             <div className='auth-btns'>
-              <NavLink className='nav-btn' to='/login' exact={true} activeClassName='active'>
+              {/* <NavLink className='nav-btn' to='/login' exact={true} activeClassName='active'>
                 Login
-              </NavLink>
-              <NavLink className='nav-btn' to='/sign-up' exact={true} activeClassName='active'>
-                Sign Up
-              </NavLink>
+              </NavLink> */}
+              <LoginModal />
+              <SignUpModal />
             </div>
           )}
           {sessionUser && (

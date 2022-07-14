@@ -54,6 +54,8 @@ h2 {
   font-weight: bold;
   color:#0a0908;
   font-size: 15px;
+  margin-top: 5%;
+  margin-bottom: 3%;
 }
 
 .form-field {
@@ -86,10 +88,6 @@ h2 {
 
 .textarea {
   height: 80px;
-}
-
-.form-label {
-  margin-bottom: 5%;
 }
 
 .form-select {
