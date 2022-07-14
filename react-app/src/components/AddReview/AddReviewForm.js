@@ -53,16 +53,16 @@ function AddReview({ cameraId, setShowAddReview }) {
                 onSubmit={onSubmit}
             >
                 <div className={showErrors ? '' : 'hidden'}>
-                    <ul className="errors">
+                    <div className="errors">
                         {validationErrors.map(error => (
-                            <li key={error}>{error}</li>
+                            <p key={error}>{error}</p>
                         ))}
-                    </ul>
+                    </div>
                 </div>
 
                 <div>
                     <input
-                        // className='form-input'
+                        className='form-input post-review'
                         type='text'
                         name='content'
                         placeholder='Write something here...'
@@ -70,10 +70,14 @@ function AddReview({ cameraId, setShowAddReview }) {
                         value={content}
                     />
                 </div>
-                <button
-                    type='submit'
+                <div id="post-review-btns">
+                    <button
+                        className="post"
+                        type='submit'
                     > Post a Review
                     </button>
+                    <button className="cancel" onClick={() => setShowAddReview(false)}>Cancel Edit</button>
+                </div>
             </form>
         </>
     )

@@ -63,16 +63,16 @@ function EditReview({ reviews, cameraId, reviewId, setShowEditReview }) {
                 onSubmit={onSubmit}
             >
                 <div className={showErrors ? '' : 'hidden'}>
-                    <ul className="errors">
+                    <div className="errors">
                         {validationErrors.map(error => (
-                            <li key={error}>{error}</li>
+                            <p key={error}>{error}</p>
                         ))}
-                    </ul>
+                    </div>
                 </div>
 
                 <div>
                     <input
-                        className='form-input'
+                        className='form-input review'
                         type='text'
                         name='content'
                         placeholder='Write something here...'

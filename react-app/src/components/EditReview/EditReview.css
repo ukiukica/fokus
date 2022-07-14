@@ -5,3 +5,7 @@
 #edit-review-btns-div > * {
     margin-right: 3%;
 }
+
+.review {
+    width: 95%;
+}
