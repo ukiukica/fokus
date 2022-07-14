@@ -11,6 +11,7 @@ import { getUsers } from './store/users';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
+import Categories from './components/Categories';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
@@ -19,6 +20,7 @@ import EditCameraForm from './components/EditCamera/EditCameraForm';
 import SplashPage from './components/SplashPage/SplashPage';
 import CameraList from './components/CameraList/CameraList';
 import CameraPage from './components/CameraPage/CameraPage'
+import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -58,6 +60,7 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
+      <Categories />
       <Switch>
         <Route path='/' exact={true}>
           <SplashPage />
@@ -85,6 +88,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
+        </ProtectedRoute>
+        <ProtectedRoute path='/shopping-cart' exact={true} >
+          <ShoppingCart />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
