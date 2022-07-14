@@ -83,7 +83,7 @@
     margin-bottom: 5px;
 }
 
-#add-cart-btn {
+.add-cart-edit-post-btn {
     margin-top: 20px;
     padding: 5px 20px;
     font-size: 15px;
@@ -91,7 +91,7 @@
     transition: background-color 0.2s;
 }
 
-#add-cart-btn:hover {
+.add-cart-edit-post-btn:hover {
     background-color: #f2cc8f;
 }
 
@@ -103,4 +103,3 @@
     font-size: 30px;
     font-weight: bold;
 }
-

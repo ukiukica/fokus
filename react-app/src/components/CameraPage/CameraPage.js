@@ -42,7 +42,7 @@ function CameraPage() {
     const formatDate = (dateString) => {
         const options = { year: "numeric", month: "long", day: "numeric" }
         return new Date(dateString).toLocaleDateString(undefined, options)
-      }
+    }
 
     let images = [];
     let filmRoll = [];
@@ -89,14 +89,17 @@ function CameraPage() {
                                 <p>Sold by: {cameraUser}</p>
                                 <p>Posted on: {formatDate(currentCamera.created_at)}</p>
                                 {/* <p>{new Date(currentCamera?.updatedAt).toLocaleDateString(undefined, options)}</p> */}
-                                <button id="add-cart-btn">Add to Cart</button>
+                                {currentCamera?.user_id === sessionUser?.id ?
+                            <NavLink to={`/cameras/${cameraId}/edit`} exact={true}>
+                                <button className="add-cart-edit-post-btn">Edit Post</button>
+                            </NavLink>
+                            :
+                            <button className="add-cart-edit-post-btn">Add to Cart</button>
+                        }
                             </div>
                         </div>
 
-                        {currentCamera?.user_id === sessionUser?.id && (
-                            <NavLink to={`/cameras/${cameraId}/edit`} exact={true}>Edit Post</NavLink>
-                            // <EditCameraModal currentCamera={currentCamera} />
-                        )}
+
                     </div>
                     <div id="reviews-section">
                         <p id="reviews-title">Reviews</p>
@@ -119,7 +122,7 @@ function CameraPage() {
                         }
                         {cameraReviews?.map((review) => (
                             <SingleReview key={review.id}
-                                reviews={reviews} users={users} sessionUser={sessionUser} formatDate={formatDate} review={review} cameraId={cameraId}/>
+                                reviews={reviews} users={users} sessionUser={sessionUser} formatDate={formatDate} review={review} cameraId={cameraId} />
                         ))}
                     </div>
                 </div>

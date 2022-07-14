@@ -116,7 +116,7 @@ function AddCameraForm() {
     }
 
     return (
-        <div className="add-camera-page">
+        <div className="camera-form-page">
             <div className="form-div">
                 <form
                     className="camera-form"

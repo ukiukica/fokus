@@ -139,13 +139,13 @@ function EditCameraForm() {
 
     return (
         <>
-            <div id="back-link-div">
-                <i className="fa-solid fa-arrow-left"></i>
-                <NavLink to={`/cameras/${cameraId}`} style={{ color: 'inherit', textDecoration: 'inherit' }}
-                > <button id="back-link">Back to Camera</button>
-                </NavLink>
-            </div>
-            <div className="add-camera-page">
+            <div className="camera-form-page">
+                <div id="back-camera-link-div">
+                    <i className="fa-solid fa-arrow-left"></i>
+                    <NavLink to={`/cameras/${cameraId}`} style={{ color: 'inherit', textDecoration: 'inherit' }}
+                    > <button id="back-link">Back to Camera</button>
+                    </NavLink>
+                </div>
                 <div className="form-div">
                     <form
                         className="camera-form"
@@ -260,12 +260,14 @@ function EditCameraForm() {
                                 </label>
                             </div>
                         </div>
-                        <div className="existing-img-div">
+                        <div className="current-imgs-div">
                             <h3 id="current-imgs">Current Images</h3>
-                            <ExistingImages productImagesArr={productImagesArr} />
+                            <div id="existing-img-div">
+                                <ExistingImages productImagesArr={productImagesArr} />
+                            </div>
                         </div>
                         <div id="additional-images-div">
-                            <p>Upload Additional Images</p>
+                            <h3>Upload Additional Images</h3>
                             <button className="reveal-btn" onClick={(e) => {
                                 e.preventDefault();
                                 setShowImageUpload(showImageUpload ? false : true);
