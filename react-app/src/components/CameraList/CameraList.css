@@ -30,15 +30,15 @@
     height: auto;
 } */
 
-#cam-items-list {
-    max-width: 60%;
+.cam-items-list {
+    max-width: 70%;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 100px 0 0 0;
 }
 
-#cam-items-list-body {
+.cam-items-list-body {
     display: flex;
     justify-content: center;
     background-color: #f4f1de;

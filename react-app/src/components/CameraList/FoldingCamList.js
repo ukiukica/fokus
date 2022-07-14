@@ -6,21 +6,21 @@ import CameraListItem from "../CameraListItem/CameraListItem";
 
 import './CameraList.css'
 
-function CameraList() {
+function FoldingCamList() {
 
     const sessionUser = useSelector((state) => state.session?.user);
     const cameras = useSelector((state) => state.cameras)
 
     const camerasArr = Object.values(cameras)
-
+    const FoldingCamsArr = camerasArr.filter(camera => camera.category.name === "Folding Camera")
 
     return (
         <>
             <div className="cam-items-list-body">
             <div className='cam-items-list'>
-                {camerasArr.map((camera) => (
-                    <NavLink to={`/cameras/${camera.id}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
-                        <CameraListItem key={camera.id} cameraId={camera.id} />
+                {FoldingCamsArr.map((camera) => (
+                    <NavLink key={camera.id} to={`/cameras/${camera.id}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                        <CameraListItem cameraId={camera.id} />
                     </NavLink>
                 ))}
             </div>
@@ -29,4 +29,4 @@ function CameraList() {
     )
 }
 
-export default CameraList
+export default FoldingCamList;
