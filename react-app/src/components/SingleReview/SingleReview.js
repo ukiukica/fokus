@@ -30,7 +30,7 @@ function SingleReview({reviews, users, sessionUser, formatDate, review, cameraId
                                             <button id="cancel-edit" onClick={() => setShowEditReview(false)}>Cancel Edit</button>
                                         </>
                                         :
-                                        <button onClick={() => setShowEditReview(true)}>Edit</button>
+                                        <button className="post edit-review" onClick={() => setShowEditReview(true)}>Edit</button>
                                     }
                                 </>
                             )}
