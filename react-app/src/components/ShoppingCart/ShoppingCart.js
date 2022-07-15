@@ -40,15 +40,23 @@ function ShoppingCart() {
 
             {sessionCameras ?
                 <>
-                    {sessionCameras?.map((camera) => (
-                        <div>
-                            <img id="cart-item-img" src={cameras[camera]?.images[0].image_url} />
-                            <p>{cameras[camera]?.brand}</p>
-                            <p>{cameras[camera]?.amount}</p>
+                    <div id="cart">
+                        <h2 id="cart-title">Your Cart</h2>
+                        {sessionCameras?.map((camera) => (
+                            <div id='cart-item'>
+                                <div id="remove-btn-img-div">
+                                    <button className="remove-btn cart-btn">x</button>
+                                    <img id="cart-item-img" src={cameras[camera]?.images[0].image_url} />
+                                </div>
+                                <p>{cameras[camera]?.brand} {cameras[camera]?.model}</p>
+                                <p>${cameras[camera]?.amount}</p>
+                            </div>
+                        ))}
+                        <div id="total-div">
+                            <p id="total">Total: ${total}</p>
                         </div>
-                    ))}
-                    <p>Total: ${total}</p>
-                    <button onClick={(e) => emptyCart(e)}>Checkout</button>
+                        <button className="post checkout" onClick={(e) => emptyCart(e)}>Checkout</button>
+                    </div>
                 </>
                 :
                 <p>Your cart is empty.</p>
