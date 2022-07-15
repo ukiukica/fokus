@@ -38,6 +38,11 @@
     padding: 100px 0 0 0;
 }
 
+.cam-items-list > * {
+    margin-right: 12px;
+    margin-left: 12px;
+}
+
 .cam-items-list-body {
     display: flex;
     justify-content: center;

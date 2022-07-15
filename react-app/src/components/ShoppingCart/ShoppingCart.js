@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, Redirect, useHistory } from "react-router-dom";
 
+import emptyCartPic from "./empty-cart.png"
 
 import "./ShoppingCart.css"
 
@@ -59,7 +60,10 @@ function ShoppingCart() {
                     </div>
                 </>
                 :
-                <p>Your cart is empty.</p>
+                <div id="empty-cart-div">
+                    <p id="cart-empty-p">Your cart is empty. <br/>Do some shopping!</p>
+                    <img id="empty-cart-img" src={emptyCartPic} />
+                </div>
             }
         </>
     )
