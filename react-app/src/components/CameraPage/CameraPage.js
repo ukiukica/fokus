@@ -41,6 +41,9 @@ function CameraPage() {
     const [showAddReview, setShowAddReview] = useState(false);
     const [showEditReview, setShowEditReview] = useState(false);
 
+    const sessionCameras = sessionStorage.getItem(`${sessionUser.id}`)?.split(",")
+
+
     const formatDate = (dateString) => {
         const options = { year: "numeric", month: "long", day: "numeric" }
         return new Date(dateString).toLocaleDateString(undefined, options)
@@ -85,7 +88,7 @@ function CameraPage() {
         filmRoll.push({ "original": image.image_url, "thumbnail": image.image_url })
     ))
 
-
+        console.log("THIS", sessionCameras)
     return (
         <div>
 
@@ -132,10 +135,16 @@ function CameraPage() {
                                         <button className="add-cart-edit-post-btn">Edit Post</button>
                                     </NavLink>
                                     :
-                                    <button
-                                        className="add-cart-edit-post-btn"
-                                        onClick={(e) => saveToSession(e, sessionUser.id, currentCamera.id)}
-                                    >Add to Cart</button>
+                                    <>
+                                        {sessionCameras?.includes(`${currentCamera.id}`) ?
+                                            <p id="added-cart-p">Added to Cart!</p>
+                                            :
+                                            <button
+                                                className="add-cart-edit-post-btn"
+                                                onClick={(e) => saveToSession(e, sessionUser.id, currentCamera.id)}
+                                            >Add to Cart</button>
+                                        }
+                                    </>
                                 }
                             </div>
                         </div>
