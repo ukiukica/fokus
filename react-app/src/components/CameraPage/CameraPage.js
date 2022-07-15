@@ -44,6 +44,22 @@ function CameraPage() {
         return new Date(dateString).toLocaleDateString(undefined, options)
     }
 
+
+    const saveToSession = (e, userId, cameraId) => {
+        e.preventDefault();
+
+        let currentStorage = sessionStorage.getItem(`${userId}`);
+        console.log("CURRENT STORAGE: ", currentStorage)
+        if (!currentStorage) {
+            sessionStorage.setItem(`${userId}`, cameraId)
+            return
+        }
+        currentStorage += `,${cameraId}`;
+        sessionStorage.setItem(`${userId}`, currentStorage)
+        return
+    }
+
+
     let images = [];
     let filmRoll = [];
     productImagesArr?.forEach((image) => (
@@ -96,7 +112,7 @@ function CameraPage() {
                             :
                             <button
                             className="add-cart-edit-post-btn"
-                            
+                            onClick={(e) => saveToSession(e, sessionUser.id, currentCamera.id)}
                             >Add to Cart</button>
                         }
                             </div>

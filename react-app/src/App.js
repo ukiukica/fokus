@@ -19,6 +19,7 @@ import SplashPage from './components/SplashPage/SplashPage';
 import CameraList from './components/CameraList/CameraList';
 import CameraPage from './components/CameraPage/CameraPage'
 import ShoppingCart from './components/ShoppingCart/ShoppingCart';
+import ShoppingCompleted from './components/ShoppingCart/ShoppingCompleted';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -101,6 +102,9 @@ function App() {
           <NavBar />
           <Categories />
           <ShoppingCart />
+        </ProtectedRoute>
+        <ProtectedRoute path='/checkout' exact={true}>
+          <ShoppingCompleted />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
