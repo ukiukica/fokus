@@ -37,7 +37,7 @@ function EditCameraForm() {
     const [otherSpecs, setOtherSpecs] = useState(currentCamera?.other_specs);
     const [amount, setAmount] = useState(currentCamera?.amount);
     const [inventory, setInventory] = useState(currentCamera?.inventory);
-    const [category, setCategory] = useState(currentCamera?.category);
+    const [category, setCategory] = useState(currentCamera?.category.id);
     const [images, setImages] = useState([]);
     const [filmRoll, setFilmRoll] = useState([]);
     const [imageLoading, setImageLoading] = useState(false)
@@ -55,9 +55,7 @@ function EditCameraForm() {
     const updateInventory = (e) => setInventory(e.target.value)
     const updateCategory = (e) => setCategory(e.target.value)
 
-    // console.log("FILM TYPE: ", filmType)
-    // console.log("CATEGORY: ", category)
-    // console.log("IMAGES: ", images)
+    console.log("PROD IMG ARR: ", productImagesArr)
 
 
     const addImages = (images, cameraId) => {
@@ -88,16 +86,20 @@ function EditCameraForm() {
     useEffect(() => {
         const errors = [];
 
-        if (!brand?.length) errors.push("Name of the brand is required");
-        if (!model?.length) errors.push("Model of the brand is required");
-        if (!filmType?.length) errors.push("Film Type is required");
-        if (amount <= 0) errors.push("Price amount is required");
-        if (inventory <= 0) errors.push("Quantity of items sold is required");
+        if (!brand?.length) errors.push("Name of the brand is required!");
+        if (brand.length > 50) errors.push("Name of the brand must not exceed 50 characters!")
+        if (!model?.length) errors.push("Model of the brand is required!");
+        if (model.length > 50) errors.push("Name of the model must not exceed 50 characters!")
+        if (otherSpecs.length > 500) errors.push("Specs must not exceed 500 characters!")
+        if (!filmType?.length) errors.push("Film Type is required!");
+        if (!category) errors.push("Category is required! Please select 'Unknown' if unsure.");
+        if (amount <= 0) errors.push("Price amount is required!");
+        if (inventory <= 0) errors.push("Quantity of items sold is required!");
         // if (productImagesArr.length < 1 || images.length < 1) errors.push('Please submit at least one image')
 
         setValidationErrors(errors)
 
-    }, [brand, model, filmType, amount, inventory, images]);
+    }, [brand, model, filmType, category, amount, inventory, images]);
 
     const deleteCamera = async (e) => {
         e.preventDefault();
@@ -121,7 +123,7 @@ function EditCameraForm() {
                 "other_specs": otherSpecs,
                 amount,
                 inventory,
-                "category_id": category.id,
+                "category_id": category,
                 "user_id": userId
             };
             setImageLoading(true)
@@ -154,7 +156,7 @@ function EditCameraForm() {
                         <div className={showErrors ? '' : 'hidden'}>
                             <div className="errors">
                                 {validationErrors.map(error => (
-                                    <p key={error}>{error}!</p>
+                                    <p key={error}>{error}</p>
                                 ))}
                             </div>
                         </div>
@@ -255,13 +257,15 @@ function EditCameraForm() {
                                                 {category.name}
                                             </option>
                                         ))}
-                                        <option value={null}>I don't know</option>
                                     </select>
                                 </label>
                             </div>
                         </div>
                         <div className="current-imgs-div">
                             <h3 id="current-imgs">Current Images</h3>
+                            {productImagesArr?.length < 2 && (
+                                <p id="one-pic-warning">At least one photo has to remain</p>
+                            )}
                             <div id="existing-img-div">
                                 <ExistingImages productImagesArr={productImagesArr} />
                             </div>

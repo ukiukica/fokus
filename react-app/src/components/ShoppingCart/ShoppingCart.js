@@ -30,6 +30,24 @@ function ShoppingCart() {
         history.push('/checkout')
     }
 
+    const removeFromCart = (e, cameraId) => {
+        e.preventDefault()
+        const updateSessionCameras = sessionCameras?.filter(camera => camera !== cameraId).join()
+        if (updateSessionCameras) {
+            sessionStorage.setItem(`${sessionUser.id}`, updateSessionCameras)
+        }
+        else {
+            sessionStorage.removeItem(`${sessionUser.id}`)
+        }
+    }
+
+    // const updateInventory = (camera) => {
+    //     const payload - {
+    //         inventory: cameras[camera]?.inventory + 1
+    //     }
+    // }
+
+
     return (
         <>
             <div id="back-link-div">
@@ -46,7 +64,7 @@ function ShoppingCart() {
                         {sessionCameras?.map((camera) => (
                             <div id='cart-item'>
                                 <div id="remove-btn-img-div">
-                                    <button className="remove-btn cart-btn">x</button>
+                                    <button onClick={(e) => removeFromCart(e, camera)} className="remove-btn cart-btn">x</button>
                                     <img id="cart-item-img" src={cameras[camera]?.images[0].image_url} />
                                 </div>
                                 <p>{cameras[camera]?.brand} {cameras[camera]?.model}</p>

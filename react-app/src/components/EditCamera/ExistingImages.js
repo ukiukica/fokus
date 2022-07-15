@@ -9,13 +9,14 @@ function ExistingImages({ productImagesArr }) {
 
     const onClick = async (e, cameraId) => {
         e.preventDefault();
+        if (productImagesArr.length > 1) {
+            const response = await fetch(`/api/images/${cameraId}`, {
+                method: "DELETE",
+            })
 
-        const response = await fetch(`/api/images/${cameraId}`, {
-            method: "DELETE",
-        })
-
-        if (response.ok) {
-            await dispatch(getCameras())
+            if (response.ok) {
+                await dispatch(getCameras())
+            }
         }
     }
 
