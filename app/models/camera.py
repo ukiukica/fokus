@@ -9,7 +9,7 @@ class Camera(db.Model):
     film_type = db.Column(db.String(50), nullable=False)
     other_specs = db.Column(db.String(500))
     amount = db.Column(db.Float, nullable=False)
-    inventory = db.Column(db.Integer, nullable=False)
+    inventory = db.Column(db.Integer)
     category_id = db.Column(db.Integer, db.ForeignKey('categories.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     created_at = db.Column(db.DateTime)

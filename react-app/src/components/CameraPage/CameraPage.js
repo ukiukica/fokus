@@ -113,24 +113,30 @@ function CameraPage() {
                             <p id="price">${currentCamera.amount}</p>
 
                             <div>
-                                {currentCamera.inventory < 2 ?
-                                    <p className="inventory" style={{ color: 'red' }}>Only {currentCamera.inventory} left in stock</p>
+                                {currentCamera.inventory === 0 ?
+                                    <p className="inventory" style={{ color: 'red' }}>Out of Stock</p>
                                     :
-                                    <p className="inventory">{currentCamera.inventory} left in stock</p>
+                                    <>
+                                        {currentCamera.inventory < 2 ?
+                                            <p className="inventory" style={{ color: 'red' }}>Only {currentCamera.inventory} left in stock</p>
+                                            :
+                                            <p className="inventory">{currentCamera.inventory} left in stock</p>
+                                        }
+                                    </>
                                 }
                                 <p>Sold by: {cameraUser}</p>
                                 <p>Posted on: {formatDate(currentCamera.created_at)}</p>
                                 {/* <p>{new Date(currentCamera?.updatedAt).toLocaleDateString(undefined, options)}</p> */}
                                 {currentCamera?.user_id === sessionUser?.id ?
-                            <NavLink to={`/cameras/${cameraId}/edit`} exact={true}>
-                                <button className="add-cart-edit-post-btn">Edit Post</button>
-                            </NavLink>
-                            :
-                            <button
-                            className="add-cart-edit-post-btn"
-                            onClick={(e) => saveToSession(e, sessionUser.id, currentCamera.id)}
-                            >Add to Cart</button>
-                        }
+                                    <NavLink to={`/cameras/${cameraId}/edit`} exact={true}>
+                                        <button className="add-cart-edit-post-btn">Edit Post</button>
+                                    </NavLink>
+                                    :
+                                    <button
+                                        className="add-cart-edit-post-btn"
+                                        onClick={(e) => saveToSession(e, sessionUser.id, currentCamera.id)}
+                                    >Add to Cart</button>
+                                }
                             </div>
                         </div>
 
