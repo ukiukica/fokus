@@ -55,6 +55,7 @@ def edit_camera(id):
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
+        print("DATA:", data)
         camera.brand=data['brand'],
         camera.model=data['model'],
         camera.film_type=data['film_type'],

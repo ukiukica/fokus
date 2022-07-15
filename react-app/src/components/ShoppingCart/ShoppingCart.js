@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, Redirect, useHistory } from "react-router-dom";
 
+import { getCameras, editCamera } from "../../store/cameras";
 import emptyCartPic from "./empty-cart.png"
 
 import "./ShoppingCart.css"
@@ -9,6 +10,7 @@ import "./ShoppingCart.css"
 function ShoppingCart() {
 
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const sessionUser = useSelector((state) => state.session?.user);
     const cameras = useSelector((state) => state.cameras)
@@ -30,22 +32,38 @@ function ShoppingCart() {
         history.push('/checkout')
     }
 
+    const increaseInventory = async (cameraId) => {
+        const payload = {
+            "brand": cameras[cameraId]?.brand,
+            "model": cameras[cameraId]?.model,
+            "film_type": cameras[cameraId]?.film_type,
+            "other_specs": cameras[cameraId]?.other_specs,
+            "amount": cameras[cameraId]?.amount,
+            "inventory": cameras[cameraId]?.inventory + 1,
+            "category_id": cameras[cameraId]?.category_id,
+            "user_id": cameras[cameraId]?.user_id
+        }
+        console.log("ABOUT TO DISPATCH")
+        await dispatch(editCamera(payload, cameraId))
+        await dispatch(getCameras())
+        console.log("DISPATCHED")
+    }
+
     const removeFromCart = (e, cameraId) => {
         e.preventDefault()
         const updateSessionCameras = sessionCameras?.filter(camera => camera !== cameraId).join()
         if (updateSessionCameras) {
             sessionStorage.setItem(`${sessionUser.id}`, updateSessionCameras)
+            increaseInventory(cameraId)
+
         }
         else {
             sessionStorage.removeItem(`${sessionUser.id}`)
+            increaseInventory(cameraId)
         }
     }
 
-    // const updateInventory = (camera) => {
-    //     const payload - {
-    //         inventory: cameras[camera]?.inventory + 1
-    //     }
-    // }
+
 
 
     return (

@@ -6,6 +6,7 @@ import ImageGallery from 'react-image-gallery';
 
 import EditCameraModal from "../EditCamera/EditCameraModal";
 import AddReview from "../AddReview/AddReviewForm";
+import { editCamera } from "../../store/cameras";
 
 import './CameraPage.css'
 import '../../context/Buttons.css'
@@ -16,6 +17,7 @@ import SingleReview from "../SingleReview/SingleReview";
 function CameraPage() {
 
     const params = useParams();
+    const dispatch = useDispatch();
 
     const sessionUser = useSelector((state) => state.session?.user);
     const cameras = useSelector((state) => state.cameras)
@@ -44,18 +46,32 @@ function CameraPage() {
         return new Date(dateString).toLocaleDateString(undefined, options)
     }
 
+    const reduceInventory = async () => {
+        const payload = {
+            "brand": currentCamera?.brand,
+            "model": currentCamera?.model,
+            "film_type": currentCamera?.film_type,
+            "other_specs": currentCamera?.other_specs,
+            "amount": currentCamera?.amount,
+            "inventory": currentCamera?.inventory - 1,
+            "category_id": currentCamera?.category_id,
+            "user_id": currentCamera?.user_id
+        }
+        await dispatch(editCamera(payload, cameraId))
+    }
 
     const saveToSession = (e, userId, cameraId) => {
         e.preventDefault();
 
         let currentStorage = sessionStorage.getItem(`${userId}`);
-        console.log("CURRENT STORAGE: ", currentStorage)
         if (!currentStorage) {
-            sessionStorage.setItem(`${userId}`, cameraId)
+            sessionStorage.setItem(`${userId}`, cameraId);
+            reduceInventory();
             return
         }
         currentStorage += `,${cameraId}`;
-        sessionStorage.setItem(`${userId}`, currentStorage)
+        sessionStorage.setItem(`${userId}`, currentStorage);
+        reduceInventory();
         return
     }
 
