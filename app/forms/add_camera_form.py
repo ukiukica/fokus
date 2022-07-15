@@ -13,7 +13,7 @@ class AddCameraForm(FlaskForm):
     other_specs = TextAreaField('Other Specs')
     amount = FloatField('Amount', validators=[DataRequired()])
     inventory = IntegerField('Inventory', validators=[DataRequired()])
-    category_id = IntegerField('Category ID')
+    category_id = IntegerField('Category ID', validators=[DataRequired()])
     user_id = IntegerField('User ID')
     created_at = DateField('Date', format='%Y-%m-%d')
     updated_at = DateField('Date', format='%Y-%m-%d')

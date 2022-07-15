@@ -23,7 +23,7 @@ function CameraListItem({ cameraId }) {
             <img className='cam-item-img' src={productImagesArr[0]?.image_url} />
             </div>
             <div id='cam-item-details'>
-            <p>{`${currentCamera.brand} ${currentCamera.model}`}</p>
+            <p id="cam-item-name">{`${currentCamera.brand} ${currentCamera.model}`}</p>
             <p className='cam-item-amount'>${currentCamera.amount}</p>
             </div>
         </div>

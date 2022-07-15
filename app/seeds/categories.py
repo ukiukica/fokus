@@ -13,6 +13,8 @@ def seed_categories():
       name = 'Instant Camera')
     category_6 = Category(
       name = 'Folding Camera')
+    category_7 = Category(
+      name = 'Unknown')
 
 
     db.session.add(category_1)
@@ -21,6 +23,7 @@ def seed_categories():
     db.session.add(category_4)
     db.session.add(category_5)
     db.session.add(category_6)
+    db.session.add(category_7)
 
     db.session.commit()
 
