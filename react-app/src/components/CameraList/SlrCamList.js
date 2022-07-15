@@ -1,26 +1,26 @@
 // import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 
 import CameraListItem from "../CameraListItem/CameraListItem";
 
 import './CameraList.css'
 
-function CameraList() {
+function SlrCamList() {
 
     const sessionUser = useSelector((state) => state.session?.user);
     const cameras = useSelector((state) => state.cameras)
 
     const camerasArr = Object.values(cameras)
-
+    const slrCamsArr = camerasArr.filter(camera => camera.category.name === "Single-Lens Reflex (SLR)")
 
     return (
         <>
             <div className="cam-items-list-body">
             <div className='cam-items-list'>
-                {camerasArr.map((camera) => (
-                    <NavLink to={`/cameras/${camera.id}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
-                        <CameraListItem key={camera.id} cameraId={camera.id} />
+                {slrCamsArr.map((camera) => (
+                    <NavLink key={camera.id} to={`/cameras/${camera.id}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                        <CameraListItem cameraId={camera.id} />
                     </NavLink>
                 ))}
             </div>
@@ -29,4 +29,4 @@ function CameraList() {
     )
 }
 
-export default CameraList
+export default SlrCamList;

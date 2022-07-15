@@ -20,6 +20,12 @@ import CameraList from './components/CameraList/CameraList';
 import CameraPage from './components/CameraPage/CameraPage'
 import ShoppingCart from './components/ShoppingCart/ShoppingCart';
 import ShoppingCompleted from './components/ShoppingCart/ShoppingCompleted';
+import FoldingCamList from './components/CameraList/FoldingCamList';
+import InstantCamList from './components/CameraList/InstantCamList';
+import PointShootCamList from './components/CameraList/PointShootCamList';
+import RangefinderCamList from './components/CameraList/RangefinderCamList';
+import TlrCamList from './components/CameraList/TlrCamList';
+import SlrCamList from './components/CameraList/SlrCamList';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -59,50 +65,52 @@ function App() {
 
   return (
     <BrowserRouter>
-      {!sessionUser && (
-        <Route path='/' exact={true}>
-          <SplashPage />
-        </Route>
-      )}
+      <NavBar />
+      <Categories />
+      <Route path='/' exact={true}>
+        <SplashPage />
+      </Route>
 
       <Switch>
+        {/* DIFFERENT CATEGORIES: */}
         <Route path='/cameras' exact={true}>
-          <NavBar />
-          <Categories />
           <CameraList />
         </Route>
-        {/* <Route path='/login' exact={true}>
-          <LoginForm />
+        <Route path='/cameras/folding-cameras' exact={true}>
+          <FoldingCamList />
         </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route> */}
+        <Route path='/cameras/instant-cameras' exact={true}>
+          <InstantCamList />
+        </Route>
+        <Route path='/cameras/point-and-shoot-cameras' exact={true}>
+          <PointShootCamList />
+        </Route>
+        <Route path='/cameras/rangefinder-cameras' exact={true}>
+          <RangefinderCamList />
+        </Route>
+        <Route path='/cameras/tlr-cameras' exact={true}>
+          <TlrCamList />
+        </Route>
+        <Route path='/cameras/slr-cameras' exact={true}>
+          <SlrCamList />
+        </Route>
+
         <ProtectedRoute path='/cameras/new' exact={true} >
-          <NavBar />
-          <Categories />
           <AddCameraForm />
         </ProtectedRoute>
+
         <ProtectedRoute path='/cameras/:cameraId/edit' exact={true} >
-          <NavBar />
-          <Categories />
           <EditCameraForm />
         </ProtectedRoute>
+
         <Route path='/cameras/:cameraId'>
-          <NavBar />
-          <Categories />
           <CameraPage />
         </Route>
-        {/* <ProtectedRoute path='/users' exact={true} >
-          <UsersList />
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
-          <User />
-        </ProtectedRoute> */}
+
         <ProtectedRoute path='/shopping-cart' exact={true} >
-          <NavBar />
-          <Categories />
           <ShoppingCart />
         </ProtectedRoute>
+
         <ProtectedRoute path='/checkout' exact={true}>
           <ShoppingCompleted />
         </ProtectedRoute>
