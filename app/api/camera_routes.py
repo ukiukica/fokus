@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from app.models import db, Camera
-from app.forms import AddCameraForm, EditCameraForm
+from app.forms import CameraForm
 from datetime import datetime
 
 camera_routes = Blueprint('cameras', __name__)
@@ -24,7 +24,7 @@ def get_cameras():
 
 @camera_routes.route('/new', methods=['post'])
 def post_camera():
-    form = AddCameraForm()
+    form = CameraForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     # print("IN THE POST ROUTE")
     if form.validate_on_submit():
@@ -51,10 +51,11 @@ def post_camera():
 def edit_camera(id):
     print("IN THE POUT ROUTE")
     camera = Camera.query.get(id)
-    form = EditCameraForm()
+    form = CameraForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
+        print("DATA:", data)
         camera.brand=data['brand'],
         camera.model=data['model'],
         camera.film_type=data['film_type'],

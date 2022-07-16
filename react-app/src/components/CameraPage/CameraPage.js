@@ -6,6 +6,7 @@ import ImageGallery from 'react-image-gallery';
 
 import EditCameraModal from "../EditCamera/EditCameraModal";
 import AddReview from "../AddReview/AddReviewForm";
+import { editCamera } from "../../store/cameras";
 
 import './CameraPage.css'
 import '../../context/Buttons.css'
@@ -16,6 +17,7 @@ import SingleReview from "../SingleReview/SingleReview";
 function CameraPage() {
 
     const params = useParams();
+    const dispatch = useDispatch();
 
     const sessionUser = useSelector((state) => state.session?.user);
     const cameras = useSelector((state) => state.cameras)
@@ -39,23 +41,40 @@ function CameraPage() {
     const [showAddReview, setShowAddReview] = useState(false);
     const [showEditReview, setShowEditReview] = useState(false);
 
+    const sessionCameras = sessionStorage.getItem(`${sessionUser.id}`)?.split(",")
+
+
     const formatDate = (dateString) => {
         const options = { year: "numeric", month: "long", day: "numeric" }
         return new Date(dateString).toLocaleDateString(undefined, options)
     }
 
+    const reduceInventory = async () => {
+        const payload = {
+            "brand": currentCamera?.brand,
+            "model": currentCamera?.model,
+            "film_type": currentCamera?.film_type,
+            "other_specs": currentCamera?.other_specs,
+            "amount": currentCamera?.amount,
+            "inventory": currentCamera?.inventory - 1,
+            "category_id": currentCamera?.category_id,
+            "user_id": currentCamera?.user_id
+        }
+        await dispatch(editCamera(payload, cameraId))
+    }
 
     const saveToSession = (e, userId, cameraId) => {
         e.preventDefault();
 
         let currentStorage = sessionStorage.getItem(`${userId}`);
-        console.log("CURRENT STORAGE: ", currentStorage)
         if (!currentStorage) {
-            sessionStorage.setItem(`${userId}`, cameraId)
+            sessionStorage.setItem(`${userId}`, cameraId);
+            reduceInventory();
             return
         }
         currentStorage += `,${cameraId}`;
-        sessionStorage.setItem(`${userId}`, currentStorage)
+        sessionStorage.setItem(`${userId}`, currentStorage);
+        reduceInventory();
         return
     }
 
@@ -69,7 +88,7 @@ function CameraPage() {
         filmRoll.push({ "original": image.image_url, "thumbnail": image.image_url })
     ))
 
-
+        console.log("THIS", sessionCameras)
     return (
         <div>
 
@@ -97,24 +116,36 @@ function CameraPage() {
                             <p id="price">${currentCamera.amount}</p>
 
                             <div>
-                                {currentCamera.inventory < 2 ?
-                                    <p className="inventory" style={{ color: 'red' }}>Only {currentCamera.inventory} left in stock</p>
+                                {currentCamera.inventory === 0 ?
+                                    <p className="inventory" style={{ color: 'red' }}>Out of Stock</p>
                                     :
-                                    <p className="inventory">{currentCamera.inventory} left in stock</p>
+                                    <>
+                                        {currentCamera.inventory < 2 ?
+                                            <p className="inventory" style={{ color: 'red' }}>Only {currentCamera.inventory} left in stock</p>
+                                            :
+                                            <p className="inventory">{currentCamera.inventory} left in stock</p>
+                                        }
+                                    </>
                                 }
                                 <p>Sold by: {cameraUser}</p>
                                 <p>Posted on: {formatDate(currentCamera.created_at)}</p>
                                 {/* <p>{new Date(currentCamera?.updatedAt).toLocaleDateString(undefined, options)}</p> */}
                                 {currentCamera?.user_id === sessionUser?.id ?
-                            <NavLink to={`/cameras/${cameraId}/edit`} exact={true}>
-                                <button className="add-cart-edit-post-btn">Edit Post</button>
-                            </NavLink>
-                            :
-                            <button
-                            className="add-cart-edit-post-btn"
-                            onClick={(e) => saveToSession(e, sessionUser.id, currentCamera.id)}
-                            >Add to Cart</button>
-                        }
+                                    <NavLink to={`/cameras/${cameraId}/edit`} exact={true}>
+                                        <button className="add-cart-edit-post-btn">Edit Post</button>
+                                    </NavLink>
+                                    :
+                                    <>
+                                        {sessionCameras?.includes(`${currentCamera.id}`) ?
+                                            <p id="added-cart-p">Added to Cart!</p>
+                                            :
+                                            <button
+                                                className="add-cart-edit-post-btn"
+                                                onClick={(e) => saveToSession(e, sessionUser.id, currentCamera.id)}
+                                            >Add to Cart</button>
+                                        }
+                                    </>
+                                }
                             </div>
                         </div>
 
