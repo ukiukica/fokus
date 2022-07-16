@@ -4,6 +4,7 @@ import { Link, NavLink, Redirect, useParams } from "react-router-dom";
 
 import ImageGallery from 'react-image-gallery';
 
+import Carousel from "../Carousel/Carousel";
 import EditCameraModal from "../EditCamera/EditCameraModal";
 import AddReview from "../AddReview/AddReviewForm";
 import { editCamera } from "../../store/cameras";
@@ -106,7 +107,8 @@ function CameraPage() {
                                 <button className="carousel-bttn" onClick={() => setShowFilmRoll(false)}>Product Images</button>
                                 <button className="carousel-bttn" onClick={() => setShowFilmRoll(true)}>Film Roll</button>
                             </div>
-                            {showFilmRoll ? <ImageGallery items={filmRoll} /> : <ImageGallery items={images} />}
+                            {/* {showFilmRoll ? <ImageGallery items={filmRoll} /> : <ImageGallery items={images} />} */}
+                            <Carousel />
 
                         </div>
                         <div id="camera-specs" key={currentCamera.id}>
