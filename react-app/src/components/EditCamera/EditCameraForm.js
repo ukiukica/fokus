@@ -264,7 +264,7 @@ function EditCameraForm() {
                         <div className="current-imgs-div">
                             <h3 id="current-imgs">Current Images</h3>
                             {productImagesArr?.length < 2 && (
-                                <p id="one-pic-warning">At least one photo has to remain</p>
+                                <p className="p-warning">At least one photo has to remain</p>
                             )}
                             <div id="existing-img-div">
                                 <ExistingImages productImagesArr={productImagesArr} />
