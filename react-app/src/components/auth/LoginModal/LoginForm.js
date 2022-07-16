@@ -1,19 +1,31 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, useHistory } from 'react-router-dom';
+
 import { login } from '../../../store/session';
+import { demouser } from '../../../store/session';
 
 import "./Login.css"
+import "../../../context/Buttons.css"
 
 const LoginForm = () => {
 
   const history = useHistory();
+  const dispatch = useDispatch();
+
+  const user = useSelector(state => state.session.user);
 
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const user = useSelector(state => state.session.user);
-  const dispatch = useDispatch();
+
+
+
+  const demoOnClick = async (e) => {
+    e.preventDefault()
+    await dispatch(demouser('demo@aa.io', 'password'));
+    history.push('/cameras')
+  }
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -75,6 +87,7 @@ const LoginForm = () => {
       </div>
       <div id="login-btn-div">
         <button className='cam-form-btn post' type='submit'>Login</button>
+        <button className="demo-btn" onClick={demoOnClick}>Demo User</button>
       </div>
     </form>
   );
