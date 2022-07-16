@@ -32,6 +32,7 @@ function UploadFilmRoll({ filmRoll, setFilmRoll }) {
         }) => (
           <div className="upload__image-wrapper">
             <div className="add-remove-btn-div">
+            <p className="p-warning">Allowed image files: PNG, JPG, JPEG, and GIF.</p>
               <button
               className="add-img-btn"
                 style={isDragging ? { color: "green" } : null}

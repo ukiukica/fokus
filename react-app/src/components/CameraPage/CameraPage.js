@@ -41,7 +41,7 @@ function CameraPage() {
     const [showAddReview, setShowAddReview] = useState(false);
     const [showEditReview, setShowEditReview] = useState(false);
 
-    const sessionCameras = sessionStorage.getItem(`${sessionUser.id}`)?.split(",")
+    const sessionCameras = sessionStorage?.getItem(`${sessionUser?.id}`)?.split(",")
 
 
     const formatDate = (dateString) => {

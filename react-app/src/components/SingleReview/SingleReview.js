@@ -27,7 +27,7 @@ function SingleReview({reviews, users, sessionUser, formatDate, review, cameraId
                                     {showEditReview ?
                                         <>
                                             <EditReview reviews={reviews} cameraId={cameraId} reviewId={review.id} setShowEditReview={setShowEditReview} />
-                                            <button id="cancel-edit" onClick={() => setShowEditReview(false)}>Cancel Edit</button>
+                                            <button className="cancel-edit" onClick={() => setShowEditReview(false)}>Cancel Edit</button>
                                         </>
                                         :
                                         <button className="post edit-review" onClick={() => setShowEditReview(true)}>Edit</button>

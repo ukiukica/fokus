@@ -87,7 +87,7 @@ function AddCameraForm() {
 
         setValidationErrors(errors)
 
-    }, [brand, model, filmType, category, amount, inventory, images]);
+    }, [brand, model, otherSpecs, filmType, category, amount, inventory, images]);
 
     const onSubmit = async (e) => {
         e.preventDefault();

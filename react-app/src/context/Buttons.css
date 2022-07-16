@@ -76,13 +76,33 @@
 
   }
 
-  #cancel-edit {
+  .cancel-edit {
     margin-top: 3%;
     background-color: #011627;
     color: #f5f5dc;
   }
 
-  #cancel-edit:hover {
+  .cancel-edit:hover {
+    margin-top: 3%;
+    background-color: #f2cc8f;
+    color: #011627;
+  }
+
+  .cam-form-btn {
+    width: 200px;
+    margin-right: 20px;
+    margin-bottom: 5px;
+  }
+
+  .demo-btn {
+    margin-top: 3%;
+    background-color: #011627;
+    color: #f5f5dc;
+    width: 200px;
+    margin-right: 20px;
+  }
+
+  .demo-btn:hover {
     margin-top: 3%;
     background-color: #f2cc8f;
     color: #011627;

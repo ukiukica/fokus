@@ -132,10 +132,11 @@ input::-webkit-inner-spin-button {
   margin-top: 35px;
 }
 
-#one-pic-warning {
+.p-warning {
   color: rgb(194, 41, 41);
   font-style: italic;
   margin-bottom: 5px;
+  font-size: 14px;
 
 }
 

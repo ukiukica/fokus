@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect, useHistory } from 'react-router-dom';
 import { signUp } from '../../../store/session';
@@ -7,25 +7,35 @@ import "./SignUp.css";
 
 const SignUpForm = () => {
 
+  const user = useSelector(state => state.session.user);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
-  const user = useSelector(state => state.session.user);
-  const dispatch = useDispatch();
+
+
+  useEffect(() => {
+    const errors = [];
+
+    if (password !== repeatPassword) errors.push("Password must match!")
+
+    setErrors(errors)
+  }, [repeatPassword])
+
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
+    // if (password === repeatPassword) {
       const data = await dispatch(signUp(username, email, password));
       history.push('/cameras')
       if (data) {
         setErrors(data)
       }
-    }
+    // }
   };
 
   const updateUsername = (e) => {
@@ -48,6 +58,9 @@ const SignUpForm = () => {
     return <Redirect to='/' />;
   }
 
+
+
+
   return (
     <form
       id="sign-up-form"
@@ -55,7 +68,14 @@ const SignUpForm = () => {
       <h2 id="sign-up-title">Sign Up</h2>
       <div className="backend-errors">
         {errors.map((error, ind) => (
-          <div key={ind}>{error.split(": This field")}</div>
+          <>
+            {error.includes("This field") ?
+              <div key={ind}>{error.split(": This field")}</div>
+              :
+              <div key={ind}>{error.split(":")[1]}</div>
+            }
+          </>
+
         ))}
       </div>
       <div id="sign-up-inputs-div">

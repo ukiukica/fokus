@@ -52,16 +52,22 @@
 
   .add-img-btn {
     transition: background-color 0.2s;
+    background-color: #011627;
+    color: #f5f5dc;
   }
 
   .add-img-btn:hover {
     background-color: #f2cc8f;
+    color: #011627;
   }
 
   .remove-all-btn {
     transition: background-color 0.2s;
+    background-color: #011627;
+    color: #f5f5dc;
   }
 
   .remove-all-btn:hover {
     background-color: #e84c59;
+    color: #011627;
   }
