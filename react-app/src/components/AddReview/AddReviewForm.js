@@ -23,7 +23,8 @@ function AddReview({ cameraId, setShowAddReview }) {
     useEffect(() => {
         const errors = [];
 
-        if (!content.length) errors.push("Content is required");
+        if (!content.length) errors.push("Content is required!");
+        if (content.length > 2000) errors.push("Review must be 2000 characters or less!")
 
         setValidationErrors(errors)
 

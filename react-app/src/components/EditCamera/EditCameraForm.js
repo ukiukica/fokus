@@ -99,7 +99,7 @@ function EditCameraForm() {
 
         setValidationErrors(errors)
 
-    }, [brand, model, filmType, category, amount, inventory, images]);
+    }, [brand, model, otherSpecs, filmType, category, amount, inventory, images]);
 
     const deleteCamera = async (e) => {
         e.preventDefault();

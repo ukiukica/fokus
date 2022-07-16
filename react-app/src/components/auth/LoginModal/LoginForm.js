@@ -41,11 +41,17 @@ const LoginForm = () => {
       id="login-form"
       onSubmit={onLogin}>
       <h2 id="login-title">Log In</h2>
-        <div className="backend-errors">
-          {errors.map((error, ind) => (
-            <div key={ind}>{error.split(": This field")}</div>
-          ))}
-        </div>
+      <div className="backend-errors">
+        {errors.map((error, ind) => (
+          <>
+            {error.includes("This field") ?
+              <div key={ind}>{error.split(": This field")}</div>
+              :
+              <div key={ind}>{error.split(":")[1]}</div>
+            }
+          </>
+        ))}
+      </div>
       <div id="login-inputs-div">
         <label className='form-label' htmlFor='email'>Email</label>
         <input
