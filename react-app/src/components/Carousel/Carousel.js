@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 
 import "./Carousel.css"
+import "../../context/Buttons.css"
 
-function Carousel () {
+function Carousel ({images}) {
 
-    const data = ['1', '2', '3', '4']
+    // const images = ['1', '2', '3', '4']
     const [currentIndex, setCurrentIndex] = useState(0)
     const carouselInfiniteScroll = () => {
-        if (currentIndex === data.length - 1) {
+        if (currentIndex === images.length - 1) {
             return setCurrentIndex(0)
         }
         return setCurrentIndex(currentIndex + 1)
@@ -22,7 +23,7 @@ function Carousel () {
         e.preventDefault()
 
         if (currentIndex === 0) {
-            return setCurrentIndex(data.length - 1)
+            return setCurrentIndex(images.length - 1)
         }
         return setCurrentIndex(currentIndex - 1)
     }
@@ -30,7 +31,7 @@ function Carousel () {
     const next = (e) => {
         e.preventDefault()
 
-        if (currentIndex === data.length - 1) {
+        if (currentIndex === images.length - 1) {
             return setCurrentIndex(0)
         }
         return setCurrentIndex(currentIndex + 1)
@@ -39,17 +40,17 @@ function Carousel () {
     return (
         <>
         <div className="carousel-container">
-            { data.map((item, index) => (
-                <h1 className='carousel-item'
+            { images.map((image, index) => (
+                <img className='carousel-item'
                 style={{transform: `translate(-${currentIndex * 100}%)`}}
                 key={index}
-                >{item}
-                </h1>
+                src={image.image_url}
+                />
             ))}
         </div>
-        <div>
-            <button onClick={previous}>Previous</button>
-            <button onClick={next}>Next</button>
+        <div className="prev-next-btns">
+            <button className="demo-btn" onClick={previous}>Previous</button>
+            <button className="demo-btn" onClick={next}>Next</button>
         </div>
         </>
     )

@@ -29,8 +29,8 @@ function CameraPage() {
 
     const currentCamera = cameras[cameraId]
 
-    const productImagesArr = currentCamera?.images.filter(image => image.film_roll === false)
-    const filmRollArr = currentCamera?.images.filter(image => image.film_roll === true)
+    // const productImagesArr = currentCamera?.images.filter(image => image.film_roll === false)
+    // const filmRollArr = currentCamera?.images.filter(image => image.film_roll === true)
     const reviewsArr = Object.values(reviews)
 
 
@@ -80,20 +80,20 @@ function CameraPage() {
     }
 
 
-    let images = [];
-    let filmRoll = [];
-    productImagesArr?.forEach((image) => (
-        images.push({ "original": image.image_url, "thumbnail": image.image_url })
-    ))
-    filmRollArr?.forEach((image) => (
-        filmRoll.push({ "original": image.image_url, "thumbnail": image.image_url })
-    ))
+    // let images = [];
+    // let filmRoll = [];
+    // productImagesArr?.forEach((image) => (
+    //     images.push({ "original": image.image_url, "thumbnail": image.image_url })
+    // ))
+    // filmRollArr?.forEach((image) => (
+    //     filmRoll.push({ "original": image.image_url, "thumbnail": image.image_url })
+    // ))
 
         console.log("THIS", sessionCameras)
     return (
         <div>
 
-            {productImagesArr && (
+            {currentCamera && (
                 <div id="camera-page">
                     <div id="back-link-div">
                         <i className="fa-solid fa-arrow-left"></i>
@@ -107,8 +107,9 @@ function CameraPage() {
                                 <button className="carousel-bttn" onClick={() => setShowFilmRoll(false)}>Product Images</button>
                                 <button className="carousel-bttn" onClick={() => setShowFilmRoll(true)}>Film Roll</button>
                             </div>
-                            {/* {showFilmRoll ? <ImageGallery items={filmRoll} /> : <ImageGallery items={images} />} */}
-                            <Carousel />
+                            <div id="carousel-div">
+                            {showFilmRoll ? <Carousel images={currentCamera.film_roll}/> : <Carousel images={currentCamera.images}/>}
+                            </div>
 
                         </div>
                         <div id="camera-specs" key={currentCamera.id}>

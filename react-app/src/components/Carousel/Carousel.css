@@ -1,16 +1,26 @@
 .carousel-container {
-    background: #f1f1f1;
+    background-color: #00000000;
     display: flex;
     flex-wrap:nowrap;
     overflow: hidden;
+    /* border: 1px solid black;
+    box-shadow: 0px 0px 4px 1px #00000054; */
 }
 
 .carousel-item {
+    object-fit: contain;
     height: 20rem;
     min-width: 100%;
     width: 100%;
     display:flex;
     align-items: center;
     justify-content: center;
+    background-color: #00000000;
     transition: 1s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
+
+.prev-next-btns {
+    display: flex;
+    justify-content: center;
+}
+
