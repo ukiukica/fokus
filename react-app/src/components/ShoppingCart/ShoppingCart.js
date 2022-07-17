@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, NavLink, Redirect, useHistory } from "react-router-dom";
 
 import { getCameras, editCamera } from "../../store/cameras";
-import emptyCartPic from "./empty-cart.png"
+import emptyCartPic from "./dog-with-cart2.png"
 
 import "./ShoppingCart.css"
 

@@ -26,6 +26,8 @@ import PointShootCamList from './components/CameraList/PointShootCamList';
 import RangefinderCamList from './components/CameraList/RangefinderCamList';
 import TlrCamList from './components/CameraList/TlrCamList';
 import SlrCamList from './components/CameraList/SlrCamList';
+import Footer from './components/Footer/Footer';
+import AboutPage from './components/AboutPage/AboutPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -114,7 +116,12 @@ function App() {
         <ProtectedRoute path='/checkout' exact={true}>
           <ShoppingCompleted />
         </ProtectedRoute>
+
+        <Route path='/about' exact={true}>
+          <AboutPage />
+        </Route>
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }
