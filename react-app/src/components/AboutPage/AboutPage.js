@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import gitHub from "./GitHub-Emblem.png"
 import linkedIn from "./LinkedIn_logo_initials.png"

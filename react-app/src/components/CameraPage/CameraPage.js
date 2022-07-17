@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, Redirect, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
-import ImageGallery from 'react-image-gallery';
 
 import Carousel from "../Carousel/Carousel";
-import EditCameraModal from "../EditCamera/EditCameraModal";
 import AddReview from "../AddReview/AddReviewForm";
 import { editCamera } from "../../store/cameras";
 

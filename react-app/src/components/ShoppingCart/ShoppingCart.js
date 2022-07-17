@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, Redirect, useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 
 import { getCameras, editCamera } from "../../store/cameras";
 import emptyCartPic from "./dog-with-cart2.png"

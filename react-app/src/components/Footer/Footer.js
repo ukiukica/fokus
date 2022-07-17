@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import * as sessionActions from "../../store/session";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 
 import './Footer.css'
 

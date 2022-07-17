@@ -11,8 +11,6 @@ import { getUsers } from './store/users';
 import NavBar from './components/NavBar';
 import Categories from './components/Categories';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
 import AddCameraForm from './components/AddCamera/AddCameraForm';
 import EditCameraForm from './components/EditCamera/EditCameraForm';
 import SplashPage from './components/SplashPage/SplashPage';

@@ -32,6 +32,7 @@
 
 .cam-items-list {
     max-width: 70%;
+    min-height: 500px;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
