@@ -143,3 +143,12 @@ input::-webkit-inner-spin-button {
 #current-imgs {
   margin-bottom: 5px;
 }
+
+#carousel-div {
+
+}
+
+#carousel-btns-div {
+  display: flex;
+  justify-content: space-evenly;
+}

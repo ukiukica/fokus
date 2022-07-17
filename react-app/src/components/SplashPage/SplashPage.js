@@ -1,10 +1,7 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect, NavLink } from "react-router-dom";
+import React from "react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
-import SignUpModal from "../auth/SignUpModal/SignUpModal";
-import LoginModal from "../auth/LoginModal/LoginModal";
-import LogoutButton from "../auth/LogoutButton";
 import splashPic from "./SplashPage3.jpg"
 
 import './SplashPage.css'

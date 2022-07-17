@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Link, NavLink, Redirect, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
-import { createCamera, getCameras, editCamera, removeCamera, uploadImages } from "../../store/cameras";
+import { getCameras, editCamera, removeCamera, uploadImages } from "../../store/cameras";
 
 import UploadImages from "../UploadImages/UploadImages";
 import UploadFilmRoll from "../UploadImages/UploadFilmRoll"

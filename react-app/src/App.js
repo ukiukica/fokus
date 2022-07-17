@@ -11,8 +11,6 @@ import { getUsers } from './store/users';
 import NavBar from './components/NavBar';
 import Categories from './components/Categories';
 import ProtectedRoute from './components/auth/ProtectedRoute';
-import UsersList from './components/UsersList';
-import User from './components/User';
 import AddCameraForm from './components/AddCamera/AddCameraForm';
 import EditCameraForm from './components/EditCamera/EditCameraForm';
 import SplashPage from './components/SplashPage/SplashPage';
@@ -26,6 +24,8 @@ import PointShootCamList from './components/CameraList/PointShootCamList';
 import RangefinderCamList from './components/CameraList/RangefinderCamList';
 import TlrCamList from './components/CameraList/TlrCamList';
 import SlrCamList from './components/CameraList/SlrCamList';
+import Footer from './components/Footer/Footer';
+import AboutPage from './components/AboutPage/AboutPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -114,7 +114,12 @@ function App() {
         <ProtectedRoute path='/checkout' exact={true}>
           <ShoppingCompleted />
         </ProtectedRoute>
+
+        <Route path='/about' exact={true}>
+          <AboutPage />
+        </Route>
       </Switch>
+      <Footer />
     </BrowserRouter>
   );
 }

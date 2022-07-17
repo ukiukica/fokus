@@ -13,10 +13,25 @@
 }
 
 .cam-item-img-div {
+    z-index: 2;
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    transition: display 0.2s;
+    /* background-color: rgb(180, 180, 180); */
+}
+
+.cam-item-img-div:hover {
+    display: none;
+}
+
+.cam-item-img-div-2 {
+    z-index: 0;
     width: 300px;
     height: 200px;
     /* background-color: rgb(180, 180, 180); */
 }
+
 
 .cam-item-amount {
     font-weight: bold;

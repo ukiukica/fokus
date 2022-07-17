@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, NavLink, Redirect, useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
-import ImageGallery from 'react-image-gallery';
 
-import EditCameraModal from "../EditCamera/EditCameraModal";
+import Carousel from "../Carousel/Carousel";
 import AddReview from "../AddReview/AddReviewForm";
 import { editCamera } from "../../store/cameras";
 
@@ -28,8 +27,8 @@ function CameraPage() {
 
     const currentCamera = cameras[cameraId]
 
-    const productImagesArr = currentCamera?.images.filter(image => image.film_roll === false)
-    const filmRollArr = currentCamera?.images.filter(image => image.film_roll === true)
+    // const productImagesArr = currentCamera?.images.filter(image => image.film_roll === false)
+    // const filmRollArr = currentCamera?.images.filter(image => image.film_roll === true)
     const reviewsArr = Object.values(reviews)
 
 
@@ -79,20 +78,20 @@ function CameraPage() {
     }
 
 
-    let images = [];
-    let filmRoll = [];
-    productImagesArr?.forEach((image) => (
-        images.push({ "original": image.image_url, "thumbnail": image.image_url })
-    ))
-    filmRollArr?.forEach((image) => (
-        filmRoll.push({ "original": image.image_url, "thumbnail": image.image_url })
-    ))
+    // let images = [];
+    // let filmRoll = [];
+    // productImagesArr?.forEach((image) => (
+    //     images.push({ "original": image.image_url, "thumbnail": image.image_url })
+    // ))
+    // filmRollArr?.forEach((image) => (
+    //     filmRoll.push({ "original": image.image_url, "thumbnail": image.image_url })
+    // ))
 
-        console.log("THIS", sessionCameras)
+    console.log("THIS", sessionCameras)
     return (
         <div>
 
-            {productImagesArr && (
+            {currentCamera && (
                 <div id="camera-page">
                     <div id="back-link-div">
                         <i className="fa-solid fa-arrow-left"></i>
@@ -102,16 +101,25 @@ function CameraPage() {
                     </div>
                     <div id="camera-section">
                         <div id='carousel-div'>
-                            <div>
-                                <button className="carousel-bttn" onClick={() => setShowFilmRoll(false)}>Product Images</button>
-                                <button className="carousel-bttn" onClick={() => setShowFilmRoll(true)}>Film Roll</button>
+                            <div id="carousel-btns-div">
+                                <button className="carousel-bttn" onClick={() => setShowFilmRoll(false)}>
+                                    <i class="fa-solid fa-image"></i>
+                                </button>
+                                <button className="carousel-bttn" onClick={() => setShowFilmRoll(true)}>
+                                    <i class="fa-solid fa-film"></i>
+                                </button>
                             </div>
-                            {showFilmRoll ? <ImageGallery items={filmRoll} /> : <ImageGallery items={images} />}
+                            <div id="carousel-div">
+                                {showFilmRoll ? <Carousel images={currentCamera.film_roll} /> : <Carousel images={currentCamera.images} />}
+                            </div>
 
                         </div>
                         <div id="camera-specs" key={currentCamera.id}>
                             <p id="camera-title">{`${currentCamera.brand} ${currentCamera.model}`}</p>
                             <p id="film-type">Film Type: {currentCamera.film_type}</p>
+                            {currentCamera.category.name !== "Unknown" && (
+                                <p id="category">Category: {currentCamera.category.name}</p>
+                            )}
                             <p id="other-specs">{currentCamera.other_specs}</p>
                             <p id="price">${currentCamera.amount}</p>
 

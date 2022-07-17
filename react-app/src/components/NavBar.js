@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import LoginModal from './auth/LoginModal/LoginModal';
 import SignUpModal from './auth/SignUpModal/SignUpModal';

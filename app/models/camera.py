@@ -35,5 +35,6 @@ class Camera(db.Model):
             'created_at': self.created_at,
             'updated_at': self.updated_at,
             'category': self.categories.to_dict(),
-            'images': [image.to_dict() for image in self.images]
+            'images': [image.to_dict() for image in self.images if image.film_roll is False],
+            'film_roll': [image.to_dict() for image in self.images if image.film_roll is True]
         }

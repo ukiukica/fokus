@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import React from "react";
+import { useSelector } from "react-redux";
+
 import './CameraListItem.css'
 import '../../context/Misc.css'
 
@@ -15,12 +15,13 @@ function CameraListItem({ cameraId }) {
     const cameraUser = users[currentCamera.user_id]
     const productImagesArr = currentCamera.images.filter(image => image.film_roll === false)
 
-
-
     return (
         <div id='cam-item'>
             <div className='cam-item-img-div'>
-            <img className='cam-item-img' src={productImagesArr[0]?.image_url} />
+            <img className='cam-item-img' src={currentCamera?.images[0]?.image_url} />
+            </div>
+            <div className='cam-item-img-div-2'>
+            <img className='cam-item-img' src={currentCamera?.images[1]?.image_url} />
             </div>
             <div id='cam-item-details'>
             <p id="cam-item-name">{`${currentCamera.brand} ${currentCamera.model}`}</p>

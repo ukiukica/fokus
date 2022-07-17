@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import ReactDOM from "react-dom";
+import React from "react";
+
 import ImageUploading from "react-images-uploading";
 
 import "./EditImages.css";
@@ -7,7 +7,7 @@ import "./EditImages.css";
 function EditImages({images, setImages}) {
   const maxNumber = 6;
 
-  
+
   const onChange = (imageList) => {
     // console.log(imageList);
     setImages(imageList);
