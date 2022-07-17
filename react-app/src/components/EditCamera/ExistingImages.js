@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect, useParams } from "react-router-dom";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { getCameras } from "../../store/cameras"
 
 function ExistingImages({ productImagesArr }) {

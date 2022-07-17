@@ -14,10 +14,10 @@ function ShoppingCart() {
 
     const sessionUser = useSelector((state) => state.session?.user);
     const cameras = useSelector((state) => state.cameras)
-    console.log("CAMERAS: ", cameras)
+    // console.log("CAMERAS: ", cameras)
 
     const sessionCameras = sessionStorage.getItem(`${sessionUser.id}`)?.split(",")
-    console.log(sessionCameras)
+    // console.log(sessionCameras)
 
     let total = 0;
     sessionCameras?.forEach((camera) => (
@@ -43,10 +43,10 @@ function ShoppingCart() {
             "category_id": cameras[cameraId]?.category_id,
             "user_id": cameras[cameraId]?.user_id
         }
-        console.log("ABOUT TO DISPATCH")
+        // console.log("ABOUT TO DISPATCH")
         await dispatch(editCamera(payload, cameraId))
         await dispatch(getCameras())
-        console.log("DISPATCHED")
+        // console.log("DISPATCHED")
     }
 
     const removeFromCart = (e, cameraId) => {
@@ -83,7 +83,7 @@ function ShoppingCart() {
                             <div id='cart-item'>
                                 <div id="remove-btn-img-div">
                                     <button onClick={(e) => removeFromCart(e, camera)} className="remove-btn cart-btn">x</button>
-                                    <img id="cart-item-img" src={cameras[camera]?.images[0].image_url} />
+                                    <img id="cart-item-img" src={cameras[camera]?.images[0].image_url} alt="Camera"/>
                                 </div>
                                 <p>{cameras[camera]?.brand} {cameras[camera]?.model}</p>
                                 <p>${cameras[camera]?.amount}</p>
@@ -98,7 +98,7 @@ function ShoppingCart() {
                 :
                 <div id="empty-cart-div">
                     <p id="cart-empty-p">Your cart is empty. <br/>Do some shopping!</p>
-                    <img id="empty-cart-img" src={emptyCartPic} />
+                    <img id="empty-cart-img" src={emptyCartPic} alt="Dog with Empty Cart"/>
                 </div>
             }
         </>

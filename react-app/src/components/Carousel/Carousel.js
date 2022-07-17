@@ -7,12 +7,12 @@ function Carousel ({images}) {
 
     // const images = ['1', '2', '3', '4']
     const [currentIndex, setCurrentIndex] = useState(0)
-    const carouselInfiniteScroll = () => {
-        if (currentIndex === images.length - 1) {
-            return setCurrentIndex(0)
-        }
-        return setCurrentIndex(currentIndex + 1)
-    }
+    // const carouselInfiniteScroll = () => {
+    //     if (currentIndex === images.length - 1) {
+    //         return setCurrentIndex(0)
+    //     }
+    //     return setCurrentIndex(currentIndex + 1)
+    // }
 
     // useEffect(() => {
     //     const interval = setInterval(() => {carouselInfiniteScroll()}, 3000)
@@ -45,6 +45,7 @@ function Carousel ({images}) {
                 style={{transform: `translate(-${currentIndex * 100}%)`}}
                 key={index}
                 src={image.image_url}
+                alt="Camera"
                 />
             ))}
         </div>

@@ -38,7 +38,7 @@ function CameraPage() {
 
     const [showFilmRoll, setShowFilmRoll] = useState(false);
     const [showAddReview, setShowAddReview] = useState(false);
-    const [showEditReview, setShowEditReview] = useState(false);
+    // const [showEditReview, setShowEditReview] = useState(false);
 
     const sessionCameras = sessionStorage?.getItem(`${sessionUser?.id}`)?.split(",")
 
@@ -87,7 +87,7 @@ function CameraPage() {
     //     filmRoll.push({ "original": image.image_url, "thumbnail": image.image_url })
     // ))
 
-    console.log("THIS", sessionCameras)
+    // console.log("THIS", sessionCameras)
     return (
         <div>
 
@@ -103,10 +103,10 @@ function CameraPage() {
                         <div id='carousel-div'>
                             <div id="carousel-btns-div">
                                 <button className="carousel-bttn" onClick={() => setShowFilmRoll(false)}>
-                                    <i class="fa-solid fa-image"></i>
+                                    <i className="fa-solid fa-image"></i>
                                 </button>
                                 <button className="carousel-bttn" onClick={() => setShowFilmRoll(true)}>
-                                    <i class="fa-solid fa-film"></i>
+                                    <i className="fa-solid fa-film"></i>
                                 </button>
                             </div>
                             <div id="carousel-div">
@@ -183,6 +183,11 @@ function CameraPage() {
                                 reviews={reviews} users={users} sessionUser={sessionUser} formatDate={formatDate} review={review} cameraId={cameraId} />
                         ))}
                     </div>
+                </div>
+            )}
+            {!currentCamera && (
+                <div id='camera-not-found-div'>
+                <p id='camera-not-found-p'>Camera Not Found.</p>
                 </div>
             )}
         </div>

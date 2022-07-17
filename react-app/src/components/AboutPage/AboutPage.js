@@ -11,7 +11,7 @@ function AboutPage () {
         <div id='about-div'>
             <h1 id='about-h1'>About Developer</h1>
             <div id='img-bio-div'>
-                <img id='dev-pic' src={ukiHeadshot} />
+                <img id='dev-pic' src={ukiHeadshot} alt="Developer"/>
                 <p id='about-p'>Uki Pavlovic is a New York-based director, producer, and actor. As of 2022, he is also an aspiring software engineer.
                 <br></br>
                 Born and raised Serbian, but in his heart he is what would be considered a naturalized New Yorker.
@@ -24,10 +24,10 @@ function AboutPage () {
             <h3 id='about-h3'>Find Uki on</h3>
             <div id='social-links'>
                 <a href='https://github.com/ukiukica'>
-                    <img id='github-logo' src={gitHub} />
+                    <img id='github-logo' src={gitHub} alt="GitHub Logo"/>
                 </a>
                 <a href='https://www.linkedin.com/in/ukipavlovic/'>
-                    <img id='linkedin-logo' src={linkedIn} />
+                    <img id='linkedin-logo' src={linkedIn} alt="LinkedIn Logo"/>
                 </a>
             </div>
         </div>

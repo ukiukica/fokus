@@ -8,7 +8,7 @@ import './CameraList.css'
 
 function CameraList() {
 
-    const sessionUser = useSelector((state) => state.session?.user);
+    // const sessionUser = useSelector((state) => state.session?.user);
     const cameras = useSelector((state) => state.cameras)
 
     const camerasArr = Object.values(cameras)
@@ -19,7 +19,7 @@ function CameraList() {
             <div className="cam-items-list-body">
             <div className='cam-items-list'>
                 {camerasArr.map((camera) => (
-                    <NavLink to={`/cameras/${camera.id}`} style={{ color: 'inherit', textDecoration: 'inherit'}}>
+                    <NavLink to={`/cameras/${camera.id}`} key={camera.id} style={{ color: 'inherit', textDecoration: 'inherit'}}>
                         <CameraListItem key={camera.id} cameraId={camera.id} />
                     </NavLink>
                 ))}
