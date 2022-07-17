@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import LoginModal from './auth/LoginModal/LoginModal';
 import SignUpModal from './auth/SignUpModal/SignUpModal';
 import LogoutButton from './auth/LogoutButton';
-import logo from "./fokus-logo.jpg"
+import logo from "./fokus-logo2.jpg"
 
 import './NavBar.css'
 
