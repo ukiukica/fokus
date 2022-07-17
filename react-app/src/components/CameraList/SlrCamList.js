@@ -8,7 +8,7 @@ import './CameraList.css'
 
 function SlrCamList() {
 
-    const sessionUser = useSelector((state) => state.session?.user);
+    // const sessionUser = useSelector((state) => state.session?.user);
     const cameras = useSelector((state) => state.cameras)
 
     const camerasArr = Object.values(cameras)

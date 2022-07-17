@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 
 import { getReviews, editReview, removeReview } from "../../store/reviews";
 
@@ -9,7 +8,7 @@ import "./EditReview.css"
 function EditReview({ reviews, cameraId, reviewId, setShowEditReview }) {
 
     const dispatch = useDispatch();
-    const history = useHistory();
+    // const history = useHistory();
 
     let userId = useSelector((state) => state.session.user.id);
 

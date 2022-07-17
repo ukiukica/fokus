@@ -28,7 +28,7 @@ function EditCameraForm() {
 
     const categoriesArr = Object.values(categories)
     const productImagesArr = currentCamera?.images.filter(image => image.film_roll === false)
-    const filmRollArr = currentCamera?.images.filter(image => image.film_roll === true)
+    // const filmRollArr = currentCamera?.images.filter(image => image.film_roll === true)
 
 
     const [brand, setBrand] = useState(currentCamera?.brand);
@@ -55,7 +55,7 @@ function EditCameraForm() {
     const updateInventory = (e) => setInventory(e.target.value)
     const updateCategory = (e) => setCategory(e.target.value)
 
-    console.log("PROD IMG ARR: ", productImagesArr)
+    // console.log("PROD IMG ARR: ", productImagesArr)
 
 
     const addImages = (images, cameraId) => {

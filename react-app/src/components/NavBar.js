@@ -11,17 +11,17 @@ import './NavBar.css'
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session?.user);
-  console.log("SESSION USER: ", sessionUser)
+  // console.log("SESSION USER: ", sessionUser)
   return (
     <>
       <nav id='nav-bar'>
         <div id="search-div">
-          <button className="nav-btn disabled"><i class="fa-solid fa-magnifying-glass"></i></button>
+          <button className="nav-btn disabled"><i className="fa-solid fa-magnifying-glass"></i></button>
           <input id="search-bar" type="text" placeholder="THIS FEATURE IS COMING SOON!"></input>
         </div>
 
         <div className="logo-div">
-          <img id='logo' src={logo} />
+          <img id='logo' src={logo} alt="logo"/>
         </div>
 
         <div className='nav-btns-div splash-page'>
@@ -54,12 +54,12 @@ const NavBar = () => {
           {sessionUser && (
             <div className='logged-in-div'>
               <NavLink className='nav-btn' to='/cameras/new' exact={true} activeClassName='active'>
-                <button className="nav-btn"><i class="fa-solid fa-camera"></i></button>
+                <button className="nav-btn"><i className="fa-solid fa-camera"></i></button>
               </NavLink>
               <NavLink className='nav-btn' to='/shopping-cart' exact={true} activeClassName='active'>
-                <button className="nav-btn"><i class="fa-solid fa-cart-shopping"></i></button>
+                <button className="nav-btn"><i className="fa-solid fa-cart-shopping"></i></button>
               </NavLink>
-                <i class="fa-solid fa-cart-shopping"></i>
+                <i className="fa-solid fa-cart-shopping"></i>
               <LogoutButton />
             </div>
           )}
