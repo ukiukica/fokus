@@ -30,9 +30,12 @@ const LoginForm = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
-    history.push('/cameras')
+
     if (data) {
       setErrors(data);
+    }
+    else {
+      history.push('/cameras')
     }
   };
 
