@@ -147,3 +147,8 @@ input::-webkit-inner-spin-button {
 #carousel-div {
 
 }
+
+#carousel-btns-div {
+  display: flex;
+  justify-content: space-evenly;
+}

@@ -27,7 +27,15 @@
 }
 
 .carousel-bttn {
-    width: 50%;
+    width: 200px;
+    margin-right: 20px;
+    margin-bottom: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.carousel-bttn > * {
+  font-size: 25px;
 }
 
 .post {

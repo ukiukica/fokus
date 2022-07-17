@@ -89,7 +89,7 @@ function CameraPage() {
     //     filmRoll.push({ "original": image.image_url, "thumbnail": image.image_url })
     // ))
 
-        console.log("THIS", sessionCameras)
+    console.log("THIS", sessionCameras)
     return (
         <div>
 
@@ -103,18 +103,25 @@ function CameraPage() {
                     </div>
                     <div id="camera-section">
                         <div id='carousel-div'>
-                            <div>
-                                <button className="carousel-bttn" onClick={() => setShowFilmRoll(false)}>Product Images</button>
-                                <button className="carousel-bttn" onClick={() => setShowFilmRoll(true)}>Film Roll</button>
+                            <div id="carousel-btns-div">
+                                <button className="carousel-bttn" onClick={() => setShowFilmRoll(false)}>
+                                    <i class="fa-solid fa-image"></i>
+                                </button>
+                                <button className="carousel-bttn" onClick={() => setShowFilmRoll(true)}>
+                                    <i class="fa-solid fa-film"></i>
+                                </button>
                             </div>
                             <div id="carousel-div">
-                            {showFilmRoll ? <Carousel images={currentCamera.film_roll}/> : <Carousel images={currentCamera.images}/>}
+                                {showFilmRoll ? <Carousel images={currentCamera.film_roll} /> : <Carousel images={currentCamera.images} />}
                             </div>
 
                         </div>
                         <div id="camera-specs" key={currentCamera.id}>
                             <p id="camera-title">{`${currentCamera.brand} ${currentCamera.model}`}</p>
                             <p id="film-type">Film Type: {currentCamera.film_type}</p>
+                            {currentCamera.category.name !== "Unknown" && (
+                                <p id="category">Category: {currentCamera.category.name}</p>
+                            )}
                             <p id="other-specs">{currentCamera.other_specs}</p>
                             <p id="price">${currentCamera.amount}</p>
 
