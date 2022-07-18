@@ -7,6 +7,8 @@ import Carousel from "../Carousel/Carousel";
 import AddReview from "../AddReview/AddReviewForm";
 import { editCamera } from "../../store/cameras";
 
+import pendingPic from "../pending-picture.jpg"
+
 import './CameraPage.css'
 import '../../context/Buttons.css'
 import '../../context/Misc.css'
@@ -110,7 +112,13 @@ function CameraPage() {
                                 </button>
                             </div>
                             <div id="carousel-div">
+                                {currentCamera.images.length ?
+                                <>
                                 {showFilmRoll ? <Carousel images={currentCamera.film_roll} /> : <Carousel images={currentCamera.images} />}
+                                </>
+                                :
+                                <img className="pending-img" src={pendingPic} alt="placeholder"/>
+                            }
                             </div>
 
                         </div>

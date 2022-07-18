@@ -116,3 +116,7 @@ h2 {
   outline: none;
   border: solid 1px #f2cc8f;
 }
+
+.pending-img {
+  width: inherit;
+}

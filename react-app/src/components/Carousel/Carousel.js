@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import pendingPic from "../pending-picture.jpg"
+
 import "./Carousel.css"
 import "../../context/Buttons.css"
 
@@ -36,6 +38,8 @@ function Carousel ({images}) {
         }
         return setCurrentIndex(currentIndex + 1)
     }
+
+
 
     return (
         <>
