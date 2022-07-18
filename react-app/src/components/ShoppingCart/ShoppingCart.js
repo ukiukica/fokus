@@ -67,7 +67,7 @@ function ShoppingCart() {
 
 
     return (
-        <>
+        <div id="shopping-cart-page-body">
             <div id="back-link-div">
                 <i className="fa-solid fa-arrow-left"></i>
                 <NavLink to='/cameras' style={{ color: 'inherit', textDecoration: 'inherit' }}
@@ -101,7 +101,7 @@ function ShoppingCart() {
                     <img id="empty-cart-img" src={emptyCartPic} alt="Dog with Empty Cart"/>
                 </div>
             }
-        </>
+        </div>
     )
 }
 
