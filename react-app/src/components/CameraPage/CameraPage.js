@@ -130,7 +130,7 @@ function CameraPage() {
                                 <p id="category">Category: {currentCamera.category.name}</p>
                             )}
                             <p id="other-specs">{currentCamera.other_specs}</p>
-                            <p id="price">${currentCamera.amount}</p>
+                            <p id="price">${currentCamera.amount.toFixed(2)}</p>
 
                             <div>
                                 {currentCamera.inventory === 0 ?
