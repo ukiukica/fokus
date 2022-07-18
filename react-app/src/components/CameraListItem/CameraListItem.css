@@ -5,6 +5,10 @@
     border-radius: 6px;
 }
 
+.top-img:hover {
+    visibility: hidden;
+}
+
 #cam-item-details {
     display: flex;
     flex-direction: row;
@@ -17,12 +21,14 @@
     position: absolute;
     width: 300px;
     height: 200px;
-    transition: display 0.2s;
+    transition: opacity 0.1s;
+    /* transition: visibility 0.2s; */
     /* background-color: rgb(180, 180, 180); */
 }
 
 .cam-item-img-div:hover {
-    display: none;
+    /* visibility: hidden; */
+    opacity: 0;
 }
 
 .cam-item-img-div-2 {
