@@ -138,21 +138,27 @@ function CameraPage() {
                                 <p>Sold by: {cameraUser}</p>
                                 <p>Posted on: {formatDate(currentCamera.created_at)}</p>
                                 {/* <p>{new Date(currentCamera?.updatedAt).toLocaleDateString(undefined, options)}</p> */}
-                                {currentCamera?.user_id === sessionUser?.id ?
-                                    <NavLink to={`/cameras/${cameraId}/edit`} exact={true}>
-                                        <button className="add-cart-edit-post-btn">Edit Post</button>
-                                    </NavLink>
-                                    :
+                                {sessionUser ?
                                     <>
-                                        {sessionCameras?.includes(`${currentCamera.id}`) ?
-                                            <p id="added-cart-p">Added to Cart!</p>
+                                        {currentCamera?.user_id === sessionUser?.id ?
+                                            <NavLink to={`/cameras/${cameraId}/edit`} exact={true}>
+                                                <button className="add-cart-edit-post-btn">Edit Post</button>
+                                            </NavLink>
                                             :
-                                            <button
-                                                className="add-cart-edit-post-btn"
-                                                onClick={(e) => saveToSession(e, sessionUser.id, currentCamera.id)}
-                                            >Add to Cart</button>
+                                            <>
+                                                {sessionCameras?.includes(`${currentCamera.id}`) ?
+                                                    <p id="added-cart-p">Added to Cart!</p>
+                                                    :
+                                                    <button
+                                                        className="add-cart-edit-post-btn"
+                                                        onClick={(e) => saveToSession(e, sessionUser.id, currentCamera.id)}
+                                                    >Add to Cart</button>
+                                                }
+                                            </>
                                         }
                                     </>
+                                    :
+                                    <p className="not-logged-in-p">Log in to shop!</p>
                                 }
                             </div>
                         </div>
@@ -176,7 +182,7 @@ function CameraPage() {
                                 )}
                             </>
                             :
-                            <p>Log in to leave a review!</p>
+                            <p className="not-logged-in-p">Log in to leave a review!</p>
                         }
                         {cameraReviews?.map((review) => (
                             <SingleReview key={review.id}
@@ -187,7 +193,7 @@ function CameraPage() {
             )}
             {!currentCamera && (
                 <div id='camera-not-found-div'>
-                <p id='camera-not-found-p'>Camera Not Found.</p>
+                    <p id='camera-not-found-p'>Camera Not Found.</p>
                 </div>
             )}
         </div>

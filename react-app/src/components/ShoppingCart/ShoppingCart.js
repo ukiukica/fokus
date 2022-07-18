@@ -38,7 +38,7 @@ function ShoppingCart() {
             "model": cameras[cameraId]?.model,
             "film_type": cameras[cameraId]?.film_type,
             "other_specs": cameras[cameraId]?.other_specs,
-            "amount": cameras[cameraId]?.amount,
+            "amount": cameras[cameraId]?.amount.toFixed(2),
             "inventory": cameras[cameraId]?.inventory + 1,
             "category_id": cameras[cameraId]?.category_id,
             "user_id": cameras[cameraId]?.user_id
@@ -86,11 +86,11 @@ function ShoppingCart() {
                                     <img id="cart-item-img" src={cameras[camera]?.images[0].image_url} alt="Camera"/>
                                 </div>
                                 <p>{cameras[camera]?.brand} {cameras[camera]?.model}</p>
-                                <p>${cameras[camera]?.amount}</p>
+                                <p>${cameras[camera]?.amount.toFixed(2)}</p>
                             </div>
                         ))}
                         <div id="total-div">
-                            <p id="total">Total: ${total}</p>
+                            <p id="total">Total: ${total.toFixed(2)}</p>
                         </div>
                         <button className="post checkout" onClick={(e) => emptyCart(e)}>Checkout</button>
                     </div>

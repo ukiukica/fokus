@@ -25,7 +25,7 @@ function CameraListItem({ cameraId }) {
             </div>
             <div id='cam-item-details'>
             <p id="cam-item-name">{`${currentCamera.brand} ${currentCamera.model}`}</p>
-            <p className='cam-item-amount'>${currentCamera.amount}</p>
+            <p className='cam-item-amount'>${currentCamera.amount.toFixed(2)}</p>
             </div>
         </div>
     )
