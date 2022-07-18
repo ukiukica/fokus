@@ -31,7 +31,7 @@
 } */
 
 .cam-items-list {
-    max-width: 70%;
+    max-width: 65%;
     min-height: 550px;
     display: flex;
     justify-content: space-between;
