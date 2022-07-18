@@ -40,6 +40,7 @@ function CameraPage() {
 
     const [showFilmRoll, setShowFilmRoll] = useState(false);
     const [showAddReview, setShowAddReview] = useState(false);
+    const [buttonDisabled, setButtonDisabled] = useState(false);
     // const [showEditReview, setShowEditReview] = useState(false);
 
     const sessionCameras = sessionStorage?.getItem(`${sessionUser?.id}`)?.split(",")
@@ -113,12 +114,12 @@ function CameraPage() {
                             </div>
                             <div id="carousel-div">
                                 {currentCamera.images.length ?
-                                <>
-                                {showFilmRoll ? <Carousel images={currentCamera.film_roll} /> : <Carousel images={currentCamera.images} />}
-                                </>
-                                :
-                                <img className="pending-img" src={pendingPic} alt="placeholder"/>
-                            }
+                                    <>
+                                        {showFilmRoll ? <Carousel images={currentCamera.film_roll} /> : <Carousel images={currentCamera.images} />}
+                                    </>
+                                    :
+                                    <img className="pending-img" src={pendingPic} alt="placeholder" />
+                                }
                             </div>
 
                         </div>
@@ -157,10 +158,19 @@ function CameraPage() {
                                                 {sessionCameras?.includes(`${currentCamera.id}`) ?
                                                     <p id="added-cart-p">Added to Cart!</p>
                                                     :
-                                                    <button
-                                                        className="add-cart-edit-post-btn"
-                                                        onClick={(e) => saveToSession(e, sessionUser.id, currentCamera.id)}
-                                                    >Add to Cart</button>
+                                                    <>
+                                                        {currentCamera.inventory > 0 ?
+                                                            <button
+                                                                className="add-cart-edit-post-btn"
+                                                                onClick={(e) => saveToSession(e, sessionUser.id, currentCamera.id)}
+                                                            >Add to Cart</button>
+                                                            :
+                                                            <button
+                                                                className="add-cart-edit-post-btn"
+                                                                disabled='true'
+                                                            >Add to Cart</button>
+                                                        }
+                                                    </>
                                                 }
                                             </>
                                         }
