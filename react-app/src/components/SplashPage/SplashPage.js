@@ -2,7 +2,8 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
-import splashPic from "./IMG_7099.jpeg"
+import splashPic from "./SplashPage7.jpg"
+
 
 import './SplashPage.css'
 import '../NavBar.css'
