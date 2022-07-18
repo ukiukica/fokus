@@ -73,8 +73,8 @@ h2 {
   color:rgb(160, 31, 31);
   padding: 0px;
   margin-bottom: 5%;
-  padding-bottom: 15px;
-  border-bottom: 1px solid rgb(160, 31, 31);
+  /* padding-bottom: 15px; */
+  /* border-bottom: 1px solid rgb(160, 31, 31); */
 }
 
 .backend-errors {
@@ -83,6 +83,7 @@ h2 {
   padding: 0px;
   margin-bottom: 5%;
   padding-bottom: 15px;
+  max-width: 200px;
 }
 
 .form-title {
@@ -114,4 +115,8 @@ h2 {
 .form-select:hover {
   outline: none;
   border: solid 1px #f2cc8f;
+}
+
+.pending-img {
+  width: inherit;
 }

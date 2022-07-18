@@ -16,29 +16,38 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
-
+  const [frontendErrors, setFrontendErrors] = useState([])
+  const [showErrors, setShowErrors] = useState(false)
 
   useEffect(() => {
     const errors = [];
 
     if (password !== repeatPassword) errors.push("Password must match!")
+    if (password.length < 6) errors.push("Password must be 6 or more characters!")
 
-    setErrors(errors)
-  }, [repeatPassword])
+    setFrontendErrors(errors)
+  }, [repeatPassword, password])
 
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    // if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+    // console.log("INSIDE ONSIGNUP")
+    // console.log("FRONTEND ERRORS: ", frontendErrors)
+    if (!frontendErrors.length) {
+      console.log("IN IF STATEMENT")
+      if (password === repeatPassword) {
+        const data = await dispatch(signUp(username, email, password));
 
-      if (data) {
-        setErrors(data)
+        if (data) {
+          setErrors(data)
+        }
+        else {
+          history.push('/cameras')
+        }
       }
-      else {
-        history.push('/cameras')
-      }
-    // }
+      return
+    }
+    setShowErrors(true)
   };
 
   const updateUsername = (e) => {
@@ -78,8 +87,16 @@ const SignUpForm = () => {
               <div key={ind}>{error.split(":")[1]}</div>
             }
           </>
-
         ))}
+        <div className='errors'>
+            {showErrors && (
+              <>
+              {frontendErrors.map((error) => (
+                <p>{error}</p>
+              ))}
+              </>
+            )}
+        </div>
       </div>
       <div id="sign-up-inputs-div">
         <label className='form-label'>User Name</label>

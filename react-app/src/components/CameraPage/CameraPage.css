@@ -129,3 +129,10 @@
     font-size: 25px;
     font-weight: bold;
 }
+
+.not-logged-in-p {
+    margin: 2% 0;
+    color: #a01f1f;
+    font-size: 20px;
+    font-weight: bold;
+}
