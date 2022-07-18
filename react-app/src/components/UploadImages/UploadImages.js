@@ -38,13 +38,20 @@ function UploadImages({ images, setImages }) {
                 style={isDragging ? { color: "green" } : null}
                 onClick={(e) => {
                   e.preventDefault()
-                  onImageUpload()}}
+                  onImageUpload()
+                }}
                 {...dragProps}
               >
                 Click or Drop here
               </button>
               &nbsp;
-              <button className="remove-all-btn" onClick={(e) => onImageRemoveAll(e)}>Remove all images</button>
+              <button className="remove-all-btn"
+                onClick={(e) => {
+                  e.preventDefault()
+                  onImageRemoveAll()
+                }
+                }
+              >Remove all images</button>
             </div>
             <div className="selected-img-div">
               {imageList.map((image, index) => (
@@ -54,8 +61,9 @@ function UploadImages({ images, setImages }) {
                     {/* <button onClick={() => onImageUpdate(index)}>Update</button> */}
                     <button className="remove-btn" onClick={(e) => {
                       e.preventDefault()
-                      onImageRemove(index)}}
-                      >x</button>
+                      onImageRemove(index)
+                    }}
+                    >x</button>
                   </div>
                 </div>
               ))}

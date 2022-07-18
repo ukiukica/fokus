@@ -36,13 +36,21 @@ function UploadFilmRoll({ filmRoll, setFilmRoll }) {
               <button
               className="add-img-btn"
                 style={isDragging ? { color: "green" } : null}
-                onClick={onImageUpload}
+                onClick={(e) => {
+                  e.preventDefault()
+                  onImageUpload()}}
                 {...dragProps}
               >
                 Click or Drop here
               </button>
               &nbsp;
-              <button className="remove-all-btn" onClick={onImageRemoveAll}>Remove all images</button>
+              <button className="remove-all-btn"
+              onClick={(e) => {
+                e.preventDefault()
+                onImageRemoveAll()
+              }
+              }
+              >Remove all images</button>
             </div>
             <div className="selected-img-div">
               {imageList.map((image, index) => (
