@@ -4,6 +4,7 @@
     min-width: 400px;
     padding: 5px 20px 20px 20px;
     margin-bottom: 5%;
+    box-shadow: 0px 0px 3px 1px #00000054;
 }
 
 #username {
