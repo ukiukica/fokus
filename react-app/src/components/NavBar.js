@@ -54,7 +54,7 @@ const NavBar = () => {
           {sessionUser && (
             <div className='logged-in-div'>
               <NavLink className='nav-btn' to='/cameras/new' exact={true} activeClassName='active'>
-                <button className="nav-btn"><i className="fa-solid fa-camera"></i></button>
+                <button id='cam-icon' className="nav-btn"><i className="fa-solid fa-camera"></i></button>
               </NavLink>
               <NavLink className='nav-btn' to='/shopping-cart' exact={true} activeClassName='active'>
                 <button className="nav-btn"><i className="fa-solid fa-cart-shopping"></i></button>
