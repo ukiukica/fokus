@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import LoginModal from './auth/LoginModal/LoginModal';
 import SignUpModal from './auth/SignUpModal/SignUpModal';
 import LogoutButton from './auth/LogoutButton';
+import SearchBar from './SearchBar/Searchbar';
 import logo from "./fokus-logo2.jpg"
 
 import './NavBar.css'
@@ -16,8 +17,7 @@ const NavBar = () => {
     <>
       <nav id='nav-bar'>
         <div id="search-div">
-          <button className="nav-btn disabled"><i className="fa-solid fa-magnifying-glass"></i></button>
-          <input id="search-bar" type="text" placeholder="THIS FEATURE IS COMING SOON!"></input>
+          <SearchBar />
         </div>
 
         <div className="logo-div">
@@ -54,7 +54,7 @@ const NavBar = () => {
           {sessionUser && (
             <div className='logged-in-div'>
               <NavLink className='nav-btn' to='/cameras/new' exact={true} activeClassName='active'>
-                <button className="nav-btn"><i className="fa-solid fa-camera"></i></button>
+                <button id='cam-icon' className="nav-btn"><i className="fa-solid fa-camera"></i></button>
               </NavLink>
               <NavLink className='nav-btn' to='/shopping-cart' exact={true} activeClassName='active'>
                 <button className="nav-btn"><i className="fa-solid fa-cart-shopping"></i></button>

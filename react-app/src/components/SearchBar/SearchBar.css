@@ -1,0 +1,57 @@
+.hidden {
+    visibility: hidden;
+}
+
+/* .nav-search-div {
+    position: relative;
+} */
+
+#nav-search {
+    -webkit-appearance: none;
+    padding: 5px;
+    width: 250px;
+    height: 25px;
+    border-radius: 2px;
+    border: none;
+    background-color: #f4f1de;
+}
+
+.camera-search-result {
+    /* background: rgb(247, 243, 231); */
+    /* padding: 10px; */
+    /* padding-left: 5px;
+    position: absolute;
+    z-index: 2; */
+
+    /* width: fit-content;
+    height: fit-content; */
+
+
+}
+/*
+.username-search-result:hover {
+    background-color: rgb(30, 85, 92);
+    color: rgb(247, 243, 231);
+} */
+
+.results-div {
+    width: 100%;
+    height: fit-content;
+    border-radius: 5px;
+}
+
+.camera-result {
+    background-color: #f4f1de;
+    color: #2c2b2c;
+    line-height: 3;
+    text-decoration: none;
+    padding-left: 2%;
+    width: 98%;
+    height: 100%;
+    box-shadow: 5px 3px 3px #00000047;
+}
+
+.camera-result:hover {
+    color: rgb(247, 243, 231);
+    background-color: #81b29a;
+}
