@@ -6,6 +6,7 @@ class Order(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     order_number = db.Column(db.String(50), nullable=False)
+    ful_name = db.Column(db.String(100), nullable=False)
     address = db.Column(db.String(200), nullable=False)
     shipping_type = db.Column(db.String(50), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
@@ -21,6 +22,7 @@ class Order(db.Model):
         return {
             'id': self.id,
             'order_number': self.order_number,
+            'full_name': self.ful_name,
             'address': self.address,
             'shipping_type': self.shipping_type,
             'user_id': self.user_id,
