@@ -1,8 +1,8 @@
 """create tables
 
-Revision ID: b7d8c4281974
+Revision ID: 342c18ce7ec2
 Revises: 
-Create Date: 2022-07-15 16:42:08.089723
+Create Date: 2022-08-02 13:04:52.485914
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'b7d8c4281974'
+revision = '342c18ce7ec2'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -45,6 +45,21 @@ def upgrade():
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['category_id'], ['categories.id'], ),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('orders',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('order_number', sa.String(length=50), nullable=False),
+    sa.Column('order_items', sa.String(length=500), nullable=False),
+    sa.Column('full_name', sa.String(length=100), nullable=False),
+    sa.Column('address', sa.String(length=200), nullable=False),
+    sa.Column('shipping_type', sa.String(length=50), nullable=False),
+    sa.Column('shipping_price', sa.Float(), nullable=False),
+    sa.Column('sales_tax', sa.Float(), nullable=False),
+    sa.Column('total', sa.Float(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -90,6 +105,7 @@ def downgrade():
     op.drop_table('reviews')
     op.drop_table('purchase_history')
     op.drop_table('images')
+    op.drop_table('orders')
     op.drop_table('cameras')
     op.drop_table('users')
     op.drop_table('categories')
