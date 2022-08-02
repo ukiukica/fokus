@@ -25,6 +25,7 @@ class User(db.Model, UserMixin):
 
     reviews = db.relationship("Review", back_populates="users")
     cameras = db.relationship("Camera", back_populates="users")
+    orders = db.relationship("Order", back_populates="users", lazy="joined")
 
     @property
     def password(self):
@@ -41,5 +42,6 @@ class User(db.Model, UserMixin):
         return {
             'id': self.id,
             'username': self.username,
-            'email': self.email
+            'email': self.email,
+            'orders': [order.to_dict() for order in self.orders]
         }
