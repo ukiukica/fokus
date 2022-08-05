@@ -6,7 +6,7 @@ import zipcodes from "zipcodes"
 import "./Checkout.css"
 import StateSelectField from "./StateSelectField";
 
-function Checkout() {
+function Checkout({subtotal}) {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -17,11 +17,11 @@ function Checkout() {
     const [addressLine2, setAddressLine2] = useState("");
     const [city, setCity] = useState("");
     const [state, setState] = useState("");
-    const [zipcode, setZipcode] = useState(null);
+    const [zipcode, setZipcode] = useState(undefined);
     const [shippingType, setShippingType] = useState("");
-    const [shippingPrice, setShippingPrice] = useState(null);
-    const [salesTax, setSalesTax] = useState(null);
-    const [total, setTotal] = useState(null);
+    const [shippingPrice, setShippingPrice] = useState(undefined);
+    const [salesTax, setSalesTax] = useState(undefined);
+    const [total, setTotal] = useState(undefined);
     const [showErrors, setShowErrors] = useState(false);
     const [validationErrors, setValidationErrors] = useState([]);
 
@@ -31,13 +31,15 @@ function Checkout() {
     const updateCity = (e) => setCity(e.target.value)
     const updateState = (e) => setState(e.target.value)
     const updateZipcode = (e) => setZipcode(e.target.value)
-    const updateShippingType = (e) => setShippingType(e.target.value)
+    const updateShippingType = (e) => {
+        setShippingType(e.target.value)
+        calculateShipping()}
     const updateShippingPrice = (e) => setShippingPrice(e.target.value)
     const updateSalesTax = (e) => setSalesTax(e.target.value)
     const updateTotal = (e) => setTotal(e.target.value)
 
     // const hills = zipcodes.lookup(90210);
-    // console.log(hills)
+    console.log(shippingPrice)
 
     function randomNumber(min, max) {
         return Math.floor(Math.random() * (max - min) + min)
@@ -45,6 +47,14 @@ function Checkout() {
 
     function getOrderNumber() {
         return `${randomNumber(100, 999)}-${randomNumber(10000, 99999)}-${randomNumber(1000, 9999)}`
+    }
+
+    function calculateShipping() {
+        if (shippingType === "Standard Shipping") return setShippingPrice(7.99);
+        if (shippingType === "Expedited Shipping") return setShippingPrice(19.99);
+        if (shippingType === "Lightning Shipping") return setShippingPrice(49.99);
+
+        return null;
     }
 
     const emptyCart = (e) => {
@@ -74,80 +84,90 @@ function Checkout() {
                         ))}
                     </div>
                 </div>
-                <div>
-                <label className='form-label'>
-                    Full Name
-                    <input
-                    className='form-input'
-                    type='text'
-                    name='fullName'
-                    onChange={updateFullName}
-                    value={fullName}
-                    />
-                </label>
+                <div className="checkout-form">
+                    <div className="address-section">
+                        <div className="address-section-left">
+                            <label className='form-label'>
+                                Full Name
+                                <input
+                                    className='form-input'
+                                    type='text'
+                                    name='fullName'
+                                    onChange={updateFullName}
+                                    value={fullName}
+                                />
+                            </label>
 
-                <label className='form-label'>
-                    Address Line 1
-                    <input
-                    className='form-input'
-                    type='text'
-                    name='addressLine1'
-                    onChange={updateAddressLine1}
-                    value={addressLine1}
-                    />
-                </label>
+                            <label className='form-label'>
+                                Address Line 1
+                                <input
+                                    className='form-input'
+                                    type='text'
+                                    name='addressLine1'
+                                    onChange={updateAddressLine1}
+                                    value={addressLine1}
+                                />
+                            </label>
 
-                <label className='form-label'>
-                    Address Line 2 (optional)
-                    <input
-                    className='form-input'
-                    type='text'
-                    name='addressLine2'
-                    onChange={updateAddressLine2}
-                    value={addressLine2}
-                    />
-                </label>
+                            <label className='form-label'>
+                                Address Line 2 (optional)
+                                <input
+                                    className='form-input'
+                                    type='text'
+                                    name='addressLine2'
+                                    onChange={updateAddressLine2}
+                                    value={addressLine2}
+                                />
+                            </label>
+                        </div>
+                        <div className="address-section-right">
+                            <label className='form-label'>
+                                City
+                                <input
+                                    className='form-input'
+                                    type='text'
+                                    name='city'
+                                    onChange={updateCity}
+                                    value={city}
+                                />
+                            </label>
 
-                <label className='form-label'>
-                    City
-                    <input
-                    className='form-input'
-                    type='text'
-                    name='city'
-                    onChange={updateCity}
-                    value={city}
-                    />
-                </label>
+                            <StateSelectField updateState={updateState} state={state} />
 
-                <StateSelectField updateState={updateState} state={state} />
-
-                <label className='form-label'>
-                    Zip Code
-                    <input
-                    className='form-input'
-                    type='number'
-                    name='zipcode'
-                    placeholder="i.e. 90210"
-                    onChange={updateZipcode}
-                    value={zipcode}
-                    />
-                </label>
-
-                <label className='form-label'>
-                    Shipping Type
-                    <select
-                    className='form-select'
-                    name='shippingType'
-                    onChange={updateShippingType}
-                    value={shippingType}
-                    >
-                        <option disabled selected value=''>Choose</option>
-                        <option>Standard Shipping (4-5 business days)</option>
-                        <option>Expedited Shipping (2-3 business days)</option>
-                        <option>Lightning Shipping (1 business day)</option>
-                    </select>
-                </label>
-
+                            <label className='form-label'>
+                                Zip Code
+                                <input
+                                    className='form-input'
+                                    type='number'
+                                    name='zipcode'
+                                    placeholder="i.e. 90210"
+                                    onChange={updateZipcode}
+                                    value={zipcode}
+                                />
+                            </label>
+                        </div>
+                    </div>
+                    <div className="checkout-section">
+                        <label className='form-label'>
+                            Shipping Type
+                            <select
+                                className='form-select'
+                                name='shippingType'
+                                onChange={updateShippingType}
+                                value={shippingType}
+                            >
+                                <option disabled value=''>Choose</option>
+                                <option value="Standard Shipping">Standard Shipping (4-5 business days)</option>
+                                <option value="Expedited Shipping">Expedited Shipping (2-3 business days)</option>
+                                <option value="Lightning Shipping">Lightning Shipping (1 business day)</option>
+                            </select>
+                        </label>
+                        <div className="total-section">
+                            <p>Subtotal: ${subtotal.toFixed(2)}</p>
+                            <p>Sales Tax: ${salesTax}</p>
+                            <p>Shipping Price: ${shippingPrice}</p>
+                        </div>
+                    </div>
                 </div>
                 <button onClick={(e) => emptyCart(e)}>Complete Purchase</button>
 

@@ -20,9 +20,9 @@ function ShoppingCart() {
     const sessionCameras = sessionStorage.getItem(`${sessionUser.id}`)?.split(",")
     // console.log(sessionCameras)
 
-    let total = 0;
+    let subtotal = 0;
     sessionCameras?.forEach((camera) => (
-        total += cameras[camera]?.amount
+        subtotal += cameras[camera]?.amount
     ))
 
 
@@ -84,9 +84,9 @@ function ShoppingCart() {
                             </div>
                         ))}
                         <div id="total-div">
-                            <p id="total">Total: ${total.toFixed(2)}</p>
+                            <p id="total">Subtotal: ${subtotal.toFixed(2)}</p>
                         </div>
-                        <CheckoutModal />
+                        <CheckoutModal subtotal={subtotal}/>
                         {/* <button className="post checkout" onClick={(e) => emptyCart(e)}>Checkout</button> */}
                     </div>
                 </>

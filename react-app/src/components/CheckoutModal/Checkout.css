@@ -1,0 +1,10 @@
+.address-section {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 30px;
+    border-bottom: 1px solid black;
+}
+
+.address-section > * {
+    margin-right: 30px;
+}
