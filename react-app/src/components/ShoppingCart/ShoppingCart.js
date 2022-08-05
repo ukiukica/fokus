@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 
 import { getCameras, editCamera } from "../../store/cameras";
+import CheckoutModal from "../CheckoutModal/CheckoutModal";
 import emptyCartPic from "./dog-with-cart2.png"
 
 import "./ShoppingCart.css"
@@ -24,13 +25,6 @@ function ShoppingCart() {
         total += cameras[camera]?.amount
     ))
 
-    console.log(total)
-
-    const emptyCart = (e) => {
-        e.preventDefault()
-        sessionStorage.removeItem(`${sessionUser.id}`)
-        history.push('/checkout')
-    }
 
     const increaseInventory = async (cameraId) => {
         const payload = {
@@ -92,7 +86,8 @@ function ShoppingCart() {
                         <div id="total-div">
                             <p id="total">Total: ${total.toFixed(2)}</p>
                         </div>
-                        <button className="post checkout" onClick={(e) => emptyCart(e)}>Checkout</button>
+                        <CheckoutModal />
+                        {/* <button className="post checkout" onClick={(e) => emptyCart(e)}>Checkout</button> */}
                     </div>
                 </>
                 :
