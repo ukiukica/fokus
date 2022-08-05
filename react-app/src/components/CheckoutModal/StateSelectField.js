@@ -8,7 +8,7 @@ function StateSelectField({state, updateState}) {
                     onChange={updateState}
                     value={state}
                     >
-                        <option disabled selected value=''>Choose</option>
+                        <option disabled value=''>Choose</option>
                         <option>New York</option>
                         <option>New Jersey</option>
                     </select>
