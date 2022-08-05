@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import zipcodes from "zipcodes"
+import zipcodes from "zipcodes";
+import SalesTax from "sales-tax";
 
 import "./Checkout.css"
 import StateSelectField from "./StateSelectField";
@@ -51,6 +52,16 @@ function Checkout({ subtotal }) {
     }, [shippingPrice])
 
     // const hills = zipcodes.lookup(90210);
+function tax() {
+    SalesTax.getSalesTax("US", "CA")
+    .then(function(response){return response})
+    .then(function(data) {
+        const items = data;
+        return items;
+    })
+
+}
+    console.log(tax())
 
     function randomNumber(min, max) {
         return Math.floor(Math.random() * (max - min) + min)
