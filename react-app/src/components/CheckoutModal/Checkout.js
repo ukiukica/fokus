@@ -37,10 +37,10 @@ function Checkout({ subtotal, sessionCameras }) {
     const updateState = (e) => setState(e.target.value)
     const updateShippingType = (e) => setShippingType(e.target.value)
 
-        console.log(zipcodes.lookup(90210))
-        console.log(state)
-        console.log(shippingType)
-        console.log(zipcode)
+    console.log(zipcodes.lookup(90210))
+    console.log(state)
+    console.log(shippingType)
+    console.log(zipcode)
 
     useEffect(() => {
         const errors = [];
@@ -122,7 +122,7 @@ function Checkout({ subtotal, sessionCameras }) {
 
         const payload = {
             "order_number": getOrderNumber(),
-            "order_items":  getOrderItems().join("%"),
+            "order_items": getOrderItems().join("%"),
             "full_name": fullName,
             "address": [addressLine1, addressLine2, city, state, zipcode].toString(),
             "shipping_type": shippingType,
@@ -136,18 +136,18 @@ function Checkout({ subtotal, sessionCameras }) {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),
-          });
+        });
 
-          const newOrder = await response.json();
+        const newOrder = await response.json();
 
-          if (!newOrder["errors"]) {
+        if (!newOrder["errors"]) {
             console.log("NEW ORDER: ", newOrder)
             dispatch(getUsers())
             history.push('/checkout')
-          } else {
+        } else {
             validationErrors.push("Something went wrong. Please, try again later.")
             setShowErrors(true);
-          }
+        }
 
     }
 
@@ -157,93 +157,96 @@ function Checkout({ subtotal, sessionCameras }) {
             <form
                 onSubmit={checkout}
             >
-                <h2>Checkout</h2>
-                <div className="checkout-form">
-                    <div className="address-section">
-                        <div className="address-section-left">
-                            <label className='form-label'>
-                                Full Name
-                                <input
-                                    className='form-input'
-                                    type='text'
-                                    name='fullName'
-                                    onChange={updateFullName}
-                                    value={fullName}
-                                />
-                            </label>
+                <h2 id="checkout-h2">Checkout</h2>
+                <div className="checkout-page">
+                    <div className="checkout-form">
+                        <div className="address-section">
+                            <div className="address-section-left">
+                                <label className='form-label'>
+                                    Full Name
+                                    <input
+                                        className='form-input'
+                                        type='text'
+                                        name='fullName'
+                                        onChange={updateFullName}
+                                        value={fullName}
+                                    />
+                                </label>
 
-                            <label className='form-label'>
-                                Address Line 1
-                                <input
-                                    className='form-input'
-                                    type='text'
-                                    name='addressLine1'
-                                    onChange={updateAddressLine1}
-                                    value={addressLine1}
-                                />
-                            </label>
+                                <label className='form-label'>
+                                    Address Line 1
+                                    <input
+                                        className='form-input'
+                                        type='text'
+                                        name='addressLine1'
+                                        onChange={updateAddressLine1}
+                                        value={addressLine1}
+                                    />
+                                </label>
 
-                            <label className='form-label'>
-                                Address Line 2 (optional)
-                                <input
-                                    className='form-input'
-                                    type='text'
-                                    name='addressLine2'
-                                    onChange={updateAddressLine2}
-                                    value={addressLine2}
-                                />
-                            </label>
+                                <label className='form-label'>
+                                    Address Line 2 (optional)
+                                    <input
+                                        className='form-input'
+                                        type='text'
+                                        name='addressLine2'
+                                        onChange={updateAddressLine2}
+                                        value={addressLine2}
+                                    />
+                                </label>
+                            </div>
+                            <div className="address-section-right">
+                                <label className='form-label'>
+                                    City
+                                    <input
+                                        className='form-input'
+                                        type='text'
+                                        name='city'
+                                        onChange={updateCity}
+                                        value={city}
+                                    />
+                                </label>
+
+                                <StateSelectField updateState={updateState} state={state} />
+
+                                <label className='form-label zipcode-field'>
+                                    Zip Code
+                                    <input
+                                        className='form-input'
+                                        type='number'
+                                        name='zipcode'
+                                        placeholder="i.e. 90210"
+                                        onChange={updateZipcode}
+                                        value={zipcode}
+                                    />
+                                </label>
+                            </div>
                         </div>
-                        <div className="address-section-right">
+                        <div className="shipping-section">
                             <label className='form-label'>
-                                City
-                                <input
-                                    className='form-input'
-                                    type='text'
-                                    name='city'
-                                    onChange={updateCity}
-                                    value={city}
-                                />
-                            </label>
-
-                            <StateSelectField updateState={updateState} state={state} />
-
-                            <label className='form-label'>
-                                Zip Code
-                                <input
-                                    className='form-input'
-                                    type='number'
-                                    name='zipcode'
-                                    placeholder="i.e. 90210"
-                                    onChange={updateZipcode}
-                                    value={zipcode}
-                                />
+                                Shipping Type
+                                <select
+                                    className='form-select shipping'
+                                    name='shippingType'
+                                    onChange={updateShippingType}
+                                    value={shippingType}
+                                >
+                                    <option disabled selected value=''>Choose</option>
+                                    <option value="Standard Shipping">Standard Shipping (4-5 business days)</option>
+                                    <option value="Expedited Shipping">Expedited Shipping (2-3 business days)</option>
+                                    <option value="Lightning Shipping">Lightning Shipping (1 business day)</option>
+                                </select>
                             </label>
                         </div>
                         <div className={showErrors ? '' : 'hidden'}>
-                    <div className="errors">
-                        {validationErrors.map(error => (
-                            <p key={error}>{error}</p>
-                        ))}
+                                <div className="errors">
+                                    {validationErrors.map(error => (
+                                        <p key={error}>{error}</p>
+                                    ))}
+                                </div>
+                            </div>
                     </div>
-                </div>
-                    </div>
-                    <div className="checkout-section">
-                        <label className='form-label'>
-                            Shipping Type
-                            <select
-                                className='form-select'
-                                name='shippingType'
-                                onChange={updateShippingType}
-                                value={shippingType}
-                            >
-                                <option disabled selected value=''>Choose</option>
-                                <option value="Standard Shipping">Standard Shipping (4-5 business days)</option>
-                                <option value="Expedited Shipping">Expedited Shipping (2-3 business days)</option>
-                                <option value="Lightning Shipping">Lightning Shipping (1 business day)</option>
-                            </select>
-                        </label>
-                        <div className="total-section">
+                        <div className="order-summary">
                             <p>Subtotal: ${subtotal?.toFixed(2)}</p>
                             <p>Sales Tax: ${salesTax?.toFixed(2)}</p>
                             <p>Shipping Price: ${shippingPrice}</p>
@@ -251,11 +254,10 @@ function Checkout({ subtotal, sessionCameras }) {
                                 <p>Total: calculating...</p>
                                 :
                                 <p>Total: ${total?.toFixed(2)}</p>}
-
+                            <button type="submit">Complete Purchase</button>
                         </div>
-                    </div>
                 </div>
-                <button type="submit">Complete Purchase</button>
+
 
             </form>
         </>
