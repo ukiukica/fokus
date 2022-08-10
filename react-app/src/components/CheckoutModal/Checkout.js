@@ -238,13 +238,6 @@ function Checkout({ subtotal, sessionCameras }) {
                                 </select>
                             </label>
                         </div>
-                        <div className={showErrors ? '' : 'hidden'}>
-                            <div className="errors">
-                                {validationErrors.map(error => (
-                                    <p key={error}>{error}</p>
-                                ))}
-                            </div>
-                        </div>
                     </div>
                     <div className="order-summary">
                         <div id="summary-heading">
@@ -263,21 +256,28 @@ function Checkout({ subtotal, sessionCameras }) {
                                 <p>Shipping Price: </p>
                                 <p>${shippingPrice}</p>
                             </div>
-                                {isNaN(total) || !shippingPrice ?
+                            {isNaN(total) || !shippingPrice ?
                                 <div className="summary-item total">
                                     <p>Total:</p>
                                     <p>--</p>
-                                    </div>
-                                    :
-                                    <div className="summary-item total">
+                                </div>
+                                :
+                                <div className="summary-item total">
                                     <p>Total:</p>
                                     <p>${total?.toFixed(2)}</p>
-                                    </div>
-                                    }
+                                </div>
+                            }
                         </div>
                         <button className="post" id="purchase" type="submit">Complete Purchase</button>
                     </div>
                 </div>
+                    <div className={showErrors ? '' : 'hidden'}>
+                        <div className="errors checkout-err">
+                            {validationErrors.map(error => (
+                                <p key={error}>{error}</p>
+                            ))}
+                        </div>
+                    </div>
 
 
             </form>
