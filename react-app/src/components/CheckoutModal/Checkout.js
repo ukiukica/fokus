@@ -35,33 +35,35 @@ function Checkout({ subtotal }) {
     const updateSalesTax = (e) => setSalesTax(e.target.value)
     const updateTotal = (e) => setTotal(e.target.value)
 
-    const updateState = async (e) => {
+    const updateState = (e) => {
         setState(e.target.value)
     }
 
-    const updateShippingType = async (e) => {
+    const updateShippingType = (e) => {
         setShippingType(e.target.value)
     }
 
     useEffect(() => {
-       setShippingPrice(calculateShipping())
+        if (state) {
+            SalesTax.getSalesTax("US", state)
+                .then((tax) => {
+                    setSalesTax(subtotal * tax.rate)
+                })
+        }
+    }, [state])
+
+    useEffect(() => {
+        setShippingPrice(calculateShipping())
     }, [shippingType])
 
     useEffect(() => {
         setTotal(calculateTotal())
-    }, [shippingPrice])
+    }, [shippingPrice, salesTax])
 
     // const hills = zipcodes.lookup(90210);
-function tax() {
-    SalesTax.getSalesTax("US", "CA")
-    .then(function(response){return response})
-    .then(function(data) {
-        const items = data;
-        return items;
-    })
-
-}
-    console.log(tax())
+    // console.log(salesTax)
+    // console.log(shippingPrice)
+    // console.log(total)
 
     function randomNumber(min, max) {
         return Math.floor(Math.random() * (max - min) + min)
@@ -80,7 +82,7 @@ function tax() {
     }
 
     function calculateTotal() {
-        if (shippingPrice) return subtotal + shippingPrice;
+        return subtotal + shippingPrice + salesTax;
     }
 
     const emptyCart = (e) => {
@@ -190,9 +192,13 @@ function tax() {
                         </label>
                         <div className="total-section">
                             <p>Subtotal: ${subtotal?.toFixed(2)}</p>
-                            <p>Sales Tax: ${salesTax}</p>
+                            <p>Sales Tax: ${salesTax?.toFixed(2)}</p>
                             <p>Shipping Price: ${shippingPrice}</p>
-                            <p>Total: ${total?.toFixed(2)}</p>
+                            {isNaN(total) || !shippingPrice ?
+                                <p>Total: calculating...</p>
+                                :
+                                <p>Total: ${total?.toFixed(2)}</p>}
+
                         </div>
                     </div>
                 </div>

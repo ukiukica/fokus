@@ -18,6 +18,7 @@
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "sales-tax": "^2.5.0",
+    "states-us": "^1.0.2",
     "zipcodes": "^8.0.0"
   },
   "scripts": {
