@@ -79,7 +79,11 @@ function Checkout({ subtotal, sessionCameras }) {
         setTotal(calculateTotal())
     }, [shippingPrice, salesTax])
 
-    console.log();
+    useEffect(() => {
+        if (!validationErrors.length) {
+            setShowErrors(false)
+        }
+    }, [validationErrors])
 
     function randomNumber(min, max) {
         return Math.floor(Math.random() * (max - min) + min)
