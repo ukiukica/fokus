@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import zipcodes from "zipcodes";
 import SalesTax from "sales-tax";
 
-import { getUsers } from './store/users';
+import { getUsers } from "../../store/users";
 
 import "./Checkout.css"
 import StateSelectField from "./StateSelectField";
@@ -37,6 +37,10 @@ function Checkout({ subtotal, sessionCameras }) {
     const updateState = (e) => setState(e.target.value)
     const updateShippingType = (e) => setShippingType(e.target.value)
 
+        console.log(zipcodes.lookup(90210))
+        console.log(state)
+        console.log(shippingType)
+        console.log(zipcode)
 
     useEffect(() => {
         const errors = [];
@@ -48,12 +52,15 @@ function Checkout({ subtotal, sessionCameras }) {
         if (addressLine2.length > 200) errors.push("Address must be 200 characters or less.")
         if (!city.length) errors.push("City is required.")
         if (city.length > 50) errors.push("City must be 50 characters or less.")
+        if (!state?.length) errors.push("State is required.")
         if (!zipcode) errors.push("Zip Code is required.")
-        if (!zipcodes.lookup(zipcode)) errors.push("Zip Code is invalid.")
+        if (zipcode !== undefined && !zipcodes.lookup(zipcode)) errors.push("Zip Code is invalid.")
+        if (zipcodes.lookup(zipcode)?.state !== state) errors.push("Zip Code does not match State.")
+        if (!shippingType?.length) errors.push("Please select a shipping type.")
 
         setValidationErrors(errors)
 
-    }, [fullName, addressLine1, addressLine2, city, zipcode]);
+    }, [fullName, addressLine1, addressLine2, city, state, shippingType, zipcode]);
 
     useEffect(() => {
         if (state) {
@@ -103,7 +110,7 @@ function Checkout({ subtotal, sessionCameras }) {
         return subtotal + shippingPrice + salesTax;
     }
 
-    const emptyCart = async (e) => {
+    const checkout = async (e) => {
         e.preventDefault()
 
         if (validationErrors.length) {
@@ -125,7 +132,7 @@ function Checkout({ subtotal, sessionCameras }) {
             "user_id": sessionUser?.id
         }
 
-        await fetch("/api/orders/new", {
+        const response = await fetch("/api/orders/new", {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(payload),
@@ -133,11 +140,13 @@ function Checkout({ subtotal, sessionCameras }) {
 
           const newOrder = await response.json();
 
-          if (newOrder) {
+          if (!newOrder["errors"]) {
+            console.log("NEW ORDER: ", newOrder)
             dispatch(getUsers())
             history.push('/checkout')
           } else {
-            return 
+            validationErrors.push("Something went wrong. Please, try again later.")
+            setShowErrors(true);
           }
 
     }
@@ -146,16 +155,9 @@ function Checkout({ subtotal, sessionCameras }) {
     return (
         <>
             <form
-                onSubmit={emptyCart}
+                onSubmit={checkout}
             >
                 <h2>Checkout</h2>
-                <div className={showErrors ? '' : 'hidden'}>
-                    <div className="errors">
-                        {validationErrors.map(error => (
-                            <p key={error}>{error}</p>
-                        ))}
-                    </div>
-                </div>
                 <div className="checkout-form">
                     <div className="address-section">
                         <div className="address-section-left">
@@ -253,7 +255,7 @@ function Checkout({ subtotal, sessionCameras }) {
                         </div>
                     </div>
                 </div>
-                <button onClick={(e) => emptyCart(e)}>Complete Purchase</button>
+                <button type="submit">Complete Purchase</button>
 
             </form>
         </>

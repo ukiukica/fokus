@@ -18,6 +18,7 @@ def create_order():
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         data = form.data
+        print("DATA: ", data)
         new_order = Order(
             order_number = data["order_number"],
             order_items = data["order_items"],

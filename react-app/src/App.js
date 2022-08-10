@@ -120,9 +120,9 @@ function App() {
           <ShoppingCompleted />
         </ProtectedRoute>
 
-        {/* <ProtectedRoute path='/orders' exact={true}>
+        <ProtectedRoute path='/orders' exact={true}>
           <Orders />
-        </ProtectedRoute> */}
+        </ProtectedRoute>
 
         <Route path='/about' exact={true}>
           <AboutPage />
