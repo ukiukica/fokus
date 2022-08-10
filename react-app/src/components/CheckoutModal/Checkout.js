@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import zipcodes from "zipcodes";
 import SalesTax from "sales-tax";
 
+
 import "./Checkout.css"
 import StateSelectField from "./StateSelectField";
 
@@ -31,17 +32,26 @@ function Checkout({ subtotal }) {
     const updateAddressLine2 = (e) => setAddressLine2(e.target.value)
     const updateCity = (e) => setCity(e.target.value)
     const updateZipcode = (e) => setZipcode(e.target.value)
-    const updateShippingPrice = (e) => setShippingPrice(e.target.value)
-    const updateSalesTax = (e) => setSalesTax(e.target.value)
-    const updateTotal = (e) => setTotal(e.target.value)
+    const updateState = (e) => setState(e.target.value)
+    const updateShippingType = (e) => setShippingType(e.target.value)
 
-    const updateState = (e) => {
-        setState(e.target.value)
-    }
 
-    const updateShippingType = (e) => {
-        setShippingType(e.target.value)
-    }
+    useEffect(() => {
+        const errors = [];
+
+        if (!fullName.length) errors.push("Name is required.");
+        if (fullName.length > 100) errors.push("Name must be 100 characters or less.")
+        if (!addressLine1.length) errors.push("Address is required.")
+        if (addressLine1.length > 200) errors.push("Address must be 200 characters or less.")
+        if (addressLine2.length > 200) errors.push("Address must be 200 characters or less.")
+        if (!city.length) errors.push("City is required.")
+        if (city.length > 50) errors.push("City must be 50 characters or less.")
+        if (!zipcode) errors.push("Zip Code is required.")
+        if (!zipcodes.lookup(zipcode)) errors.push("Zip Code is invalid.")
+
+        setValidationErrors(errors)
+
+    }, [fullName, addressLine1, addressLine2, city, zipcode]);
 
     useEffect(() => {
         if (state) {
@@ -60,10 +70,7 @@ function Checkout({ subtotal }) {
         setTotal(calculateTotal())
     }, [shippingPrice, salesTax])
 
-    // const hills = zipcodes.lookup(90210);
-    // console.log(salesTax)
-    // console.log(shippingPrice)
-    // console.log(total)
+    console.log();
 
     function randomNumber(min, max) {
         return Math.floor(Math.random() * (max - min) + min)
@@ -88,6 +95,11 @@ function Checkout({ subtotal }) {
     const emptyCart = (e) => {
         e.preventDefault()
 
+        if (validationErrors.length) {
+            setShowErrors(true);
+            return
+        }
+        
         sessionStorage.removeItem(`${sessionUser.id}`)
 
         // const payload = {
@@ -174,6 +186,13 @@ function Checkout({ subtotal }) {
                                 />
                             </label>
                         </div>
+                        <div className={showErrors ? '' : 'hidden'}>
+                    <div className="errors">
+                        {validationErrors.map(error => (
+                            <p key={error}>{error}</p>
+                        ))}
+                    </div>
+                </div>
                     </div>
                     <div className="checkout-section">
                         <label className='form-label'>
