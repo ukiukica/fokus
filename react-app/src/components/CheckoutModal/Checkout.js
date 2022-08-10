@@ -254,23 +254,17 @@ function Checkout({ subtotal, sessionCameras }) {
                             </div>
                             <div className="summary-item">
                                 <p>Sales Tax:</p>
-                                <p>${salesTax?.toFixed(2)}</p>
+                                <p>{salesTax ? `$${salesTax?.toFixed(2)}`: "--"}</p>
                             </div>
                             <div className="summary-item ship">
                                 <p>Shipping Price: </p>
-                                <p>${shippingPrice}</p>
+                                <p>{shippingPrice ? `$${shippingPrice}` : "--"}</p>
                             </div>
-                            {isNaN(total) || !shippingPrice ?
                                 <div className="summary-item total">
                                     <p>Total:</p>
-                                    <p>--</p>
+                                    <p>{isNaN(total) || !shippingPrice ? "--" : `$${total?.toFixed(2)}`}</p>
                                 </div>
-                                :
-                                <div className="summary-item total">
-                                    <p>Total:</p>
-                                    <p>${total?.toFixed(2)}</p>
-                                </div>
-                            }
+
                         </div>
                         <button className="post" id="purchase" type="submit">Complete Purchase</button>
                     </div>
