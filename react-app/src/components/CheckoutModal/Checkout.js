@@ -4,15 +4,17 @@ import { useHistory } from "react-router-dom";
 import zipcodes from "zipcodes";
 import SalesTax from "sales-tax";
 
+import { getUsers } from './store/users';
 
 import "./Checkout.css"
 import StateSelectField from "./StateSelectField";
 
-function Checkout({ subtotal }) {
+function Checkout({ subtotal, sessionCameras }) {
     const dispatch = useDispatch();
     const history = useHistory();
 
     const sessionUser = useSelector((state) => state.session?.user);
+    const cameras = useSelector((state) => state.cameras)
 
     const [fullName, setFullName] = useState("");
     const [addressLine1, setAddressLine1] = useState("");
@@ -80,6 +82,15 @@ function Checkout({ subtotal }) {
         return `${randomNumber(100, 999)}-${randomNumber(10000, 99999)}-${randomNumber(1000, 9999)}`
     }
 
+    function getOrderItems() {
+        const orderItems = [];
+        sessionCameras?.forEach(camera => {
+            orderItems.push(cameras[camera]?.brand + " " + cameras[camera]?.model)
+        });
+        return orderItems;
+    }
+
+
     function calculateShipping() {
         if (shippingType === "Standard Shipping") return 7.99;
         if (shippingType === "Expedited Shipping") return 19.99;
@@ -92,22 +103,43 @@ function Checkout({ subtotal }) {
         return subtotal + shippingPrice + salesTax;
     }
 
-    const emptyCart = (e) => {
+    const emptyCart = async (e) => {
         e.preventDefault()
 
         if (validationErrors.length) {
             setShowErrors(true);
             return
         }
-        
+
         sessionStorage.removeItem(`${sessionUser.id}`)
 
-        // const payload = {
-        //     "order_number": getOrderNumber(),
-        //     "order_items":
-        // }
+        const payload = {
+            "order_number": getOrderNumber(),
+            "order_items":  getOrderItems().join("%"),
+            "full_name": fullName,
+            "address": [addressLine1, addressLine2, city, state, zipcode].toString(),
+            "shipping_type": shippingType,
+            "shipping_price": shippingPrice,
+            "sales_tax": salesTax,
+            "total": total,
+            "user_id": sessionUser?.id
+        }
 
-        history.push('/checkout')
+        await fetch("/api/orders/new", {
+            method: 'POST',
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+
+          const newOrder = await response.json();
+
+          if (newOrder) {
+            dispatch(getUsers())
+            history.push('/checkout')
+          } else {
+            return 
+          }
+
     }
 
 

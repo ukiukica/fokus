@@ -18,7 +18,7 @@ function ShoppingCart() {
     // console.log("CAMERAS: ", cameras)
 
     const sessionCameras = sessionStorage.getItem(`${sessionUser.id}`)?.split(",")
-    // console.log(sessionCameras)
+    console.log(sessionCameras)
 
     let subtotal = 0;
     sessionCameras?.forEach((camera) => (
@@ -86,7 +86,7 @@ function ShoppingCart() {
                         <div id="total-div">
                             <p id="total">Subtotal: ${subtotal.toFixed(2)}</p>
                         </div>
-                        <CheckoutModal subtotal={subtotal}/>
+                        <CheckoutModal subtotal={subtotal} sessionCameras={sessionCameras}/>
                         {/* <button className="post checkout" onClick={(e) => emptyCart(e)}>Checkout</button> */}
                     </div>
                 </>

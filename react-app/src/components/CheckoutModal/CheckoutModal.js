@@ -5,14 +5,14 @@ import Checkout from './Checkout'
 import "../../context/Buttons.css"
 
 
-function CheckoutModal({subtotal}) {
+function CheckoutModal({subtotal, sessionCameras}) {
     const [showModal, setShowModal] = useState(false);
     return (
         <>
             <button className="post checkout" onClick={() => setShowModal(true)}>Checkout</button>
             {showModal && (
                 <Modal onClose={() => setShowModal(false)}>
-                    <Checkout subtotal={subtotal} closeModal={() => setShowModal(false)} />
+                    <Checkout subtotal={subtotal} sessionCameras={sessionCameras} closeModal={() => setShowModal(false)} />
                 </Modal>
             )}
         </>
