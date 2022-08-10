@@ -239,23 +239,44 @@ function Checkout({ subtotal, sessionCameras }) {
                             </label>
                         </div>
                         <div className={showErrors ? '' : 'hidden'}>
-                                <div className="errors">
-                                    {validationErrors.map(error => (
-                                        <p key={error}>{error}</p>
-                                    ))}
-                                </div>
+                            <div className="errors">
+                                {validationErrors.map(error => (
+                                    <p key={error}>{error}</p>
+                                ))}
                             </div>
-                    </div>
-                        <div className="order-summary">
-                            <p>Subtotal: ${subtotal?.toFixed(2)}</p>
-                            <p>Sales Tax: ${salesTax?.toFixed(2)}</p>
-                            <p>Shipping Price: ${shippingPrice}</p>
-                            {isNaN(total) || !shippingPrice ?
-                                <p>Total: calculating...</p>
-                                :
-                                <p>Total: ${total?.toFixed(2)}</p>}
-                            <button type="submit">Complete Purchase</button>
                         </div>
+                    </div>
+                    <div className="order-summary">
+                        <div id="summary-heading">
+                            <p>Order Summary</p>
+                        </div>
+                        <div id="summary">
+                            <div className="summary-item">
+                                <p>Subtotal:</p>
+                                <p>${subtotal?.toFixed(2)}</p>
+                            </div>
+                            <div className="summary-item">
+                                <p>Sales Tax:</p>
+                                <p>${salesTax?.toFixed(2)}</p>
+                            </div>
+                            <div className="summary-item ship">
+                                <p>Shipping Price: </p>
+                                <p>${shippingPrice}</p>
+                            </div>
+                                {isNaN(total) || !shippingPrice ?
+                                <div className="summary-item total">
+                                    <p>Total:</p>
+                                    <p>--</p>
+                                    </div>
+                                    :
+                                    <div className="summary-item total">
+                                    <p>Total:</p>
+                                    <p>${total?.toFixed(2)}</p>
+                                    </div>
+                                    }
+                        </div>
+                        <button className="post" id="purchase" type="submit">Complete Purchase</button>
+                    </div>
                 </div>
 
 
