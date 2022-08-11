@@ -56,10 +56,12 @@ const NavBar = () => {
               <NavLink className='nav-btn' to='/cameras/new' exact={true} activeClassName='active'>
                 <button id='cam-icon' className="nav-btn"><i className="fa-solid fa-camera"></i></button>
               </NavLink>
+              <NavLink className='nav-btn' to='/orders' exact={true} activeClassName='active'>
+                <button className="nav-btn"><i className="fa-solid fa-file-invoice-dollar"></i></button>
+              </NavLink>
               <NavLink className='nav-btn' to='/shopping-cart' exact={true} activeClassName='active'>
                 <button className="nav-btn"><i className="fa-solid fa-cart-shopping"></i></button>
               </NavLink>
-                <i className="fa-solid fa-cart-shopping"></i>
               <LogoutButton />
             </div>
           )}
