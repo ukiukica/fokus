@@ -37,10 +37,6 @@ function Checkout({ subtotal, sessionCameras }) {
     const updateState = (e) => setState(e.target.value)
     const updateShippingType = (e) => setShippingType(e.target.value)
 
-    console.log(zipcodes.lookup(90210))
-    console.log(state)
-    console.log(shippingType)
-    console.log(zipcode)
 
     useEffect(() => {
         const errors = [];

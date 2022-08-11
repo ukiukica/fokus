@@ -15,7 +15,6 @@ function SingleOrder({ order }) {
     order?.order_items.split("%").forEach(orderItem => {
         orderItems.push(orderItem.split(","))
     })
-    console.log(orderItems)
 
     const address = order.address.split(",")
     const formattedAddress = [address.slice(0, address.length - 3), address.slice(address.length - 3)]
