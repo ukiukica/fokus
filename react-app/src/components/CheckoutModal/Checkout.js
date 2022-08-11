@@ -96,7 +96,7 @@ function Checkout({ subtotal, sessionCameras }) {
     function getOrderItems() {
         const orderItems = [];
         sessionCameras?.forEach(camera => {
-            orderItems.push(cameras[camera]?.brand + " " + cameras[camera]?.model)
+            orderItems.push(cameras[camera]?.brand + " " + cameras[camera]?.model + "," + cameras[camera]?.amount.toFixed(2))
         });
         return orderItems;
     }
@@ -130,6 +130,7 @@ function Checkout({ subtotal, sessionCameras }) {
             "full_name": fullName,
             "address": [addressLine1, addressLine2, city, state, zipcode].toString(),
             "shipping_type": shippingType,
+            "subtotal": subtotal,
             "shipping_price": shippingPrice,
             "sales_tax": salesTax,
             "total": total,

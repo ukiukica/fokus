@@ -10,6 +10,7 @@ class Order(db.Model):
     full_name = db.Column(db.String(100), nullable=False)
     address = db.Column(db.String(200), nullable=False)
     shipping_type = db.Column(db.String(50), nullable=False)
+    subtotal = db.Column(db.Float, nullable=False)
     shipping_price = db.Column(db.Float, nullable=False)
     sales_tax = db.Column(db.Float, nullable=False)
     total = db.Column(db.Float, nullable=False)
@@ -28,6 +29,7 @@ class Order(db.Model):
             'full_name': self.full_name,
             'address': self.address,
             'shipping_type': self.shipping_type,
+            'subtotal': self.subtotal,
             'shipping_price': self.shipping_price,
             'sales_tax': self.sales_tax,
             'total': self.total,

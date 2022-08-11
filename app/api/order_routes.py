@@ -25,6 +25,7 @@ def create_order():
             full_name = data["full_name"],
             address = data["address"],
             shipping_type = data["shipping_type"],
+            subtotal = data["subtotal"],
             shipping_price = data["shipping_price"],
             sales_tax = data["sales_tax"],
             total = data["total"],

@@ -13,6 +13,7 @@ class OrderForm(FlaskForm):
     full_name = StringField("Full Name", validators=[DataRequired()])
     address = StringField("Address", validators=[DataRequired()])
     shipping_type = SelectField("Shipping Type", choices=SHIPPING_TYPES)
+    subtotal = FloatField("Subtotal")
     shipping_price = FloatField("Shipping Price")
     sales_tax = FloatField("Sales Tax")
     total = FloatField("Total")

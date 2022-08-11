@@ -1,0 +1,49 @@
+.order {
+    border: 1px solid black;
+    border-radius: 4px;
+    width: 700px;
+    padding: 0;
+    margin-bottom: 2%;
+
+}
+
+#order-heading {
+    display: flex;
+    justify-content: space-between;
+    background-color: #011627;
+    color: #fff2de;
+    padding: 5px;
+}
+
+#heading-left {
+    display: flex;
+}
+
+#heading-right {
+    display: flex;
+}
+
+.section-div {
+    padding: 7px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.283);
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.shipping-heading {
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.shipping-div {
+    margin-top: 15px;
+}
+
+.amounts {
+    display: flex;
+    flex-direction: row;
+}
