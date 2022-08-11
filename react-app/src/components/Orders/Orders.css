@@ -3,6 +3,7 @@
     flex-direction: column;
     align-items: center;
     min-height: 680px;
+    margin-top: 20px;
 }
 
 .order-page > * {

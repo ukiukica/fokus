@@ -19,8 +19,16 @@
     display: flex;
 }
 
+#heading-left > * {
+    margin-right: 10px;
+}
+
 #heading-right {
     display: flex;
+}
+
+#heading-right > * {
+    margin-right: 10px;
 }
 
 .ship-amounts{
