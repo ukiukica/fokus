@@ -33,7 +33,7 @@ function SingleOrder({ order }) {
                     <p>{formatDate(order.created_at)}</p>
                 </div>
             </div>
-            <div className="section-div">
+            <div className="order-items">
                 {orderItems.map(orderItem => (
                     <div className="order-item" key={orderItem[0]}>
                         <p>{orderItem[0]}</p>
@@ -41,30 +41,32 @@ function SingleOrder({ order }) {
                     </div>
                 ))}
             </div>
-            <div className="section-div">
-                <>
-                    <p className="shipping-heading">Shipping Address:</p>
-                    <p>{order.full_name}</p>
-                    <p>{formattedAddress[0].join(", ")}</p>
-                    <p>{formattedAddress[1].join(", ")}</p>
-                </>
-                <div className="shipping-div">
-                    <p className="shipping-heading">Shipping Speed:</p>
-                    <p>{order.shipping_type}</p>
+            <div className="ship-amounts">
+                <div className="section-div">
+                    <>
+                        <p className="shipping-heading">Shipping Address:</p>
+                        <p>{order.full_name}</p>
+                        <p>{formattedAddress[0].join(", ")}</p>
+                        <p>{formattedAddress[1].join(", ")}</p>
+                    </>
+                    <div className="shipping-div">
+                        <p className="shipping-heading">Shipping Speed:</p>
+                        <p>{order.shipping_type}</p>
+                    </div>
                 </div>
-            </div>
-            <div className="amounts">
-                <div>
-                    <p>Subtotal:</p>
-                    <p>Sales Tax:</p>
-                    <p>Shipping Price:</p>
-                    <p>Total:</p>
-                </div>
-                <div>
-                    <p>${order.subtotal.toFixed(2)}</p>
-                    <p>${order.sales_tax.toFixed(2)}</p>
-                    <p>${order.shipping_price.toFixed(2)}</p>
-                    <p>${order.total.toFixed(2)}</p>
+                <div className="pricing">
+                    <div id="amounts-title">
+                        <p>Subtotal:</p>
+                        <p>Sales Tax:</p>
+                        <p>Shipping Price:</p>
+                        <p id="order-total-title">Total:</p>
+                    </div>
+                    <div id="amounts">
+                        <p>${order.subtotal.toFixed(2)}</p>
+                        <p>${order.sales_tax.toFixed(2)}</p>
+                        <p>${order.shipping_price.toFixed(2)}</p>
+                        <p id="order-total">${order.total.toFixed(2)}</p>
+                    </div>
                 </div>
             </div>
         </div>

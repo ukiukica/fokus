@@ -23,7 +23,13 @@
     display: flex;
 }
 
-.section-div {
+.ship-amounts{
+    padding: 7px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-items {
     padding: 7px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.283);
 }
@@ -43,7 +49,25 @@
     margin-top: 15px;
 }
 
-.amounts {
+.pricing {
     display: flex;
     flex-direction: row;
+}
+
+#amounts-title {
+    text-align: right;
+    margin-right: 15px;
+}
+
+#amounts {
+    text-align: right;
+}
+
+#order-total-title {
+    margin-top: 50px;
+}
+
+#order-total {
+    margin-top: 50px;
+
 }
