@@ -40,9 +40,10 @@
     margin-bottom: 5px;
 }
 
-.shipping-heading {
+.section-heading {
     font-weight: bold;
     margin-bottom: 3px;
+    font-size: 14px;
 }
 
 .shipping-div {
@@ -64,10 +65,18 @@
 }
 
 #order-total-title {
-    margin-top: 50px;
+    margin-top: 40px;
+    font-weight: bold;
 }
 
 #order-total {
-    margin-top: 50px;
+    margin-top: 35px;
+    font-weight: bold;
+    border-bottom: 4px double rgba(0, 0, 0, 0.283);
 
+}
+
+#order-ship-price {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.283);
+    padding-bottom: 4px;
 }

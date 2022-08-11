@@ -44,13 +44,13 @@ function SingleOrder({ order }) {
             <div className="ship-amounts">
                 <div className="section-div">
                     <>
-                        <p className="shipping-heading">Shipping Address:</p>
+                        <p className="section-heading">Shipping Address:</p>
                         <p>{order.full_name}</p>
                         <p>{formattedAddress[0].join(", ")}</p>
                         <p>{formattedAddress[1].join(", ")}</p>
                     </>
                     <div className="shipping-div">
-                        <p className="shipping-heading">Shipping Speed:</p>
+                        <p className="section-heading">Shipping Speed:</p>
                         <p>{order.shipping_type}</p>
                     </div>
                 </div>
@@ -59,12 +59,12 @@ function SingleOrder({ order }) {
                         <p>Subtotal:</p>
                         <p>Sales Tax:</p>
                         <p>Shipping Price:</p>
-                        <p id="order-total-title">Total:</p>
+                        <p id="order-total-title">Grand Total:</p>
                     </div>
                     <div id="amounts">
                         <p>${order.subtotal.toFixed(2)}</p>
                         <p>${order.sales_tax.toFixed(2)}</p>
-                        <p>${order.shipping_price.toFixed(2)}</p>
+                        <p id="order-ship-price">${order.shipping_price.toFixed(2)}</p>
                         <p id="order-total">${order.total.toFixed(2)}</p>
                     </div>
                 </div>
