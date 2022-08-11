@@ -26,34 +26,40 @@ import TlrCamList from './components/CameraList/TlrCamList';
 import SlrCamList from './components/CameraList/SlrCamList';
 import Footer from './components/Footer/Footer';
 import AboutPage from './components/AboutPage/AboutPage';
+import Orders from './components/Orders/Orders';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
 
-  useEffect(() => {
-    dispatch(getUsers())
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(getUsers())
+  // }, [dispatch])
 
-  useEffect(() => {
-    dispatch(getCameras())
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(getCameras())
+  // }, [dispatch])
 
-  useEffect(() => {
-    dispatch(getCategories())
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(getCategories())
+  // }, [dispatch])
 
-  useEffect(() => {
-    dispatch(getReviews())
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(getReviews())
+  // }, [dispatch])
 
 
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
+      dispatch(getUsers())
+      dispatch(getCameras())
+      dispatch(getCategories())
+      dispatch(getReviews())
       setLoaded(true);
     })();
+
   }, [dispatch]);
 
   if (!loaded) {
@@ -112,6 +118,10 @@ function App() {
 
         <ProtectedRoute path='/checkout' exact={true}>
           <ShoppingCompleted />
+        </ProtectedRoute>
+
+        <ProtectedRoute path='/orders' exact={true}>
+          <Orders />
         </ProtectedRoute>
 
         <Route path='/about' exact={true}>

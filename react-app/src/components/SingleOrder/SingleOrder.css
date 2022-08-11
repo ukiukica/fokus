@@ -1,0 +1,90 @@
+.order {
+    border: 1px solid black;
+    border-radius: 4px;
+    width: 700px;
+    padding: 0;
+    margin-bottom: 2%;
+
+}
+
+#order-heading {
+    display: flex;
+    justify-content: space-between;
+    background-color: #011627;
+    color: #fff2de;
+    padding: 5px;
+}
+
+#heading-left {
+    display: flex;
+}
+
+#heading-left > * {
+    margin-right: 10px;
+}
+
+#heading-right {
+    display: flex;
+}
+
+#heading-right > * {
+    margin-right: 10px;
+}
+
+.ship-amounts{
+    padding: 7px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-items {
+    padding: 7px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.283);
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.section-heading {
+    font-weight: bold;
+    margin-bottom: 3px;
+    font-size: 14px;
+}
+
+.shipping-div {
+    margin-top: 15px;
+}
+
+.pricing {
+    display: flex;
+    flex-direction: row;
+}
+
+#amounts-title {
+    text-align: right;
+    margin-right: 15px;
+}
+
+#amounts {
+    text-align: right;
+}
+
+#order-total-title {
+    margin-top: 40px;
+    font-weight: bold;
+}
+
+#order-total {
+    margin-top: 35px;
+    font-weight: bold;
+    border-bottom: 4px double rgba(0, 0, 0, 0.283);
+
+}
+
+#order-ship-price {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.283);
+    padding-bottom: 4px;
+}

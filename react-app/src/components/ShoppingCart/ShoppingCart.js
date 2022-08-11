@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 
 import { getCameras, editCamera } from "../../store/cameras";
+import CheckoutModal from "../CheckoutModal/CheckoutModal";
 import emptyCartPic from "./dog-with-cart2.png"
 
 import "./ShoppingCart.css"
@@ -17,20 +18,13 @@ function ShoppingCart() {
     // console.log("CAMERAS: ", cameras)
 
     const sessionCameras = sessionStorage.getItem(`${sessionUser.id}`)?.split(",")
-    // console.log(sessionCameras)
+    console.log(sessionCameras)
 
-    let total = 0;
+    let subtotal = 0;
     sessionCameras?.forEach((camera) => (
-        total += cameras[camera]?.amount
+        subtotal += cameras[camera]?.amount
     ))
 
-    console.log(total)
-
-    const emptyCart = (e) => {
-        e.preventDefault()
-        sessionStorage.removeItem(`${sessionUser.id}`)
-        history.push('/checkout')
-    }
 
     const increaseInventory = async (cameraId) => {
         const payload = {
@@ -90,9 +84,10 @@ function ShoppingCart() {
                             </div>
                         ))}
                         <div id="total-div">
-                            <p id="total">Total: ${total.toFixed(2)}</p>
+                            <p id="total">Subtotal: ${subtotal.toFixed(2)}</p>
                         </div>
-                        <button className="post checkout" onClick={(e) => emptyCart(e)}>Checkout</button>
+                        <CheckoutModal subtotal={subtotal} sessionCameras={sessionCameras}/>
+                        {/* <button className="post checkout" onClick={(e) => emptyCart(e)}>Checkout</button> */}
                     </div>
                 </>
                 :

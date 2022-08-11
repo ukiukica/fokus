@@ -78,6 +78,10 @@
     justify-content: center;
 }
 
+.logged-in-div > * {
+    margin-right: 15px;
+}
+
 /* LOGO / CATEGORIES STYLES */
 .categ-btn {
     color: #f5f5dc;

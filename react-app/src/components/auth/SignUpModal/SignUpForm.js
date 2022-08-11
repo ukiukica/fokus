@@ -34,7 +34,6 @@ const SignUpForm = () => {
     // console.log("INSIDE ONSIGNUP")
     // console.log("FRONTEND ERRORS: ", frontendErrors)
     if (!frontendErrors.length) {
-      console.log("IN IF STATEMENT")
       if (password === repeatPassword) {
         const data = await dispatch(signUp(username, email, password));
 
